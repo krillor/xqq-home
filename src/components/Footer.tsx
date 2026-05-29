@@ -26,10 +26,10 @@ export default function Footer() {
             <h3 className="font-serif text-lg font-bold text-warm-gold">快速导航</h3>
             <nav className="flex flex-col gap-2">
               <Link to="/" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">首页</Link>
-              <Link to="/parser" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">智能解析</Link>
+              <Link to="/parser" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">工具箱</Link>
               <Link to="/archive" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">寻根档案</Link>
               <Link to="/search" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">寻亲列表</Link>
-              <Link to="/associations" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">侨联/商会</Link>
+              <Link to="/associations" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">官方组织</Link>
             </nav>
           </div>
 
