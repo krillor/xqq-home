@@ -61,7 +61,7 @@ const SearchPage: React.FC = () => {
       originRegion: '泰国 - 曼谷',
       targetRegion: '中国 - 广东省 - 揭阳',
       description: '我奶奶是从潮汕到泰国的，想找回老家的亲人...',
-      status: 'matched' as const,
+      status: 'active' as const,
       seekerType: 'overseas-china' as const,
       date: '2024-01-25',
     },
@@ -110,7 +110,6 @@ const SearchPage: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'success': return 'bg-green-100 text-green-800';
-      case 'matched': return 'bg-blue-100 text-blue-800';
       default: return 'bg-orange-100 text-orange-800';
     }
   };
@@ -118,7 +117,6 @@ const SearchPage: React.FC = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'success': return '已找到';
-      case 'matched': return '已匹配';
       default: return '寻找中';
     }
   };
@@ -171,7 +169,6 @@ const SearchPage: React.FC = () => {
                 >
                   <option value="">所有状态</option>
                   <option value="active">寻找中</option>
-                  <option value="matched">已匹配</option>
                   <option value="success">已找到</option>
                 </select>
               </div>
