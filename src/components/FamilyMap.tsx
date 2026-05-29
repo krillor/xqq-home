@@ -19,19 +19,23 @@ L.Icon.Default.mergeOptions({
 const CustomMarker = ({ region }: { region: RegionData }) => {
   const navigate = useNavigate();
   
+  // 如果没有数据，不显示标记
+  if (region.total === 0 && region.searching === 0 && region.found === 0) {
+    return null;
+  }
+  
+  const total = region.total || region.searching + region.found;
+  
   // Determine marker color based on total count
-  const getColor = (total: number) => {
-    if (total >= 20) return '#E67E22'; // Orange for high volume
-    if (total >= 10) return '#5D4037'; // Brown for medium
+  const getColor = (count: number) => {
+    if (count >= 20) return '#E67E22'; // Orange for high volume
+    if (count >= 10) return '#5D4037'; // Brown for medium
     return '#8D6E63'; // Light brown for low
   };
   
-  const color = getColor(region.total);
-  
-  // Create custom div icon with number
-  const showNumber = region.total > 0;
-  const size = showNumber ? 50 : 30;
-  const fontSize = showNumber ? 16 : 12;
+  const color = getColor(total);
+  const size = 50;
+  const fontSize = 16;
   
   const customIcon = L.divIcon({
     className: 'custom-marker',
@@ -50,7 +54,7 @@ const CustomMarker = ({ region }: { region: RegionData }) => {
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         border: 3px solid white;
       ">
-        ${showNumber ? region.total : '•'}
+        ${total}
       </div>
     `,
     iconSize: [size, size],
