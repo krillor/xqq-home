@@ -45,7 +45,7 @@ export default function Home() {
                 <button
                   onClick={() => {
                     setUserRole('seeker');
-                    navigate('/publish');
+                    navigate('/personal?tab=archive');
                   }}
                   className="px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg flex items-center justify-center gap-2"
                 >
@@ -55,7 +55,7 @@ export default function Home() {
                 <button
                   onClick={() => {
                     setUserRole('volunteer');
-                    navigate('/volunteer');
+                    navigate('/personal?tab=volunteer');
                   }}
                   className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-xl font-semibold text-lg hover:bg-white/30 transition-all shadow-lg border border-white/30 flex items-center justify-center gap-2"
                 >
@@ -66,7 +66,7 @@ export default function Home() {
             ) : (
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  to={userRole === 'seeker' ? '/publish' : '/volunteer'}
+                  to={`/personal?tab=${userRole === 'seeker' ? 'archive' : 'volunteer'}`}
                   className="px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg"
                 >
                   继续{userRole === 'seeker' ? '寻亲' : '志愿'}

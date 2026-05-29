@@ -16,7 +16,7 @@ export default function Header() {
   const navItems = [
     { path: '/', label: '首页', icon: Home },
     { path: '/search', label: '寻亲列表', icon: Search },
-    { path: '/archive', label: '寻根档案', icon: FileText },
+    { path: '/personal', label: '个人中心', icon: FileText },
     { path: '/parser', label: '工具箱', icon: Sparkles },
     { path: '/associations', label: '官方组织', icon: Building2 },
   ];

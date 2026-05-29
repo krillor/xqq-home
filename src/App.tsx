@@ -14,7 +14,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AssociationsPage from './pages/AssociationsPage';
 import IntelligentParser from './pages/IntelligentParser';
-import RootSearchArchive from './pages/RootSearchArchive';
+import PersonalCenter from './pages/PersonalCenter';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 
@@ -27,7 +27,7 @@ export default function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/role-selection" element={<RoleSelectionPage />} />
           <Route path="/publish" element={<PublishPage />} />
-          <Route path="/archive" element={<RootSearchArchive />} />
+          <Route path="/personal" element={<PersonalCenter />} />
           <Route path="/parser" element={<IntelligentParser />} />
           <Route path="/volunteer" element={<VolunteerPage />} />
           <Route path="/profile" element={<ProfilePage />} />
