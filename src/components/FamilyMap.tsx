@@ -29,29 +29,33 @@ const CustomMarker = ({ region }: { region: RegionData }) => {
   const color = getColor(region.total);
   
   // Create custom div icon with number
+  const showNumber = region.total > 0;
+  const size = showNumber ? 50 : 30;
+  const fontSize = showNumber ? 16 : 12;
+  
   const customIcon = L.divIcon({
     className: 'custom-marker',
     html: `
       <div style="
         background: ${color};
         color: white;
-        width: 50px;
-        height: 50px;
+        width: ${size}px;
+        height: ${size}px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        font-size: 16px;
+        font-size: ${fontSize}px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         border: 3px solid white;
       ">
-        ${region.total}
+        ${showNumber ? region.total : '•'}
       </div>
     `,
-    iconSize: [50, 50],
-    iconAnchor: [25, 25],
-    popupAnchor: [0, -25],
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
   });
   
   return (
