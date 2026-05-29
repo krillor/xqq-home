@@ -15,10 +15,10 @@ export default function Header() {
 
   const navItems = [
     { path: '/', label: '首页', icon: Home },
-    { path: '/parser', label: '智能解析', icon: Sparkles },
+    { path: '/parser', label: '工具箱', icon: Sparkles },
     { path: '/archive', label: '寻根档案', icon: FileText },
     { path: '/search', label: '寻亲列表', icon: Search },
-    { path: '/associations', label: '侨联/商会', icon: Building2 },
+    { path: '/associations', label: '官方组织', icon: Building2 },
   ];
 
   const isActive = (path: string) => {
