@@ -5,8 +5,10 @@ import { traeBadgePlugin } from 'vite-plugin-trae-solo-badge';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/xqq-home/',
   build: {
     sourcemap: 'hidden',
+    outDir: 'docs'
   },
   server: {
     host: '0.0.0.0',
