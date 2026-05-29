@@ -1,0 +1,155 @@
+{
+  "app": {
+    "name": "Cầu Tái Hợp"
+  },
+  "nav": {
+    "home": "Trang Chủ",
+    "search": "Tìm Kiếm",
+    "publish": "Đăng Tin",
+    "volunteer": "Tình Nguyện Viên",
+    "successStories": "Câu Chuyện Thành Công",
+    "profile": "Hồ Sơ",
+    "language": "Ngôn Ngữ"
+  },
+  "search": {
+    "title": "Tìm Người Thân Mất Tích",
+    "subtitle": "Vượt Qua Núi Sông, Chỉ Để Tái Hợp",
+    "searchPlaceholder": "Nhập tên, địa chỉ hoặc từ khóa...",
+    "filter": {
+      "surname": "Họ",
+      "originRegion": "Vùng Nguồn Gốc",
+      "targetRegion": "Vùng Đích",
+      "seekerType": "Loại Tìm Kiếm",
+      "status": "Trạng Thái"
+    },
+    "status": {
+      "looking": "Đang Tìm",
+      "found": "Đã Tìm Thấy"
+    }
+  },
+  "publish": {
+    "title": "Đăng Thông Tin Tìm Người Thân",
+    "subtitle": "Điền đầy đủ chi tiết để tăng cơ hội tìm thấy người thân",
+    "steps": {
+      "basic": "Thông Tin Cơ Bản",
+      "person": "Người Cần Tìm",
+      "family": "Quan Hệ Gia Đình",
+      "photos": "Ảnh",
+      "confirm": "Xác Nhận"
+    },
+    "form": {
+      "yourName": "Tên Của Bạn",
+      "phone": "Số Điện Thoại",
+      "email": "Email",
+      "relationship": "Quan Hệ Với Người Cần Tìm",
+      "direction": "Hướng Tìm Kiếm",
+      "directions": {
+        "chaoshanToOverseas": "Chaoshan→Ngoài Nước",
+        "overseasToChaoshan": "Ngoài Nước→Chaoshan",
+        "chinaToOverseas": "Trung Quốc→Ngoài Nước",
+        "overseasToChina": "Ngoài Nước→Trung Quốc"
+      },
+      "missingPersonName": "Tên Người Cần Tìm",
+      "formerName": "Tên Trước Đó/Bí Danh",
+      "birthYear": "Năm Sinh",
+      "birthPlace": "Nơi Sinh",
+      "lastKnownAddress": "Địa Chỉ Cuối Cùng Được Biết",
+      "destination": "Đích Đến",
+      "departureYear": "Năm Rời Đi",
+      "ancestralHome": "Quê Hương",
+      "village": "Thôn/Xóm",
+      "fatherName": "Tên Cha",
+      "motherName": "Tên Mẹ",
+      "siblings": "Anh Chị Em Trai",
+      "clanName": "Tên Họ Tộc",
+      "genealogyCharacters": "Thế Hệ Phả Hệ",
+      "familyStory": "Câu Chuyện Gia Đình",
+      "additionalInfo": "Thông Tin Thêm",
+      "uploadPhotos": "Tải Lên Ảnh",
+      "photoHint": "Tối đa 10 ảnh, khuyến nghị ảnh cũ và ảnh gia đình"
+    },
+    "submit": "Gửi",
+    "success": "Đăng tin thành công! Chúng tôi đã gửi thông tin đến tình nguyện viên ở khu vực liên quan"
+  },
+  "volunteer": {
+    "title": "Trung Tâm Tình Nguyện Viên",
+    "subtitle": "Trở thành tình nguyện viên tìm người thân, giúp đỡ nhiều gia đình tái hợp",
+    "join": "Tham Gia Tình Nguyện Viên",
+    "myPosts": "Bài Viết Của Tôi",
+    "notifications": "Thông Báo",
+    "settings": "Cài Đặt",
+    "profile": {
+      "about": "Về Tôi",
+      "languages": "Ngôn Ngữ Thông Thạo",
+      "regions": "Vùng Quan Tâm",
+      "experience": "Năm Kinh Nghiệm",
+      "successCases": "Trường Hợp Thành Công"
+    }
+  },
+  "successStories": {
+    "title": "Câu Chuyện Thành Công Tìm Người Thân",
+    "subtitle": "Những câu chuyện tái hợp thực tế truyền cảm hứng cho chúng ta tiếp tục前行",
+    "readMore": "Đọc Thêm",
+    "viewAll": "Xem Tất Cả"
+  },
+  "map": {
+    "title": "Bản Đồ Tìm Người Thân",
+    "subtitle": "Xem phân bố thông tin tìm người thân theo thời gian thực",
+    "global": "Chế Độ Toàn Cầu",
+    "southeastAsia": "Chế Độ Đông Nam Á",
+    "legend": "Chú Giải",
+    "looking": "Đang Tìm",
+    "found": "Đã Tìm Thấy",
+    "clickToView": "Nhấp để xem chi tiết"
+  },
+  "comments": {
+    "title": "Bình Luận",
+    "placeholder": "Chia sẻ ý kiến hoặc manh mối của bạn...",
+    "uploadImage": "Tải Lên Hình Ảnh",
+    "submit": "Gửi",
+    "likes": "Thích",
+    "noComments": "Chưa có bình luận nào"
+  },
+  "home": {
+    "hero": {
+      "title": "Vượt Qua Núi Sông, Chỉ Để Tái Hợp",
+      "subtitle": "Nền tảng tìm người thân cho kiều bào Chaoshan, cây cầu nối kết gia đình trong và ngoài nước",
+      "cta": "Bắt Đầu Tìm"
+    },
+    "stats": {
+      "posts": "Thông Tin Tìm Kiếm",
+      "volunteers": "Tình Nguyện Viên",
+      "reunions": "Tái Hợp Thành Công"
+    }
+  },
+  "roles": {
+    "title": "Chọn Vai Trò Của Bạn",
+    "subtitle": "Danh tính khác nhau, sự ấm áp như nhau",
+    "seeker": {
+      "title": "Người Tìm Người Thân",
+      "description": "Đăng thông tin tìm kiếm, tìm người thân mất tích",
+      "cta": "Tôi Muốn Tìm"
+    },
+    "volunteer": {
+      "title": "Tình Nguyện Viên",
+      "description": "Giúp đỡ người khác, truyền đạt sự ấm áp, giúp nhiều gia đình tái hợp",
+      "cta": "Tham Gia Tình Nguyện Viên"
+    }
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "edit": "Chỉnh Sửa",
+    "delete": "Xóa",
+    "confirm": "Xác Nhận",
+    "back": "Quay Lại",
+    "next": "Tiếp Theo",
+    "previous": "Trước Đó",
+    "view": "Xem",
+    "search": "Tìm Kiếm",
+    "filter": "Lọc",
+    "reset": "Đặt Lại"
+  }
+}

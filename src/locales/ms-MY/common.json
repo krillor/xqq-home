@@ -1,0 +1,155 @@
+{
+  "app": {
+    "name": "Jambatan Pertemuan Semula"
+  },
+  "nav": {
+    "home": "Laman Utama",
+    "search": "Cari",
+    "publish": "Terbit",
+    "volunteer": "Sukarelawan",
+    "successStories": "Cerita Berjaya",
+    "profile": "Profil",
+    "language": "Bahasa"
+  },
+  "search": {
+    "title": "Mencari Saudara Hilang",
+    "subtitle": "Melintasi Laut dan Gunung, Hanya untuk Pertemuan Semula",
+    "searchPlaceholder": "Masukkan nama, alamat atau kata kunci...",
+    "filter": {
+      "surname": "Nama Keluarga",
+      "originRegion": "Wilayah Asal",
+      "targetRegion": "Wilayah Sasaran",
+      "seekerType": "Jenis Carian",
+      "status": "Status"
+    },
+    "status": {
+      "looking": "Mencari",
+      "found": "Ditemui"
+    }
+  },
+  "publish": {
+    "title": "Terbit Maklumat Carian Saudara",
+    "subtitle": "Isi maklumat lengkap untuk meningkatkan peluang mencari saudara",
+    "steps": {
+      "basic": "Maklumat Asas",
+      "person": "Orang Dicari",
+      "family": "Hubungan Keluarga",
+      "photos": "Gambar",
+      "confirm": "Pengesahan"
+    },
+    "form": {
+      "yourName": "Nama Anda",
+      "phone": "Nombor Telefon",
+      "email": "Email",
+      "relationship": "Hubungan dengan Orang Dicari",
+      "direction": "Arah Carian",
+      "directions": {
+        "chaoshanToOverseas": "Chaoshan→Luar Negara",
+        "overseasToChaoshan": "Luar Negara→Chaoshan",
+        "chinaToOverseas": "China→Luar Negara",
+        "overseasToChina": "Luar Negara→China"
+      },
+      "missingPersonName": "Nama Orang Dicari",
+      "formerName": "Nama Dahulu/Alias",
+      "birthYear": "Tahun Lahir",
+      "birthPlace": "Tempat Lahir",
+      "lastKnownAddress": "Alamat Terakhir Diketahui",
+      "destination": "Destinasi",
+      "departureYear": "Tahun Bertolak",
+      "ancestralHome": "Kampung Halaman",
+      "village": "Kampung",
+      "fatherName": "Nama Bapa",
+      "motherName": "Nama Ibu",
+      "siblings": "Saudara Kandung",
+      "clanName": "Nama Puak",
+      "genealogyCharacters": "Generasi Salasilah",
+      "familyStory": "Cerita Keluarga",
+      "additionalInfo": "Maklumat Tambahan",
+      "uploadPhotos": "Muat Naik Gambar",
+      "photoHint": "Maksimum 10 gambar, syorkan gambar lama dan gambar keluarga"
+    },
+    "submit": "Hantar",
+    "success": "Berjaya diterbitkan! Kami telah menghantar maklumat kepada sukarelawan di wilayah berkaitan"
+  },
+  "volunteer": {
+    "title": "Pusat Sukarelawan",
+    "subtitle": "Menjadi sukarelawan carian saudara, membantu lebih banyak keluarga bersatu semula",
+    "join": "Sertai Sukarelawan",
+    "myPosts": "Siaran Saya",
+    "notifications": "Pemberitahuan",
+    "settings": "Tetapan",
+    "profile": {
+      "about": "Tentang Saya",
+      "languages": "Bahasa Dikuasai",
+      "regions": "Wilayah Diperhatikan",
+      "experience": "Tahun Pengalaman",
+      "successCases": "Kes Berjaya"
+    }
+  },
+  "successStories": {
+    "title": "Cerita Berjaya Carian Saudara",
+    "subtitle": "Cerita pertemuan semula sebenar yang memberi inspirasi kepada kita untuk terus maju",
+    "readMore": "Baca Lagi",
+    "viewAll": "Lihat Semua"
+  },
+  "map": {
+    "title": "Peta Carian Saudara",
+    "subtitle": "Lihat taburan maklumat carian saudara secara masa nyata",
+    "global": "Paparan Global",
+    "southeastAsia": "Paparan Asia Tenggara",
+    "legend": "Legenda",
+    "looking": "Mencari",
+    "found": "Ditemui",
+    "clickToView": "Klik untuk melihat butiran"
+  },
+  "comments": {
+    "title": "Komen",
+    "placeholder": "Kongsi pendapat atau petunjuk anda...",
+    "uploadImage": "Muat Naik Imej",
+    "submit": "Hantar",
+    "likes": "Suka",
+    "noComments": "Belum ada komen"
+  },
+  "home": {
+    "hero": {
+      "title": "Melintasi Laut dan Gunung, Hanya untuk Pertemuan Semula",
+      "subtitle": "Platform carian saudara untuk pendatang Chaoshan, jambatan yang menghubungkan keluarga di dalam dan luar negara",
+      "cta": "Mula Mencari"
+    },
+    "stats": {
+      "posts": "Maklumat Carian",
+      "volunteers": "Sukarelawan",
+      "reunions": "Pertemuan Semula Berjaya"
+    }
+  },
+  "roles": {
+    "title": "Pilih Peranan Anda",
+    "subtitle": "Identiti berbeza, kehangatan yang sama",
+    "seeker": {
+      "title": "Pencari Saudara",
+      "description": "Terbit maklumat carian, mencari saudara hilang",
+      "cta": "Saya Ingin Mencari"
+    },
+    "volunteer": {
+      "title": "Sukarelawan",
+      "description": "Membantu orang lain, menyebarkan kehangatan, menyatukan lebih banyak keluarga",
+      "cta": "Sertai Sukarelawan"
+    }
+  },
+  "common": {
+    "loading": "Memuatkan...",
+    "submit": "Hantar",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "edit": "Edit",
+    "delete": "Padam",
+    "confirm": "Sahkan",
+    "back": "Kembali",
+    "next": "Seterusnya",
+    "previous": "Sebelumnya",
+    "view": "Lihat",
+    "search": "Cari",
+    "filter": "Tapis",
+    "reset": "Set Semula"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "appName": "RootFinder",
+  "appDescription": "Platform to reconnect Teochew people with the diaspora",
+  "common": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "viewAll": "View All",
+    "loadMore": "Load More",
+    "noData": "No data",
+    "tryAgain": "Try again"
+  },
+  "navigation": {
+    "home": "Home",
+    "search": "Search",
+    "publish": "Publish",
+    "profile": "Profile",
+    "successStories": "Success Stories"
+  },
+  "home": {
+    "heroTitle": "Letter to Grandma",
+    "heroSubtitle": "Across time and space",
+    "quickSearch": "Quick Search",
+    "selectSurname": "Select Surname",
+    "selectOrigin": "Select Origin",
+    "selectTarget": "Select Destination",
+    "latestPosts": "Latest Posts",
+    "stats": {
+      "totalPosts": "Reunion Stories",
+      "success": "Success Stories",
+      "activeSeekers": "Active Seekers",
+      "regions": "Regions"
+    }
+  },
+  "search": {
+    "title": "Search List",
+    "filterTitle": "Filter Options",
+    "filters": {
+      "surname": "Surname",
+      "originRegion": "Origin Region",
+      "targetRegion": "Target Region",
+      "seekerType": "Search Direction",
+      "status": "Status",
+      "yearRange": "Year Range"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→Thailand",
+      "thai_to_chaoshan": "Thailand→Teochew",
+      "all": "All"
+    },
+    "status": {
+      "searching": "Searching",
+      "found": "Found",
+      "pending": "Pending",
+      "closed": "Closed"
+    },
+    "clearFilters": "Clear Filters"
+  },
+  "detail": {
+    "seekerName": "Publisher",
+    "surname": "Surname",
+    "originRegion": "Origin",
+    "targetRegion": "Destination",
+    "estimatedYear": "Estimated Year",
+    "familyStory": "Family Story",
+    "photos": "Related Photos",
+    "provideClue": "Provide a Clue",
+    "contact": "Contact Publisher",
+    "share": "Share",
+    "favorite": "Favorite"
+  },
+  "publish": {
+    "title": "Publish Reunion Post",
+    "step1": "Basic Info",
+    "step2": "Place & Time",
+    "step3": "Family Story",
+    "step4": "Confirm",
+    "form": {
+      "seekerName": "Your Name",
+      "seekerType": "Search Direction",
+      "surname": "Surname",
+      "originRegion": "Origin Region",
+      "targetRegion": "Target Region",
+      "estimatedYear": "Estimated Year",
+      "familyStory": "Family Story",
+      "photos": "Related Photos"
+    },
+    "success": "Published Successfully!",
+    "successDesc": "Your post is being reviewed and will appear on the platform once approved"
+  },
+  "profile": {
+    "myPosts": "My Posts",
+    "favorites": "Favorites",
+    "messages": "Messages",
+    "settings": "Settings",
+    "authStatus": "Auth Status",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "switchLang": "Switch Language"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "Success Stories",
+    "storyTitle": "Story Title",
+    "location": "Location",
+    "date": "Date",
+    "readMore": "Read More"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "appName": "เส้นทางค้นหาบุคคล",
+  "appDescription": "แพลตฟอร์มสำหรับเชื่อมต่อคน Teochew กับชาวต่างชาติที่มีเชื้อสายไทย",
+  "common": {
+    "loading": "กำลังโหลด...",
+    "submit": "ส่ง",
+    "cancel": "ยกเลิก",
+    "confirm": "ยืนยัน",
+    "back": "กลับ",
+    "save": "บันทึก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "search": "ค้นหา",
+    "filter": "กรอง",
+    "viewAll": "ดูทั้งหมด",
+    "loadMore": "โหลดเพิ่มเติม",
+    "noData": "ไม่มีข้อมูล",
+    "tryAgain": "ลองอีกครั้ง"
+  },
+  "navigation": {
+    "home": "หน้าแรก",
+    "search": "รายการค้นหา",
+    "publish": "โพสต์ข้อมูล",
+    "profile": "โปรไฟล์",
+    "successStories": "เรื่องราวสำเร็จ"
+  },
+  "home": {
+    "heroTitle": "จดหมายถึงคุณย่า",
+    "heroSubtitle": "ความคิดถึงข้ามเวลา",
+    "quickSearch": "ค้นหาเร็ว",
+    "selectSurname": "เลือกนามสกุล",
+    "selectOrigin": "เลือกสถานที่ต้นทาง",
+    "selectTarget": "เลือกสถานที่ปลายทาง",
+    "latestPosts": "โพสต์ล่าสุด",
+    "stats": {
+      "totalPosts": "ข้อมูลค้นหา",
+      "success": "เรื่องราวสำเร็จ",
+      "activeSeekers": "ผู้ค้นหา",
+      "regions": "พื้นที่ครอบคลุม"
+    }
+  },
+  "search": {
+    "title": "รายการค้นหา",
+    "filterTitle": "เงื่อนไขการกรอง",
+    "filters": {
+      "surname": "นามสกุล",
+      "originRegion": "สถานที่ต้นทาง",
+      "targetRegion": "สถานที่ปลายทาง",
+      "seekerType": "ทิศทางการค้นหา",
+      "status": "สถานะ",
+      "yearRange": "ช่วงปี"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→ไทย",
+      "thai_to_chaoshan": "ไทย→Teochew",
+      "all": "ทั้งหมด"
+    },
+    "status": {
+      "searching": "กำลังค้นหา",
+      "found": "พบแล้ว",
+      "pending": "กำลังตรวจสอบ",
+      "closed": "ปิดแล้ว"
+    },
+    "clearFilters": "ล้างตัวกรอง"
+  },
+  "detail": {
+    "seekerName": "ผู้โพสต์",
+    "surname": "นามสกุล",
+    "originRegion": "สถานที่ต้นทาง",
+    "targetRegion": "สถานที่ปลายทาง",
+    "estimatedYear": "ปีประมาณ",
+    "familyStory": "เรื่องราวครอบครัว",
+    "photos": "รูปภาพที่เกี่ยวข้อง",
+    "provideClue": "ให้ข้อมูลเพิ่มเติม",
+    "contact": "ติดต่อผู้โพสต์",
+    "share": "แชร์",
+    "favorite": "บันทึก"
+  },
+  "publish": {
+    "title": "โพสต์ข้อมูลค้นหา",
+    "step1": "ข้อมูลพื้นฐาน",
+    "step2": "สถานที่และเวลา",
+    "step3": "เรื่องราวครอบครัว",
+    "step4": "ยืนยันข้อมูล",
+    "form": {
+      "seekerName": "ชื่อของคุณ",
+      "seekerType": "ทิศทางการค้นหา",
+      "surname": "นามสกุล",
+      "originRegion": "สถานที่ต้นทาง",
+      "targetRegion": "สถานที่ปลายทาง",
+      "estimatedYear": "ปีประมาณ",
+      "familyStory": "เรื่องราวครอบครัว",
+      "photos": "รูปภาพที่เกี่ยวข้อง"
+    },
+    "success": "โพสต์สำเร็จ!",
+    "successDesc": "ข้อมูลค้นหาของคุณถูกส่งเพื่อตรวจสอบ แล้วจะแสดงบนแพลตฟอร์มเมื่อผ่านการตรวจสอบ"
+  },
+  "profile": {
+    "myPosts": "โพสต์ของฉัน",
+    "favorites": "รายการที่ชื่นชอบ",
+    "messages": "ข้อความ",
+    "settings": "ตั้งค่า",
+    "authStatus": "สถานะยืนยัน",
+    "verified": "ยืนยันแล้ว",
+    "unverified": "ยังไม่ยืนยัน",
+    "switchLang": "เปลี่ยนภาษา"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "เรื่องราวค้นหาโอเค",
+    "storyTitle": "หัวข้อเรื่อง",
+    "location": "สถานที่พบกัน",
+    "date": "วันที่พบกัน",
+    "readMore": "อ่านเพิ่มเติม"
+  }
+}

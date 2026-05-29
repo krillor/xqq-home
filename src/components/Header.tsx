@@ -1,0 +1,198 @@
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Home, Search, PlusCircle, User, Heart, Menu, X, Bell, Users, Building2, LogIn, LogOut, Info, Sparkles, FileText, BookOpen } from 'lucide-react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useAppStore } from '../store/appStore';
+
+export default function Header() {
+  const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { userRole, unreadCount, setUserRole, isLoggedIn, currentUser, logout } = useAppStore();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { path: '/', label: '首页', icon: Home },
+    { path: '/parser', label: '智能解析', icon: Sparkles },
+    { path: '/archive', label: '寻根档案', icon: FileText },
+    { path: '/search', label: '寻亲列表', icon: Search },
+    { path: '/associations', label: '侨联/商会', icon: Building2 },
+  ];
+
+  const isActive = (path: string) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
+
+  const handlePublishClick = (e: React.MouseEvent) => {
+    if (!isLoggedIn) {
+      e.preventDefault();
+      navigate('/login');
+      return;
+    }
+    if (!userRole) {
+      e.preventDefault();
+      navigate('/role-selection');
+    } else if (userRole === 'seeker') {
+      navigate('/publish');
+    } else {
+      navigate('/volunteer');
+    }
+  };
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-amber-100 shadow-sm">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#E67E22] to-amber-500 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-lg">寻</span>
+            </div>
+            <span className="font-bold text-xl text-[#5D4037] hidden sm:block">寻亲桥</span>
+          </Link>
+          
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 relative ${
+                  isActive(item.path)
+                    ? 'bg-[#E67E22] text-white shadow-md'
+                    : 'text-[#5D4037] hover:bg-orange-50'
+                }`}
+              >
+                <item.icon size={18} />
+                <span className="font-sans text-sm">{item.label}</span>
+              </Link>
+            ))}
+            <button
+              onClick={handlePublishClick}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 relative ${
+                isActive('/publish') || isActive('/volunteer')
+                  ? 'bg-[#E67E22] text-white shadow-md'
+                  : 'text-[#5D4037] hover:bg-orange-50'
+              }`}
+            >
+              <PlusCircle size={18} />
+              <span className="font-sans text-sm">
+                {userRole === 'volunteer' ? '志愿者中心' : '发布寻亲'}
+              </span>
+              {userRole === 'volunteer' && unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                  {unreadCount}
+                </span>
+              )}
+            </button>
+          </nav>
+
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
+            {isLoggedIn ? (
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-gray-600">
+                  {currentUser?.name}
+                </span>
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-2 px-4 py-2 text-sm text-[#8D6E63] hover:text-[#5D4037] hover:bg-orange-50 rounded-lg"
+                >
+                  <LogOut size={16} />
+                  退出
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg hover:from-amber-700 hover:to-orange-700"
+              >
+                <LogIn size={16} />
+                登录
+              </Link>
+            )}
+          </div>
+
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            {userRole === 'volunteer' && unreadCount > 0 && (
+              <Link to="/volunteer" className="relative p-2">
+                <Bell size={20} className="text-[#5D4037]" />
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                  {unreadCount}
+                </span>
+              </Link>
+            )}
+            <button
+              className="p-2 rounded-lg hover:bg-orange-50 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} className="text-[#5D4037]" /> : <Menu size={24} className="text-[#5D4037]" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="md:hidden bg-white border-b border-amber-100"
+        >
+          <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                  isActive(item.path)
+                    ? 'bg-[#E67E22] text-white'
+                    : 'text-[#5D4037] hover:bg-orange-50'
+                }`}
+              >
+                <item.icon size={20} />
+                <span className="font-sans">{item.label}</span>
+              </Link>
+            ))}
+            <button
+              onClick={(e) => {
+                setMobileMenuOpen(false);
+                handlePublishClick(e);
+              }}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-50 text-[#5D4037]"
+            >
+              <PlusCircle size={20} />
+              <span className="font-sans">
+                {userRole === 'volunteer' ? '志愿者中心' : '发布寻亲'}
+              </span>
+            </button>
+            {isLoggedIn ? (
+              <button
+                onClick={() => {
+                  logout();
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg text-[#8D6E63] hover:text-[#5D4037]"
+              >
+                <LogOut size={20} />
+                <span className="font-sans">退出登录</span>
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-amber-600 to-orange-600 text-white"
+              >
+                <LogIn size={20} />
+                <span className="font-sans">登录</span>
+              </Link>
+            )}
+          </nav>
+        </motion.div>
+      )}
+    </header>
+  );
+}

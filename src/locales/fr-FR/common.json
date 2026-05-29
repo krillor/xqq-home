@@ -1,0 +1,124 @@
+{
+  "appName": "Le Chemin des Racines",
+  "appDescription": "Plateforme pour reconnecter Teochew avec la diaspora chinoise",
+  "common": {
+    "loading": "Chargement...",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "viewAll": "Voir tout",
+    "loadMore": "Charger plus",
+    "noData": "Aucune donnée",
+    "tryAgain": "Réessayer"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "search": "Recherches",
+    "publish": "Publier",
+    "profile": "Profil",
+    "successStories": "Réussites"
+  },
+  "home": {
+    "heroTitle": "Lettre à grand-mère",
+    "heroSubtitle": "À travers le temps",
+    "quickSearch": "Recherche rapide",
+    "selectSurname": "Sélectionner le nom",
+    "selectOrigin": "Sélectionner l'origine",
+    "selectTarget": "Sélectionner la destination",
+    "latestPosts": "Dernières recherches",
+    "stats": {
+      "totalPosts": "Recherches",
+      "success": "Réussites",
+      "activeSeekers": "Chercheurs",
+      "regions": "Régions"
+    }
+  },
+  "search": {
+    "title": "Liste des recherches",
+    "filterTitle": "Filtres",
+    "filters": {
+      "surname": "Nom de famille",
+      "originRegion": "Origine",
+      "targetRegion": "Destination",
+      "seekerType": "Direction",
+      "status": "Statut",
+      "yearRange": "Période"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→Thaïlande",
+      "thai_to_chaoshan": "Thaïlande→Teochew",
+      "all": "Tous"
+    },
+    "status": {
+      "searching": "En cours",
+      "found": "Trouvé",
+      "pending": "En attente",
+      "closed": "Fermé"
+    },
+    "clearFilters": "Réinitialiser"
+  },
+  "detail": {
+    "seekerName": "Auteur",
+    "surname": "Nom de famille",
+    "originRegion": "Origine",
+    "targetRegion": "Destination",
+    "estimatedYear": "Année estimée",
+    "familyStory": "Histoire familiale",
+    "photos": "Photos",
+    "provideClue": "Donner un indice",
+    "contact": "Contacter",
+    "share": "Partager",
+    "favorite": "Favoris"
+  },
+  "publish": {
+    "title": "Publier une recherche",
+    "step1": "Informations de base",
+    "step2": "Lieu et temps",
+    "step3": "Histoire familiale",
+    "step4": "Confirmation",
+    "form": {
+      "seekerName": "Votre nom",
+      "seekerType": "Direction",
+      "surname": "Nom de famille",
+      "originRegion": "Origine",
+      "targetRegion": "Destination",
+      "estimatedYear": "Année estimée",
+      "familyStory": "Histoire familiale",
+      "photos": "Photos"
+    },
+    "success": "Publié avec succès !",
+    "successDesc": "Votre publication est en attente de validation avant d'apparaître sur la plateforme"
+  },
+  "profile": {
+    "myPosts": "Mes publications",
+    "favorites": "Favoris",
+    "messages": "Messages",
+    "settings": "Paramètres",
+    "authStatus": "Statut",
+    "verified": "Vérifié",
+    "unverified": "Non vérifié",
+    "switchLang": "Changer de langue"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "Histoires de réunion",
+    "storyTitle": "Titre",
+    "location": "Lieu de réunion",
+    "date": "Date",
+    "readMore": "Lire la suite"
+  }
+}

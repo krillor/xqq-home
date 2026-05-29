@@ -1,0 +1,155 @@
+{
+  "app": {
+    "name": "尋親橋"
+  },
+  "nav": {
+    "home": "首頁",
+    "search": "尋人",
+    "publish": "發布",
+    "volunteer": "志願者",
+    "successStories": "成功故事",
+    "profile": "個人中心",
+    "language": "語言"
+  },
+  "search": {
+    "title": "尋找失散親人",
+    "subtitle": "跨越山海，只為團圓",
+    "searchPlaceholder": "輸入姓名、地址等關鍵字",
+    "filter": {
+      "surname": "姓氏",
+      "originRegion": "祖籍地區",
+      "targetRegion": "目的地區",
+      "seekerType": "尋人類型",
+      "status": "狀態"
+    },
+    "status": {
+      "looking": "尋找中",
+      "found": "已找到"
+    }
+  },
+  "publish": {
+    "title": "發布尋親信息",
+    "subtitle": "填寫詳細信息，增加找到親人的概率",
+    "steps": {
+      "basic": "基本信息",
+      "person": "尋找對象",
+      "family": "家族關係",
+      "photos": "照片資料",
+      "confirm": "確認提交"
+    },
+    "form": {
+      "yourName": "您的姓名",
+      "phone": "聯繫電話",
+      "email": "電子郵件",
+      "relationship": "與被尋人關係",
+      "direction": "尋親方向",
+      "directions": {
+        "chaoshanToOverseas": "潮汕→海外",
+        "overseasToChaoshan": "海外→潮汕",
+        "chinaToOverseas": "中國→海外",
+        "overseasToChina": "海外→中國"
+      },
+      "missingPersonName": "被尋人姓名",
+      "formerName": "曾用名/別名",
+      "birthYear": "出生年份",
+      "birthPlace": "出生地",
+      "lastKnownAddress": "最後已知地址",
+      "destination": "目的地",
+      "departureYear": "離開年份",
+      "ancestralHome": "祖籍",
+      "village": "村莊",
+      "fatherName": "父親姓名",
+      "motherName": "母親姓名",
+      "siblings": "兄弟姐妹",
+      "clanName": "宗族名稱",
+      "genealogyCharacters": "族譜字輩",
+      "familyStory": "家族故事",
+      "additionalInfo": "補充說明",
+      "uploadPhotos": "上傳照片",
+      "photoHint": "最多10張，建議包含老照片、家族照片"
+    },
+    "submit": "確認提交",
+    "success": "發布成功！我們已將信息推送給相關地區的志願者"
+  },
+  "volunteer": {
+    "title": "志願者中心",
+    "subtitle": "成為尋親志願者，幫助更多家庭團圓",
+    "join": "加入志願者",
+    "myPosts": "我的尋親帖",
+    "notifications": "消息通知",
+    "settings": "設置",
+    "profile": {
+      "about": "關於我",
+      "languages": "語言能力",
+      "regions": "關注地區",
+      "experience": "年經驗",
+      "successCases": "成功案例"
+    }
+  },
+  "successStories": {
+    "title": "尋親成功故事",
+    "subtitle": "一個個真實的團圓故事，激勵著我們繼續前行",
+    "readMore": "閱讀更多",
+    "viewAll": "查看全部"
+  },
+  "map": {
+    "title": "尋親地圖",
+    "subtitle": "實時查看各地尋親信息分布",
+    "global": "全球視圖",
+    "southeastAsia": "東南亞視圖",
+    "legend": "圖例",
+    "looking": "尋找中",
+    "found": "已找到",
+    "clickToView": "點擊查看詳情"
+  },
+  "comments": {
+    "title": "評論",
+    "placeholder": "說說您的看法或線索...",
+    "uploadImage": "上傳圖片",
+    "submit": "發布",
+    "likes": "讚",
+    "noComments": "暫無評論"
+  },
+  "home": {
+    "hero": {
+      "title": "跨越山海，只為團圓",
+      "subtitle": "潮汕僑鄉尋親平台，連接海內外親人的橋樑",
+      "cta": "開始尋親"
+    },
+    "stats": {
+      "posts": "尋親信息",
+      "volunteers": "志願者",
+      "reunions": "成功團圓"
+    }
+  },
+  "roles": {
+    "title": "選擇您的角色",
+    "subtitle": "不同的身份，同樣的溫暖",
+    "seeker": {
+      "title": "尋親者",
+      "description": "發布尋親信息，尋找失散的親人",
+      "cta": "我要尋親"
+    },
+    "volunteer": {
+      "title": "志願者",
+      "description": "幫助他人，傳遞溫暖，讓更多家庭團圓",
+      "cta": "加入志願者"
+    }
+  },
+  "common": {
+    "loading": "載入中...",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "edit": "編輯",
+    "delete": "刪除",
+    "confirm": "確認",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "view": "查看",
+    "search": "搜索",
+    "filter": "篩選",
+    "reset": "重置"
+  }
+}

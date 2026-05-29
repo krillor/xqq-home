@@ -1,0 +1,61 @@
+<view class="container">
+  <!-- 轮播区域 -->
+  <swiper class="hero-swiper" current="{{ currentStory }}" indicator-dots autoplay>
+    <swiper-item wx:for="{{ stories }}" wx:key="title">
+      <view class="hero-item">
+        <view class="hero-content">
+          <text class="hero-subtitle">{{ item.subtitle }}</text>
+          <text class="hero-title">{{ item.title }}</text>
+          <text class="hero-quote">每一条信息，都承载着一个家庭的期盼</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 统计数据 -->
+  <view class="stats-section">
+    <view class="stats-grid">
+      <view class="stat-card">
+        <text class="stat-value">{{ stats.totalPosts }}</text>
+        <text class="stat-label">寻亲信息</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-value">{{ stats.success }}</text>
+        <text class="stat-label">成功案例</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-value">{{ stats.activeSeekers }}</text>
+        <text class="stat-label">活跃寻亲者</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-value">{{ stats.regions }}</text>
+        <text class="stat-label">覆盖地区</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速搜索 -->
+  <view class="quick-search-section">
+    <view class="section-header">
+      <text class="section-title">快速搜索</text>
+    </view>
+    <view class="search-box">
+      <view class="search-input">
+        <text class="search-placeholder">搜索姓氏或地区...</text>
+      </view>
+      <button class="search-btn" bindtap="goToSearch">
+        <text>开始搜索</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 操作区域 -->
+  <view class="action-section">
+    <button class="primary-btn" bindtap="goToPublish">
+      发布寻亲信息
+    </button>
+    <button class="secondary-btn" bindtap="goToSearch">
+      浏览寻亲列表
+    </button>
+  </view>
+</view>

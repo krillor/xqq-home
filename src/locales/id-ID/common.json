@@ -1,0 +1,155 @@
+{
+  "app": {
+    "name": "Jembatan Reuni"
+  },
+  "nav": {
+    "home": "Beranda",
+    "search": "Cari",
+    "publish": "Posting",
+    "volunteer": "Sukarelawan",
+    "successStories": "Kisah Sukses",
+    "profile": "Profil",
+    "language": "Bahasa"
+  },
+  "search": {
+    "title": "Mencari Keluarga yang Hilang",
+    "subtitle": "Menyeberangi Laut dan Gunung, Hanya untuk Reuni",
+    "searchPlaceholder": "Masukkan nama, alamat, atau kata kunci...",
+    "filter": {
+      "surname": "Nama Keluarga",
+      "originRegion": "Wilayah Asal",
+      "targetRegion": "Wilayah Tujuan",
+      "seekerType": "Tipe Pencarian",
+      "status": "Status"
+    },
+    "status": {
+      "looking": "Mencari",
+      "found": "Ditemukan"
+    }
+  },
+  "publish": {
+    "title": "Posting Informasi Pencarian Keluarga",
+    "subtitle": "Isi detail lengkap untuk meningkatkan peluang menemukan keluarga",
+    "steps": {
+      "basic": "Informasi Dasar",
+      "person": "Orang yang Dicari",
+      "family": "Hubungan Keluarga",
+      "photos": "Foto",
+      "confirm": "Konfirmasi"
+    },
+    "form": {
+      "yourName": "Nama Anda",
+      "phone": "Nomor Telepon",
+      "email": "Email",
+      "relationship": "Hubungan dengan Orang yang Dicari",
+      "direction": "Arah Pencarian",
+      "directions": {
+        "chaoshanToOverseas": "Chaoshan→Luar Negeri",
+        "overseasToChaoshan": "Luar Negeri→Chaoshan",
+        "chinaToOverseas": "China→Luar Negeri",
+        "overseasToChina": "Luar Negeri→China"
+      },
+      "missingPersonName": "Nama Orang yang Dicari",
+      "formerName": "Nama Sebelumnya/Alias",
+      "birthYear": "Tahun Lahir",
+      "birthPlace": "Tempat Lahir",
+      "lastKnownAddress": "Alamat Terakhir yang Diketahui",
+      "destination": "Tujuan",
+      "departureYear": "Tahun Keberangkatan",
+      "ancestralHome": "Kampung Halaman",
+      "village": "Desa",
+      "fatherName": "Nama Ayah",
+      "motherName": "Nama Ibu",
+      "siblings": "Saudara Kandung",
+      "clanName": "Nama Keluarga Besar",
+      "genealogyCharacters": "Generasi Silsilah",
+      "familyStory": "Cerita Keluarga",
+      "additionalInfo": "Informasi Tambahan",
+      "uploadPhotos": "Unggah Foto",
+      "photoHint": "Maksimal 10 foto, rekomendasikan foto lama dan foto keluarga"
+    },
+    "submit": "Kirim",
+    "success": "Berhasil diposting! Kami telah mengirimkan informasi ke sukarelawan di wilayah terkait"
+  },
+  "volunteer": {
+    "title": "Pusat Sukarelawan",
+    "subtitle": "Menjadi sukarelawan pencarian keluarga, membantu lebih banyak keluarga bersatu kembali",
+    "join": "Gabung Sukarelawan",
+    "myPosts": "Postingan Saya",
+    "notifications": "Notifikasi",
+    "settings": "Pengaturan",
+    "profile": {
+      "about": "Tentang Saya",
+      "languages": "Bahasa yang Dikuasai",
+      "regions": "Wilayah yang Diperhatikan",
+      "experience": "Tahun Pengalaman",
+      "successCases": "Kasus Sukses"
+    }
+  },
+  "successStories": {
+    "title": "Kisah Sukses Pencarian Keluarga",
+    "subtitle": "Kisah reuni nyata yang menginspirasi kita untuk terus maju",
+    "readMore": "Baca Selengkapnya",
+    "viewAll": "Lihat Semua"
+  },
+  "map": {
+    "title": "Peta Pencarian Keluarga",
+    "subtitle": "Lihat distribusi informasi pencarian keluarga secara real-time",
+    "global": "Tampilan Global",
+    "southeastAsia": "Tampilan Asia Tenggara",
+    "legend": "Legenda",
+    "looking": "Mencari",
+    "found": "Ditemukan",
+    "clickToView": "Klik untuk melihat detail"
+  },
+  "comments": {
+    "title": "Komentar",
+    "placeholder": "Bagikan pendapat atau petunjuk Anda...",
+    "uploadImage": "Unggah Gambar",
+    "submit": "Kirim",
+    "likes": "Suka",
+    "noComments": "Belum ada komentar"
+  },
+  "home": {
+    "hero": {
+      "title": "Menyeberangi Laut dan Gunung, Hanya untuk Reuni",
+      "subtitle": "Platform pencarian keluarga untuk perantau Chaoshan, jembatan yang menghubungkan keluarga di dalam dan luar negeri",
+      "cta": "Mulai Mencari"
+    },
+    "stats": {
+      "posts": "Informasi Pencarian",
+      "volunteers": "Sukarelawan",
+      "reunions": "Reuni Sukses"
+    }
+  },
+  "roles": {
+    "title": "Pilih Peran Anda",
+    "subtitle": "Identitas berbeda, kehangatan sama",
+    "seeker": {
+      "title": "Pencari Keluarga",
+      "description": "Posting informasi pencarian, mencari keluarga yang hilang",
+      "cta": "Saya Ingin Mencari"
+    },
+    "volunteer": {
+      "title": "Sukarelawan",
+      "description": "Membantu orang lain, menyebarkan kehangatan, menyatukan lebih banyak keluarga",
+      "cta": "Gabung Sukarelawan"
+    }
+  },
+  "common": {
+    "loading": "Memuat...",
+    "submit": "Kirim",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "confirm": "Konfirmasi",
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "previous": "Sebelumnya",
+    "view": "Lihat",
+    "search": "Cari",
+    "filter": "Filter",
+    "reset": "Reset"
+  }
+}

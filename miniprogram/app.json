@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/search",
+    "pages/detail/detail",
+    "pages/publish/publish",
+    "pages/profile/profile",
+    "pages/success-stories/success-stories"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#5D4037",
+    "navigationBarTitleText": "寻亲路",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF8E7"
+  },
+  "tabBar": {
+    "color": "#5D4037",
+    "selectedColor": "#E67E22",
+    "backgroundColor": "#FFF8E7",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/home.png",
+        "selectedIconPath": "assets/home-active.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "寻亲",
+        "iconPath": "assets/search.png",
+        "selectedIconPath": "assets/search-active.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "assets/publish.png",
+        "selectedIconPath": "assets/publish-active.png"
+      },
+      {
+        "pagePath": "pages/success-stories/success-stories",
+        "text": "故事",
+        "iconPath": "assets/story.png",
+        "selectedIconPath": "assets/story-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/profile.png",
+        "selectedIconPath": "assets/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,180 @@
+{
+  "appName": "木枝叶寻亲桥",
+  "appDescription": "连接中国与海外华侨的寻亲平台",
+  "common": {
+    "loading": "加载中...",
+    "submit": "提交",
+    "cancel": "取消",
+    "confirm": "确认",
+    "back": "返回",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "search": "搜索",
+    "filter": "筛选",
+    "viewAll": "查看全部",
+    "loadMore": "加载更多",
+    "noData": "暂无数据",
+    "tryAgain": "请重试"
+  },
+  "navigation": {
+    "home": "首页",
+    "search": "寻亲列表",
+    "publish": "发布寻亲",
+    "roleSelection": "选择角色",
+    "volunteer": "志愿者",
+    "profile": "个人中心",
+    "successStories": "成功案例",
+    "notifications": "通知"
+  },
+  "roleSelection": {
+    "title": "请选择您的身份",
+    "subtitle": "让我们一起帮助离散的家庭重新团聚",
+    "seeker": "我是寻亲者",
+    "volunteer": "我是志愿者",
+    "seekerFeature1Title": "发布寻亲信息",
+    "seekerFeature1": "上传老照片，填写家族故事，让更多人帮助您寻找亲人",
+    "seekerFeature2Title": "智能位置识别",
+    "seekerFeature2": "系统自动分析照片内容，提取可能的地理位置信息",
+    "seekerFeature3Title": "推送匹配志愿者",
+    "seekerFeature3": "智能推送给对应地区的志愿者，获得更多帮助",
+    "volunteerFeature1Title": "协助翻译与沟通",
+    "volunteerFeature1": "利用您的多语言能力，帮助不同地区的人沟通",
+    "volunteerFeature2Title": "地区线索提供",
+    "volunteerFeature2": "提供您熟悉地区的线索，帮助寻亲者寻找亲人",
+    "volunteerFeature3Title": "获得成就感",
+    "volunteerFeature3": "见证感人的团聚时刻，成为连接亲情的桥梁",
+    "selectSeeker": "开始寻亲",
+    "selectVolunteer": "加入志愿者"
+  },
+  "home": {
+    "heroTitle": "给阿嬷的情书",
+    "heroSubtitle": "跨越时空的思念",
+    "quickSearch": "快速搜索",
+    "selectSurname": "选择姓氏",
+    "selectOrigin": "选择出发地",
+    "selectTarget": "选择目的地",
+    "latestPosts": "最新寻亲动态",
+    "stats": {
+      "totalPosts": "寻亲信息",
+      "success": "成功案例",
+      "activeSeekers": "活跃寻亲者",
+      "regions": "覆盖地区"
+    }
+  },
+  "search": {
+    "title": "寻亲列表",
+    "filterTitle": "筛选条件",
+    "filters": {
+      "surname": "姓氏",
+      "originRegion": "出发地",
+      "targetRegion": "目的地",
+      "seekerType": "寻亲方向",
+      "status": "状态",
+      "yearRange": "年份范围"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "潮汕→泰国",
+      "thai_to_chaoshan": "泰国→潮汕",
+      "all": "全部"
+    },
+    "status": {
+      "searching": "寻找中",
+      "found": "已找到",
+      "pending": "审核中",
+      "closed": "已关闭"
+    },
+    "clearFilters": "清除筛选"
+  },
+  "detail": {
+    "seekerName": "发布人",
+    "surname": "姓氏",
+    "originRegion": "出发地",
+    "targetRegion": "目的地",
+    "estimatedYear": "年代",
+    "familyStory": "家族故事",
+    "photos": "相关照片",
+    "provideClue": "提供线索",
+    "contact": "联系发布人",
+    "share": "分享",
+    "favorite": "收藏"
+  },
+  "publish": {
+    "title": "发布寻亲信息",
+    "step1": "基本信息",
+    "step2": "地点与时间",
+    "step3": "照片与故事",
+    "step4": "确认信息",
+    "form": {
+      "seekerName": "您的称呼",
+      "seekerType": "寻亲方向",
+      "surname": "姓氏",
+      "originRegion": "出发地（潮汕）",
+      "targetRegion": "目的地（海外）",
+      "estimatedYear": "预估年代",
+      "familyStory": "家族故事",
+      "photos": "相关照片",
+      "photoDescription": "照片描述",
+      "uploadHint": "点击或拖拽上传照片",
+      "uploadMax": "最多上传5张",
+      "recognizing": "正在识别照片内容...",
+      "recognizedText": "识别到的文字",
+      "recognizedLocation": "识别到的地点",
+      "recognizedYear": "识别到的年代"
+    },
+    "success": "发布成功！",
+    "successDesc": "您的寻亲信息已发布，已推送给对应地区的志愿者"
+  },
+  "volunteer": {
+    "title": "志愿者工作台",
+    "welcome": "欢迎您，志愿者！",
+    "myRegion": "我关注的地区",
+    "pushSettings": "推送设置",
+    "pendingClues": "待处理线索",
+    "myAssists": "我的协助",
+    "stats": {
+      "totalPushes": "推送信息",
+      "assistedCases": "协助案例",
+      "successCases": "成功案例",
+      "activeDays": "活跃天数"
+    },
+    "provideClue": "提供线索",
+    "markAsDone": "标记完成",
+    "noPush": "暂无推送",
+    "selectRegions": "选择关注地区",
+    "saveSettings": "保存设置"
+  },
+  "profile": {
+    "myPosts": "我的发布",
+    "favorites": "我的收藏",
+    "messages": "消息中心",
+    "settings": "账号设置",
+    "authStatus": "认证状态",
+    "verified": "已认证",
+    "unverified": "未认证",
+    "switchLang": "切换语言",
+    "switchRole": "切换角色"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "寻亲成功故事",
+    "storyTitle": "故事标题",
+    "location": "团聚地点",
+    "date": "团聚日期",
+    "readMore": "阅读详情"
+  },
+  "notification": {
+    "newPush": "新推送",
+    "newMessage": "新消息",
+    "system": "系统通知",
+    "markAllRead": "全部已读"
+  }
+}
