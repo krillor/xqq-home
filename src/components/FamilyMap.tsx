@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, MapPin, CheckCircle, Clock } from 'lucide-react';
@@ -100,18 +100,6 @@ const CustomMarker = ({ region }: { region: RegionData }) => {
           </button>
         </div>
       </Popup>
-      
-      {/* Circle around marker to show influence area */}
-      <Circle
-        center={[region.lat, region.lng]}
-        radius={Math.min(region.total * 3000, 50000)}
-        pathOptions={{
-          color: color,
-          fillColor: color,
-          fillOpacity: 0.1,
-          weight: 2,
-        }}
-      />
     </Marker>
   );
 };
