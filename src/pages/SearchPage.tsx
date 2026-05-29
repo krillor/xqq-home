@@ -251,10 +251,11 @@ const SearchPage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -4 }}
+                className="h-full"
               >
-                <Link to={`/detail/${post.id}`}>
-                  <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden border border-orange-50">
-                    <div className="p-6">
+                <Link to={`/detail/${post.id}`} className="block h-full">
+                  <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden border border-orange-50 h-full flex flex-col">
+                    <div className="p-6 flex-1">
                       <div className="flex items-start justify-between mb-3">
                         <span className="text-2xl font-bold text-[#E67E22]">
                           {post.surname}氏
@@ -263,19 +264,19 @@ const SearchPage: React.FC = () => {
                           {getStatusText(post.status)}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold text-[#5D4037] mb-2">
+                      <h3 className="text-base font-bold text-[#5D4037] mb-3 line-clamp-2">
                         {post.title}
                       </h3>
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                         {post.description}
                       </p>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>{post.originRegion} → {post.targetRegion}</span>
+                      <div className="space-y-2 text-sm text-gray-500">
+                        <div className="flex items-start gap-1">
+                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                          <span className="line-clamp-1">{post.originRegion} → {post.targetRegion}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
+                          <Clock className="w-4 h-4 flex-shrink-0" />
                           <span>{post.date}</span>
                         </div>
                       </div>
