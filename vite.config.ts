@@ -4,8 +4,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { traeBadgePlugin } from 'vite-plugin-trae-solo-badge';
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/xqq-home/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/xqq-home/' : '/',
   build: {
     sourcemap: 'hidden',
     outDir: 'docs'
@@ -33,4 +33,4 @@ export default defineConfig({
     }), 
     tsconfigPaths()
   ],
-})
+}))
