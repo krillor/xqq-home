@@ -5,6 +5,7 @@ import { Search as SearchIcon, Filter, MapPin, Clock, CheckCircle } from 'lucide
 import { FamilyMap } from '../components/FamilyMap';
 import { regionData as newRegionData } from '../data/regionData';
 import LocationSelect from '../components/LocationSelect';
+import { allPosts, PostData } from '../data/postData';
 
 const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -18,76 +19,6 @@ const SearchPage: React.FC = () => {
     cityId?: string;
     displayName?: string;
   }>();
-  
-  // Mock posts data - only China, HK, Macau, Taiwan, and Southeast Asia
-  const allPosts = useMemo(() => [
-    {
-      id: '1',
-      title: '寻找泰国爷爷',
-      surname: '陈',
-      originRegion: '中国 - 广东省 - 汕头',
-      targetRegion: '泰国 - 曼谷',
-      description: '我的爷爷在1948年从汕头去了泰国，从此失去联系...',
-      status: 'active' as const,
-      seekerType: 'china-overseas' as const,
-      date: '2024-01-15',
-    },
-    {
-      id: '2',
-      title: '林氏寻亲',
-      surname: '林',
-      originRegion: '中国 - 广东省 - 潮州',
-      targetRegion: '新加坡',
-      description: '寻找1960年代移居新加坡的亲人...',
-      status: 'success' as const,
-      seekerType: 'china-overseas' as const,
-      date: '2023-11-20',
-    },
-    {
-      id: '3',
-      title: '寻找马来西亚亲人',
-      surname: '黄',
-      originRegion: '中国 - 广东省 - 广州',
-      targetRegion: '马来西亚 - 吉隆坡',
-      description: '我爷爷在1952年去了马来西亚...',
-      status: 'active' as const,
-      seekerType: 'china-overseas' as const,
-      date: '2024-02-10',
-    },
-    {
-      id: '4',
-      title: '寻找潮汕奶奶',
-      surname: '李',
-      originRegion: '泰国 - 曼谷',
-      targetRegion: '中国 - 广东省 - 揭阳',
-      description: '我奶奶是从潮汕到泰国的，想找回老家的亲人...',
-      status: 'active' as const,
-      seekerType: 'overseas-china' as const,
-      date: '2024-01-25',
-    },
-    {
-      id: '5',
-      title: '越南寻亲',
-      surname: '王',
-      originRegion: '中国 - 广东省 - 湛江',
-      targetRegion: '越南 - 胡志明市',
-      description: '寻找在越南的亲人...',
-      status: 'active' as const,
-      seekerType: 'china-overseas' as const,
-      date: '2024-03-05',
-    },
-    {
-      id: '6',
-      title: '印尼寻根',
-      surname: '张',
-      originRegion: '印度尼西亚 - 雅加达',
-      targetRegion: '中国 - 福建省 - 泉州',
-      description: '从印尼回到泉州寻找家族根源...',
-      status: 'active' as const,
-      seekerType: 'overseas-china' as const,
-      date: '2024-03-12',
-    },
-  ], []);
   
   // Filter posts
   const filteredPosts = useMemo(() => {
@@ -105,7 +36,7 @@ const SearchPage: React.FC = () => {
       
       return matchesLocation && matchesStatus && matchesSearch;
     });
-  }, [allPosts, selectedLocation, filterStatus, searchQuery]);
+  }, [selectedLocation, filterStatus, searchQuery]);
   
   const getStatusColor = (status: string) => {
     switch (status) {

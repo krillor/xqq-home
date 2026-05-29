@@ -1,36 +1,19 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, MapPin, Clock, User, MessageCircle, Heart, Share2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Clock, User, MessageCircle, Heart, Share2, AlertCircle } from 'lucide-react';
 import CommentsSection from '../components/CommentsSection';
+import { getPostById } from '../data/postData';
 
 const PostDetailPage: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  // Mock post data
-  const post = {
-    id,
-    title: '寻找泰国爷爷',
-    surname: '陈',
-    originRegion: '汕头',
-    targetRegion: '曼谷',
-    description: '我的爷爷在1948年从汕头去了泰国，从此失去联系。爷爷名叫陈木水，当年28岁。听说他后来在曼谷唐人街一带定居。',
-    familyStory: '小时候常常听奶奶讲起爷爷的故事，一张泛黄的老照片是我们唯一的念想。',
-    estimatedYear: '1948年',
-    status: 'active',
-    seekerName: '陈先生',
-    date: '2024-01-15',
-    images: [
-      'https://picsum.photos/400/300?random=1',
-      'https://picsum.photos/400/300?random=2',
-    ],
-  };
+  const post = id ? getPostById(id) : undefined;
   
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'success': return 'bg-green-100 text-green-800';
-      case 'matched': return 'bg-blue-100 text-blue-800';
       default: return 'bg-orange-100 text-orange-800';
     }
   };
@@ -38,10 +21,36 @@ const PostDetailPage: React.FC = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'success': return '已找到';
-      case 'matched': return '已匹配';
       default: return '寻找中';
     }
   };
+  
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white pt-24 pb-12">
+        <div className="container mx-auto px-4">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-[#5D4037] hover:text-[#E67E22] mb-6 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            返回
+          </button>
+          <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+            <AlertCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-500 mb-2">信息未找到</h2>
+            <p className="text-gray-400 mb-6">该寻亲信息可能已被删除或不存在</p>
+            <Link
+              to="/search"
+              className="inline-block px-6 py-3 bg-[#E67E22] text-white rounded-xl font-medium hover:bg-[#D35400] transition-colors"
+            >
+              返回寻亲列表
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white pt-24 pb-12">
@@ -91,7 +100,7 @@ const PostDetailPage: React.FC = () => {
                 </div>
                 
                 {/* Images */}
-                {post.images.length > 0 && (
+                {post.images && post.images.length > 0 && (
                   <div className="p-8 border-b border-gray-100">
                     <h3 className="font-semibold text-[#5D4037] mb-4">相关照片</h3>
                     <div className="grid grid-cols-2 gap-4">
@@ -126,10 +135,12 @@ const PostDetailPage: React.FC = () => {
                           {post.targetRegion}
                         </p>
                       </div>
-                      <div className="bg-orange-50 p-4 rounded-xl">
-                        <p className="text-sm text-gray-500 mb-1">年代</p>
-                        <p className="text-[#5D4037] font-medium">{post.estimatedYear}</p>
-                      </div>
+                      {post.estimatedYear && (
+                        <div className="bg-orange-50 p-4 rounded-xl">
+                          <p className="text-sm text-gray-500 mb-1">年代</p>
+                          <p className="text-[#5D4037] font-medium">{post.estimatedYear}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                   
