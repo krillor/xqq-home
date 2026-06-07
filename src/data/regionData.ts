@@ -319,49 +319,68 @@ const chinaMainland: Country = {
         { id: 'cn-mo', nameCn: '澳门', nameEn: 'Macau' },
       ]
     },
+    {
+      id: 'cn-taiwan',
+      nameCn: '台湾',
+      cities: [
+        { id: 'tw-tpe', nameCn: '台北', nameEn: 'Taipei' },
+        { id: 'tw-khh', nameCn: '高雄', nameEn: 'Kaohsiung' },
+      ]
+    },
   ]
 };
-
-// 港澳台地区
-const hongKongMacauTaiwan: Country[] = [
-  {
-    id: 'taiwan',
-    nameCn: '台湾',
-    nameEn: 'Taiwan',
-    provinces: [
-      {
-        id: 'tw-taipei',
-        nameCn: '台北',
-        cities: [
-          { id: 'tw-tpe', nameCn: '台北', nameEn: 'Taipei' },
-        ]
-      },
-      {
-        id: 'tw-kaohsiung',
-        nameCn: '高雄',
-        cities: [
-          { id: 'tw-khh', nameCn: '高雄', nameEn: 'Kaohsiung' },
-        ]
-      },
-    ]
-  },
-];
 
 // 合并所有地区
 export const regionData: Country[] = [
   chinaMainland,
-  ...hongKongMacauTaiwan,
   ...southeastAsia
 ];
 
 // 常用地名别名映射（用于智能解析）
 export const placeNameAlias: Record<string, string[]> = {
+  // 福建
   'tong an': ['同安', '同安县'],
+  'amoy': ['厦门', '厦门厅'],
+  'chin chew': ['泉州', '泉州府'],
+  'chinchew': ['泉州', '泉州府'],
+  'chuan chew': ['泉州', '泉州府'],
+  'quanzhou': ['泉州', '泉州府'],
+  'changchow': ['漳州', '漳州府'],
+  'hokchiu': ['福州', '闽县'],
+  'foochow': ['福州', '闽县'],
+  'nan an': ['南安', '南安县'],
+  'nanan': ['南安', '南安县'],
+  'jinjiang': ['晋江', '晋江县'],
+  'anxi': ['安溪', '安溪县'],
+  'yongchun': ['永春', '永春县'],
+  'putian': ['莆田', '兴化府'],
+  'hinghua': ['莆田', '兴化府'],
+  'zhangpu': ['漳浦', '漳浦县'],
+  'longhai': ['龙海'],
+  // 广东
   'chao zhou': ['潮州', '潮安县'],
+  'teochew': ['潮州', '潮安县'],
+  'swatow': ['汕头', '汕头埠'],
   'shantou': ['汕头', '汕头埠'],
-  'johor': ['柔佛', '新山'],
+  'canton': ['广州', '番禺县'],
+  'hakka': ['梅州', '嘉应州'],
+  'jiaying': ['梅州', '嘉应州'],
+  'chaoan': ['潮安', '潮安县'],
+  'jieyang': ['揭阳'],
+  'raoping': ['饶平'],
+  'hainan': ['海南', '海口', '琼州'],
+  // 东南亚
   'penang': ['槟城', '槟榔屿', '乔治市'],
-  'siem reap': ['暹粒'],
-  'bangkok': ['曼谷', '吞武里'],
+  'pinang': ['槟城', '槟榔屿'],
+  'johor': ['柔佛', '新山'],
+  'johore': ['柔佛', '新山'],
+  'malacca': ['马六甲'],
+  'ipoh': ['怡保'],
+  'kuala lumpur': ['吉隆坡'],
   'singapore': ['新加坡', '星洲', '星加坡', '狮城'],
+  'bangkok': ['曼谷', '吞武里'],
+  'siam': ['泰国', '暹罗'],
+  'batavia': ['雅加达', '巴达维亚'],
+  'saigon': ['胡志明市', '西贡'],
+  'siem reap': ['暹粒'],
 };

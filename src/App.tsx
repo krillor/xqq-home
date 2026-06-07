@@ -26,10 +26,10 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/role-selection" element={<RoleSelectionPage />} />
-          <Route path="/publish" element={<PublishPage />} />
+          <Route path="/publish" element={<Navigate to="/personal?tab=archive" replace />} />
           <Route path="/personal" element={<PersonalCenter />} />
           <Route path="/parser" element={<IntelligentParser />} />
-          <Route path="/volunteer" element={<VolunteerPage />} />
+          <Route path="/volunteer" element={<Navigate to="/personal?tab=volunteer" replace />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/success-stories" element={<SuccessStoriesPage />} />
           <Route path="/detail/:id" element={<PostDetailPage />} />

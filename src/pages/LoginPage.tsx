@@ -2,21 +2,24 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppStore } from '../store/appStore'
 import { Mail, Lock, Send } from 'lucide-react'
+import SliderCaptcha from '../components/SliderCaptcha'
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate()
   const { sendVerificationCode, login } = useAppStore()
-  
+
   const [step, setStep] = useState<'email' | 'code'>('email')
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [captchaVerified, setCaptchaVerified] = useState(false)
+  const [captchaReset, setCaptchaReset] = useState(false)
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) return
+    if (!email || !captchaVerified) return
 
     setLoading(true)
     setError('')
@@ -26,6 +29,9 @@ const LoginPage: React.FC = () => {
       setStep('code')
     } catch (err) {
       setError('发送验证码失败，请重试')
+      // 发送失败则重置滑块
+      setCaptchaVerified(false)
+      setCaptchaReset(r => !r)
     } finally {
       setLoading(false)
     }
@@ -81,6 +87,11 @@ const LoginPage: React.FC = () => {
                 </div>
               </div>
 
+              <SliderCaptcha
+                onVerified={() => setCaptchaVerified(true)}
+                reset={captchaReset}
+              />
+
               {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                   {error}
@@ -95,7 +106,7 @@ const LoginPage: React.FC = () => {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !captchaVerified}
                 className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-3 rounded-lg font-medium hover:from-amber-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
               >
                 {loading ? (

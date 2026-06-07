@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Search, PlusCircle, User, Heart, Menu, X, Bell, Users, Building2, LogIn, LogOut, Info, Sparkles, FileText, BookOpen } from 'lucide-react';
+import { Home, Search, Menu, X, Bell, Building2, LogIn, LogOut, Sparkles, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -10,13 +10,20 @@ export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const { userRole, unreadCount, setUserRole, isLoggedIn, currentUser, logout } = useAppStore();
+  const { userRole, unreadCount, isLoggedIn, currentUser, logout } = useAppStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // 个人中心按角色跳对应 tab
+  const personalPath = userRole === 'seeker'
+    ? '/personal?tab=archive'
+    : userRole === 'volunteer'
+    ? '/personal?tab=volunteer'
+    : '/personal';
 
   const navItems = [
     { path: '/', label: '首页', icon: Home },
     { path: '/search', label: '寻亲列表', icon: Search },
-    { path: '/personal', label: '个人中心', icon: FileText },
+    { path: '/personal', label: '个人中心', icon: FileText, href: personalPath },
     { path: '/parser', label: '工具箱', icon: Sparkles },
     { path: '/associations', label: '官方组织', icon: Building2 },
   ];
@@ -24,22 +31,6 @@ export default function Header() {
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
-  };
-
-  const handlePublishClick = (e: React.MouseEvent) => {
-    if (!isLoggedIn) {
-      e.preventDefault();
-      navigate('/login');
-      return;
-    }
-    if (!userRole) {
-      e.preventDefault();
-      navigate('/role-selection');
-    } else if (userRole === 'seeker') {
-      navigate('/publish');
-    } else {
-      navigate('/volunteer');
-    }
   };
 
   return (
@@ -57,7 +48,7 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={item.path}
+                to={'href' in item ? item.href! : item.path}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 relative ${
                   isActive(item.path)
                     ? 'bg-[#E67E22] text-white shadow-md'
@@ -66,26 +57,13 @@ export default function Header() {
               >
                 <item.icon size={18} />
                 <span className="font-sans text-sm">{item.label}</span>
+                {item.path === '/personal' && unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                    {unreadCount}
+                  </span>
+                )}
               </Link>
             ))}
-            <button
-              onClick={handlePublishClick}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 relative ${
-                isActive('/publish') || isActive('/volunteer')
-                  ? 'bg-[#E67E22] text-white shadow-md'
-                  : 'text-[#5D4037] hover:bg-orange-50'
-              }`}
-            >
-              <PlusCircle size={18} />
-              <span className="font-sans text-sm">
-                {userRole === 'volunteer' ? '志愿者中心' : '发布寻亲'}
-              </span>
-              {userRole === 'volunteer' && unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
@@ -116,8 +94,8 @@ export default function Header() {
 
           <div className="md:hidden flex items-center gap-2">
             <LanguageSwitcher />
-            {userRole === 'volunteer' && unreadCount > 0 && (
-              <Link to="/volunteer" className="relative p-2">
+            {unreadCount > 0 && (
+              <Link to={personalPath} className="relative p-2">
                 <Bell size={20} className="text-[#5D4037]" />
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                   {unreadCount}
@@ -145,7 +123,7 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={item.path}
+                to={'href' in item ? item.href! : item.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive(item.path)
@@ -157,18 +135,6 @@ export default function Header() {
                 <span className="font-sans">{item.label}</span>
               </Link>
             ))}
-            <button
-              onClick={(e) => {
-                setMobileMenuOpen(false);
-                handlePublishClick(e);
-              }}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-50 text-[#5D4037]"
-            >
-              <PlusCircle size={20} />
-              <span className="font-sans">
-                {userRole === 'volunteer' ? '志愿者中心' : '发布寻亲'}
-              </span>
-            </button>
             {isLoggedIn ? (
               <button
                 onClick={() => {

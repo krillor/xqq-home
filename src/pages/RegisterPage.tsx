@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, User, Send, CheckCircle } from 'lucide-react'
 import { useAppStore } from '../store/appStore'
+import SliderCaptcha from '../components/SliderCaptcha'
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate()
   const { sendVerificationCode, register } = useAppStore()
-  
+
   const [step, setStep] = useState<'info' | 'code' | 'success'>('info')
   const [formData, setFormData] = useState({
     name: '',
@@ -17,6 +18,8 @@ const RegisterPage: React.FC = () => {
   const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [captchaVerified, setCaptchaVerified] = useState(false)
+  const [captchaReset, setCaptchaReset] = useState(false)
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,6 +39,11 @@ const RegisterPage: React.FC = () => {
       return
     }
 
+    if (!captchaVerified) {
+      setError('请先完成滑块验证')
+      return
+    }
+
     setLoading(true)
     setError('')
     try {
@@ -43,6 +51,8 @@ const RegisterPage: React.FC = () => {
       setStep('code')
     } catch (err) {
       setError('发送验证码失败，请重试')
+      setCaptchaVerified(false)
+      setCaptchaReset(r => !r)
     } finally {
       setLoading(false)
     }
@@ -170,6 +180,11 @@ const RegisterPage: React.FC = () => {
                 </div>
               </div>
 
+              <SliderCaptcha
+                onVerified={() => setCaptchaVerified(true)}
+                reset={captchaReset}
+              />
+
               {error && (
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                   {error}
@@ -178,7 +193,7 @@ const RegisterPage: React.FC = () => {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !captchaVerified}
                 className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-3 rounded-lg font-medium hover:from-amber-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
               >
                 {loading ? (

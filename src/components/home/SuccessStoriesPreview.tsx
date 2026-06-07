@@ -20,7 +20,7 @@ export default function SuccessStoriesPreview() {
             <div className="bg-gradient-card rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-warm-gold/20 overflow-hidden group">
               <div className="relative h-48 overflow-hidden">
                 <img
-                  src={story.afterPhotos[0]}
+                  src={story.afterPhotos[0] ?? story.beforePhotos[0]}
                   alt={story.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

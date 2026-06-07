@@ -16,9 +16,16 @@ import { regionData, Country, Province, City } from '../data/regionData'
 const PersonalCenter: React.FC = () => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const initialTab = searchParams.get('tab') || 'archive'
-  const [activeTab, setActiveTab] = useState<'archive' | 'volunteer'>(initialTab === 'volunteer' ? 'volunteer' : 'archive')
   const { userRole } = useAppStore()
+  // 根据角色决定默认 tab：volunteer 角色默认进志愿者中心，其余进寻根档案
+  const defaultTab = searchParams.get('tab') === 'volunteer' ? 'volunteer' :
+                     searchParams.get('tab') === 'archive' ? 'archive' :
+                     userRole === 'volunteer' ? 'volunteer' : 'archive'
+  const [activeTab, setActiveTab] = useState<'archive' | 'volunteer'>(defaultTab)
+
+  // 显示哪些 tab：有明确角色只显示对应的；无角色两个都显示
+  const showArchive = userRole !== 'volunteer'
+  const showVolunteer = userRole !== 'seeker'
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 pt-24 pb-12">
@@ -30,8 +37,8 @@ const PersonalCenter: React.FC = () => {
         >
           <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-6">个人中心</h1>
           
-          <div className="inline-flex bg-white rounded-xl shadow-md p-1 gap-1">
-            {(userRole === 'seeker' || userRole === null) && (
+          {(showArchive && showVolunteer) && (
+            <div className="inline-flex bg-white rounded-xl shadow-md p-1 gap-1">
               <button
                 onClick={() => setActiveTab('archive')}
                 className={`px-6 py-3 rounded-lg font-medium transition-all ${
@@ -42,8 +49,6 @@ const PersonalCenter: React.FC = () => {
               >
                 寻根档案
               </button>
-            )}
-            {(userRole === 'volunteer' || userRole === null) && (
               <button
                 onClick={() => setActiveTab('volunteer')}
                 className={`px-6 py-3 rounded-lg font-medium transition-all ${
@@ -54,12 +59,12 @@ const PersonalCenter: React.FC = () => {
               >
                 志愿者中心
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </motion.div>
 
         <AnimatePresence mode="wait">
-          {activeTab === 'archive' ? (
+          {(showArchive && activeTab === 'archive') || (showArchive && !showVolunteer) ? (
             <RootSearchArchiveContent key="archive" />
           ) : (
             <VolunteerContent key="volunteer" />
@@ -156,7 +161,7 @@ const RootSearchArchiveContent: React.FC = () => {
     if (!formData.ancestorDepartureYear) return null
     
     const departureYear = parseInt(formData.ancestorDepartureYear)
-    const currentYear = 2024
+    const currentYear = new Date().getFullYear()
     const yearsPassed = currentYear - departureYear
     const estimatedGen = Math.floor(yearsPassed / 28)
     
@@ -505,11 +510,17 @@ const RootSearchArchiveContent: React.FC = () => {
                       <Clock className="w-5 h-5" />
                       📅 代际推算
                     </h4>
-                    <div className="text-purple-700 text-sm space-y-2">
-                      <p>距离 {formData.ancestorDepartureYear} 年已过去约 <span className="font-bold">{calculateGenerations()?.yearsPassed}</span> 年</p>
-                      <p>可能经历了约 <span className="font-bold">{calculateGenerations()?.estimatedGen}</span> 代人</p>
-                      <p>祖辈可能出生于 <span className="font-bold">{calculateGenerations()?.birthYearRange.min}-{calculateGenerations()?.birthYearRange.max}</span> 年</p>
-                    </div>
+                    {(() => {
+                      const gen = calculateGenerations();
+                      if (!gen) return null;
+                      return (
+                        <div className="text-purple-700 text-sm space-y-2">
+                          <p>距离 {formData.ancestorDepartureYear} 年已过去约 <span className="font-bold">{gen.yearsPassed}</span> 年</p>
+                          <p>可能经历了约 <span className="font-bold">{gen.estimatedGen}</span> 代人</p>
+                          <p>祖辈可能出生于 <span className="font-bold">{gen.birthYearRange.min}-{gen.birthYearRange.max}</span> 年</p>
+                        </div>
+                      );
+                    })()}
                   </div>
                 )}
               </div>
