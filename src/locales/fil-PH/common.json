@@ -1,0 +1,124 @@
+{
+  "appName": "RootFinder",
+  "appDescription": "Plataporma para muling pagkabit ng mga Teochew sa diaspora",
+  "common": {
+    "loading": "Naglo-load...",
+    "submit": "Isumite",
+    "cancel": "Kanselahin",
+    "confirm": "Kumpirmahin",
+    "back": "Bumalik",
+    "save": "I-save",
+    "delete": "Burahin",
+    "edit": "I-edit",
+    "search": "Maghanap",
+    "filter": "Salain",
+    "viewAll": "Tingnan Lahat",
+    "loadMore": "Magpakita pa",
+    "noData": "Walang datos",
+    "tryAgain": "Subukan muli"
+  },
+  "navigation": {
+    "home": "Bahay",
+    "search": "Maghanap",
+    "publish": "Mag-publish",
+    "profile": "Profile",
+    "successStories": "Mga Tagumpay"
+  },
+  "home": {
+    "heroTitle": "Liham para kay Lola",
+    "heroSubtitle": "Lampas sa panahon at espasyo",
+    "quickSearch": "Mabilis na Paghahanap",
+    "selectSurname": "Piliin ang Apelyido",
+    "selectOrigin": "Piliin ang Pinagmulan",
+    "selectTarget": "Piliin ang Destinasyon",
+    "latestPosts": "Pinakabagong Post",
+    "stats": {
+      "totalPosts": "Mga Kwento ng Muling Pagkikita",
+      "success": "Mga Tagumpay",
+      "activeSeekers": "Aktibong Naghahanap",
+      "regions": "Mga Rehiyon"
+    }
+  },
+  "search": {
+    "title": "Listahan ng Paghahanap",
+    "filterTitle": "Mga Opsyon sa Pagsala",
+    "filters": {
+      "surname": "Apelyido",
+      "originRegion": "Rehiyong Pinagmulan",
+      "targetRegion": "Target na Rehiyon",
+      "seekerType": "Direksyon ng Paghahanap",
+      "status": "Katayuan",
+      "yearRange": "Saklaw ng Taon"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→Thailand",
+      "thai_to_chaoshan": "Thailand→Teochew",
+      "all": "Lahat"
+    },
+    "status": {
+      "searching": "Naghahanap",
+      "found": "Natagpuan",
+      "pending": "Naghihintay",
+      "closed": "Sarado"
+    },
+    "clearFilters": "I-clear ang Pagsala"
+  },
+  "detail": {
+    "seekerName": "Naglathala",
+    "surname": "Apelyido",
+    "originRegion": "Pinagmulan",
+    "targetRegion": "Destinasyon",
+    "estimatedYear": "Tinatayang Taon",
+    "familyStory": "Kwento ng Pamilya",
+    "photos": "Mga Kaugnay na Larawan",
+    "provideClue": "Magbigay ng Bakas",
+    "contact": "Makipag-ugnayan sa Naglathala",
+    "share": "Ibahagi",
+    "favorite": "Paborito"
+  },
+  "publish": {
+    "title": "Maglathala ng Post",
+    "step1": "Pangunahing Impormasyon",
+    "step2": "Lugar at Oras",
+    "step3": "Kwento ng Pamilya",
+    "step4": "Kumpirmahin",
+    "form": {
+      "seekerName": "Iyong Pangalan",
+      "seekerType": "Direksyon ng Paghahanap",
+      "surname": "Apelyido",
+      "originRegion": "Rehiyong Pinagmulan",
+      "targetRegion": "Target na Rehiyon",
+      "estimatedYear": "Tinatayang Taon",
+      "familyStory": "Kwento ng Pamilya",
+      "photos": "Mga Kaugnay na Larawan"
+    },
+    "success": "Matagumpay na Nailathala!",
+    "successDesc": "Sinusuri ang iyong post at lalabas sa plataporma kapag naaprubahan"
+  },
+  "profile": {
+    "myPosts": "Mga Post Ko",
+    "favorites": "Mga Paborito",
+    "messages": "Mga Mensahe",
+    "settings": "Mga Setting",
+    "authStatus": "Katayuan ng Pagpapatunay",
+    "verified": "Napatunayan",
+    "unverified": "Hindi Napatunayan",
+    "switchLang": "Palitan ang Wika"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "Mga Kwento ng Tagumpay",
+    "storyTitle": "Pamagat ng Kwento",
+    "location": "Lokasyon",
+    "date": "Petsa",
+    "readMore": "Magbasa pa"
+  }
+}

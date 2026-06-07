@@ -20,6 +20,7 @@ export interface Country {
   id: string;
   nameCn: string;
   nameEn: string;
+  group?: string;          // 分组标题：中国大陆 / 港澳台 / 东南亚
   provinces: Province[];
 }
 
@@ -246,8 +247,9 @@ const southeastAsia: Country[] = [
 // 中国大陆省份城市
 const chinaMainland: Country = {
   id: 'china',
-  nameCn: '中国',
-  nameEn: 'China',
+  nameCn: '中国大陆',
+  nameEn: 'Mainland China',
+  group: '中国大陆',
   provinces: [
     {
       id: 'cn-guangdong',
@@ -306,6 +308,213 @@ const chinaMainland: Country = {
       ]
     },
     {
+      id: 'cn-tianjin',
+      nameCn: '天津市',
+      cities: [
+        { id: 'cn-tj', nameCn: '天津', nameEn: 'Tianjin' },
+      ]
+    },
+    {
+      id: 'cn-chongqing',
+      nameCn: '重庆市',
+      cities: [
+        { id: 'cn-cq', nameCn: '重庆', nameEn: 'Chongqing' },
+      ]
+    },
+    {
+      id: 'cn-jiangsu',
+      nameCn: '江苏省',
+      cities: [
+        { id: 'cn-nanjing', nameCn: '南京', nameEn: 'Nanjing' },
+        { id: 'cn-suzhou', nameCn: '苏州', nameEn: 'Suzhou' },
+        { id: 'cn-wuxi', nameCn: '无锡', nameEn: 'Wuxi' },
+      ]
+    },
+    {
+      id: 'cn-shandong',
+      nameCn: '山东省',
+      cities: [
+        { id: 'cn-jinan', nameCn: '济南', nameEn: 'Jinan' },
+        { id: 'cn-qingdao', nameCn: '青岛', nameEn: 'Qingdao' },
+        { id: 'cn-yantai', nameCn: '烟台', nameEn: 'Yantai' },
+      ]
+    },
+    {
+      id: 'cn-henan',
+      nameCn: '河南省',
+      cities: [
+        { id: 'cn-zhengzhou', nameCn: '郑州', nameEn: 'Zhengzhou' },
+        { id: 'cn-luoyang', nameCn: '洛阳', nameEn: 'Luoyang' },
+      ]
+    },
+    {
+      id: 'cn-hebei',
+      nameCn: '河北省',
+      cities: [
+        { id: 'cn-shijiazhuang', nameCn: '石家庄', nameEn: 'Shijiazhuang' },
+        { id: 'cn-tangshan', nameCn: '唐山', nameEn: 'Tangshan' },
+      ]
+    },
+    {
+      id: 'cn-hubei',
+      nameCn: '湖北省',
+      cities: [
+        { id: 'cn-wuhan', nameCn: '武汉', nameEn: 'Wuhan' },
+        { id: 'cn-yichang', nameCn: '宜昌', nameEn: 'Yichang' },
+      ]
+    },
+    {
+      id: 'cn-hunan',
+      nameCn: '湖南省',
+      cities: [
+        { id: 'cn-changsha', nameCn: '长沙', nameEn: 'Changsha' },
+        { id: 'cn-yueyang', nameCn: '岳阳', nameEn: 'Yueyang' },
+      ]
+    },
+    {
+      id: 'cn-sichuan',
+      nameCn: '四川省',
+      cities: [
+        { id: 'cn-chengdu', nameCn: '成都', nameEn: 'Chengdu' },
+        { id: 'cn-mianyang', nameCn: '绵阳', nameEn: 'Mianyang' },
+      ]
+    },
+    {
+      id: 'cn-jiangxi',
+      nameCn: '江西省',
+      cities: [
+        { id: 'cn-nanchang', nameCn: '南昌', nameEn: 'Nanchang' },
+        { id: 'cn-ganzhou', nameCn: '赣州', nameEn: 'Ganzhou' },
+      ]
+    },
+    {
+      id: 'cn-anhui',
+      nameCn: '安徽省',
+      cities: [
+        { id: 'cn-hefei', nameCn: '合肥', nameEn: 'Hefei' },
+        { id: 'cn-wuhu', nameCn: '芜湖', nameEn: 'Wuhu' },
+      ]
+    },
+    {
+      id: 'cn-liaoning',
+      nameCn: '辽宁省',
+      cities: [
+        { id: 'cn-shenyang', nameCn: '沈阳', nameEn: 'Shenyang' },
+        { id: 'cn-dalian', nameCn: '大连', nameEn: 'Dalian' },
+      ]
+    },
+    {
+      id: 'cn-jilin',
+      nameCn: '吉林省',
+      cities: [
+        { id: 'cn-changchun', nameCn: '长春', nameEn: 'Changchun' },
+        { id: 'cn-jilincity', nameCn: '吉林', nameEn: 'Jilin' },
+      ]
+    },
+    {
+      id: 'cn-heilongjiang',
+      nameCn: '黑龙江省',
+      cities: [
+        { id: 'cn-harbin', nameCn: '哈尔滨', nameEn: 'Harbin' },
+        { id: 'cn-daqing', nameCn: '大庆', nameEn: 'Daqing' },
+      ]
+    },
+    {
+      id: 'cn-shanxi',
+      nameCn: '山西省',
+      cities: [
+        { id: 'cn-taiyuan', nameCn: '太原', nameEn: 'Taiyuan' },
+        { id: 'cn-datong', nameCn: '大同', nameEn: 'Datong' },
+      ]
+    },
+    {
+      id: 'cn-shaanxi',
+      nameCn: '陕西省',
+      cities: [
+        { id: 'cn-xian', nameCn: '西安', nameEn: "Xi'an" },
+        { id: 'cn-baoji', nameCn: '宝鸡', nameEn: 'Baoji' },
+      ]
+    },
+    {
+      id: 'cn-yunnan',
+      nameCn: '云南省',
+      cities: [
+        { id: 'cn-kunming', nameCn: '昆明', nameEn: 'Kunming' },
+        { id: 'cn-dali', nameCn: '大理', nameEn: 'Dali' },
+      ]
+    },
+    {
+      id: 'cn-guizhou',
+      nameCn: '贵州省',
+      cities: [
+        { id: 'cn-guiyang', nameCn: '贵阳', nameEn: 'Guiyang' },
+        { id: 'cn-zunyi', nameCn: '遵义', nameEn: 'Zunyi' },
+      ]
+    },
+    {
+      id: 'cn-gansu',
+      nameCn: '甘肃省',
+      cities: [
+        { id: 'cn-lanzhou', nameCn: '兰州', nameEn: 'Lanzhou' },
+        { id: 'cn-tianshui', nameCn: '天水', nameEn: 'Tianshui' },
+      ]
+    },
+    {
+      id: 'cn-qinghai',
+      nameCn: '青海省',
+      cities: [
+        { id: 'cn-xining', nameCn: '西宁', nameEn: 'Xining' },
+      ]
+    },
+    {
+      id: 'cn-guangxi',
+      nameCn: '广西壮族自治区',
+      cities: [
+        { id: 'cn-nanning', nameCn: '南宁', nameEn: 'Nanning' },
+        { id: 'cn-guilin', nameCn: '桂林', nameEn: 'Guilin' },
+      ]
+    },
+    {
+      id: 'cn-neimenggu',
+      nameCn: '内蒙古自治区',
+      cities: [
+        { id: 'cn-huhehaote', nameCn: '呼和浩特', nameEn: 'Hohhot' },
+        { id: 'cn-baotou', nameCn: '包头', nameEn: 'Baotou' },
+      ]
+    },
+    {
+      id: 'cn-ningxia',
+      nameCn: '宁夏回族自治区',
+      cities: [
+        { id: 'cn-yinchuan', nameCn: '银川', nameEn: 'Yinchuan' },
+      ]
+    },
+    {
+      id: 'cn-xinjiang',
+      nameCn: '新疆维吾尔自治区',
+      cities: [
+        { id: 'cn-wulumuqi', nameCn: '乌鲁木齐', nameEn: 'Urumqi' },
+        { id: 'cn-kashi', nameCn: '喀什', nameEn: 'Kashgar' },
+      ]
+    },
+    {
+      id: 'cn-xizang',
+      nameCn: '西藏自治区',
+      cities: [
+        { id: 'cn-lasa', nameCn: '拉萨', nameEn: 'Lhasa' },
+      ]
+    },
+  ]
+};
+
+// 港澳台地区（同属中国，单独分组展示）
+const hongKongMacauTaiwan: Country = {
+  id: 'china-hmt',
+  nameCn: '港澳台',
+  nameEn: 'HK · Macau · Taiwan',
+  group: '港澳台',
+  provinces: [
+    {
       id: 'cn-hongkong',
       nameCn: '香港',
       cities: [
@@ -325,16 +534,25 @@ const chinaMainland: Country = {
       cities: [
         { id: 'tw-tpe', nameCn: '台北', nameEn: 'Taipei' },
         { id: 'tw-khh', nameCn: '高雄', nameEn: 'Kaohsiung' },
+        { id: 'tw-tcg', nameCn: '台中', nameEn: 'Taichung' },
+        { id: 'tw-tnn', nameCn: '台南', nameEn: 'Tainan' },
       ]
     },
   ]
 };
 
-// 合并所有地区
+// 东南亚国家统一标记分组
+const southeastAsiaGrouped: Country[] = southeastAsia.map(c => ({ ...c, group: '东南亚' }));
+
+// 合并所有地区：中国大陆 + 港澳台 + 东南亚
 export const regionData: Country[] = [
   chinaMainland,
-  ...southeastAsia
+  hongKongMacauTaiwan,
+  ...southeastAsiaGrouped
 ];
+
+// 分组顺序（用于选择器渲染分组标题）
+export const regionGroups = ['中国大陆', '港澳台', '东南亚'];
 
 // 常用地名别名映射（用于智能解析）
 export const placeNameAlias: Record<string, string[]> = {

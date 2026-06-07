@@ -21,11 +21,14 @@ const VolunteerProfilePage: React.FC<VolunteerProfilePageProps> = ({ volunteer: 
     'zh-CN': '简体中文',
     'zh-TW': '繁體中文',
     'th-TH': 'ไทย',
-    'fr-FR': 'Français',
     'en-US': 'English',
     'id-ID': 'Bahasa Indonesia',
     'vi-VN': 'Tiếng Việt',
-    'ms-MY': 'Bahasa Melayu'
+    'ms-MY': 'Bahasa Melayu',
+    'fil-PH': 'Filipino',
+    'my-MM': 'မြန်မာ',
+    'km-KH': 'ខ្មែរ',
+    'lo-LA': 'ລາວ'
   };
 
   return (

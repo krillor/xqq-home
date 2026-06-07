@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, MapPin } from 'lucide-react';
-import { regionData, Country, Province, City } from '../data/regionData';
+import { regionData, regionGroups, Country, Province, City } from '../data/regionData';
 
 interface LocationSelectProps {
   label?: string;
@@ -120,22 +120,33 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
 
       {isOpen && (
         <div className="absolute z-50 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-xl max-h-80 overflow-hidden flex">
-          {/* 国家选择 */}
+          {/* 国家选择（按分组显示标题） */}
           <div className="flex-1 border-r border-gray-200 overflow-y-auto max-h-80">
             <div className="p-2 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
               国家/地区
             </div>
-            {regionData.map((country) => (
-              <button
-                key={country.id}
-                type="button"
-                onClick={() => handleCountrySelect(country)}
-                className={`w-full px-4 py-2 text-left hover:bg-amber-50 transition-colors
-                  ${country.id === selectedCountryId ? 'bg-amber-100 text-amber-800 font-medium' : 'text-gray-700'}`}
-              >
-                {country.nameCn}
-              </button>
-            ))}
+            {regionGroups.map((group) => {
+              const groupCountries = regionData.filter(c => (c.group ?? '') === group);
+              if (groupCountries.length === 0) return null;
+              return (
+                <div key={group}>
+                  <div className="px-3 py-1.5 bg-amber-50/60 text-[11px] font-semibold text-amber-700 sticky top-0">
+                    {group}
+                  </div>
+                  {groupCountries.map((country) => (
+                    <button
+                      key={country.id}
+                      type="button"
+                      onClick={() => handleCountrySelect(country)}
+                      className={`w-full px-4 py-2 text-left hover:bg-amber-50 transition-colors
+                        ${country.id === selectedCountryId ? 'bg-amber-100 text-amber-800 font-medium' : 'text-gray-700'}`}
+                    >
+                      {country.nameCn}
+                    </button>
+                  ))}
+                </div>
+              );
+            })}
           </div>
 
           {/* 省份/州选择 */}

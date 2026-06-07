@@ -8,17 +8,20 @@ const VolunteerListPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterRegion, setFilterRegion] = useState('');
   
-  const regions = ['全部', '曼谷', '清迈', '新加坡', '吉隆坡', '雅加达', '胡志明市', '河内', '巴黎', '伦敦', '旧金山', '纽约', '北京', '上海', '广州', '汕头', '潮州'];
-  
+  const regions = ['全部', '曼谷', '清迈', '新加坡', '吉隆坡', '槟城', '雅加达', '胡志明市', '河内', '马尼拉', '金边', '仰光', '北京', '上海', '广州', '汕头', '潮州'];
+
   const languageNames: Record<string, string> = {
     'zh-CN': '简体中文',
     'zh-TW': '繁体中文',
     'th-TH': '泰语',
     'en-US': '英语',
-    'fr-FR': '法语',
     'id-ID': '印尼语',
     'vi-VN': '越南语',
     'ms-MY': '马来语',
+    'fil-PH': '菲律宾语',
+    'my-MM': '缅甸语',
+    'km-KH': '高棉语',
+    'lo-LA': '老挝语',
   };
 
   const filteredVolunteers = mockVolunteers.filter(v => {

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Heart, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-warm-brown text-warm-white">
       <div className="container mx-auto px-4 py-12">
@@ -15,26 +17,26 @@ export default function Footer() {
                   <path d="M2 12l10 5 10-5" />
                 </svg>
               </div>
-              <span className="font-serif text-xl font-bold">寻亲桥</span>
+              <span className="font-serif text-xl font-bold">{t('brand')}</span>
             </div>
             <p className="font-sans text-sm text-warm-beige leading-relaxed">
-              基于自身经历开发此网站，希望帮助更多的华侨华人跨越山海，重新连接失散的亲情与血脉。
+              {t('footer.description')}
             </p>
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-serif text-lg font-bold text-warm-gold">快速导航</h3>
+            <h3 className="font-serif text-lg font-bold text-warm-gold">{t('footer.quickNav')}</h3>
             <nav className="flex flex-col gap-2">
-              <Link to="/" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">首页</Link>
-              <Link to="/search" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">寻亲列表</Link>
-              <Link to="/personal" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">个人中心</Link>
-              <Link to="/parser" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">工具箱</Link>
-              <Link to="/associations" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">官方组织</Link>
+              <Link to="/" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.home')}</Link>
+              <Link to="/search" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.search')}</Link>
+              <Link to="/personal" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.profile')}</Link>
+              <Link to="/parser" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.tools')}</Link>
+              <Link to="/associations" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.associations')}</Link>
             </nav>
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-serif text-lg font-bold text-warm-gold">联系我们</h3>
+            <h3 className="font-serif text-lg font-bold text-warm-gold">{t('footer.contactUs')}</h3>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-warm-gold" />
@@ -46,7 +48,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={16} className="text-warm-gold" />
-                <span className="font-sans text-sm text-warm-beige">广东省潮州市</span>
+                <span className="font-sans text-sm text-warm-beige">{t('footer.address')}</span>
               </div>
             </div>
           </div>
@@ -54,12 +56,12 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-warm-gold/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-sans text-sm text-warm-beige">
-            © 2026 寻亲桥. 让血脉亲情跨越国界延续
+            {t('footer.copyright')}
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-sans text-sm text-warm-beige">隐私政策</span>
-            <span className="font-sans text-sm text-warm-beige">使用条款</span>
-            <span className="font-sans text-sm text-warm-beige">帮助中心</span>
+            <Link to="/privacy" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('footer.privacy')}</Link>
+            <Link to="/terms" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('footer.terms')}</Link>
+            <span className="font-sans text-sm text-warm-beige">{t('footer.help')}</span>
           </div>
         </div>
       </div>

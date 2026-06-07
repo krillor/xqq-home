@@ -1,0 +1,124 @@
+{
+  "appName": "RootFinder",
+  "appDescription": "ເວທີເຊື່ອມຕໍ່ຄົນ Teochew ກັບຊຸມຊົນຢູ່ຕ່າງປະເທດ",
+  "common": {
+    "loading": "ກຳລັງໂຫຼດ...",
+    "submit": "ສົ່ງ",
+    "cancel": "ຍົກເລີກ",
+    "confirm": "ຢືນຢັນ",
+    "back": "ກັບຄືນ",
+    "save": "ບັນທຶກ",
+    "delete": "ລຶບ",
+    "edit": "ແກ້ໄຂ",
+    "search": "ຄົ້ນຫາ",
+    "filter": "ກັ່ນຕອງ",
+    "viewAll": "ເບິ່ງທັງໝົດ",
+    "loadMore": "ໂຫຼດເພີ່ມ",
+    "noData": "ບໍ່ມີຂໍ້ມູນ",
+    "tryAgain": "ລອງໃໝ່"
+  },
+  "navigation": {
+    "home": "ໜ້າຫຼັກ",
+    "search": "ຄົ້ນຫາ",
+    "publish": "ເຜີຍແຜ່",
+    "profile": "ໂປຣໄຟລ໌",
+    "successStories": "ເລື່ອງຄວາມສຳເລັດ"
+  },
+  "home": {
+    "heroTitle": "ຈົດໝາຍເຖິງແມ່ຕູ້",
+    "heroSubtitle": "ຂ້າມຜ່ານເວລາ ແລະ ພື້ນທີ່",
+    "quickSearch": "ຄົ້ນຫາດ່ວນ",
+    "selectSurname": "ເລືອກນາມສະກຸນ",
+    "selectOrigin": "ເລືອກຖິ່ນກຳເນີດ",
+    "selectTarget": "ເລືອກປາຍທາງ",
+    "latestPosts": "ໂພສຫຼ້າສຸດ",
+    "stats": {
+      "totalPosts": "ເລື່ອງການພົບກັນ",
+      "success": "ເລື່ອງຄວາມສຳເລັດ",
+      "activeSeekers": "ຜູ້ຄົ້ນຫາທີ່ເຄື່ອນໄຫວ",
+      "regions": "ເຂດ"
+    }
+  },
+  "search": {
+    "title": "ລາຍການຄົ້ນຫາ",
+    "filterTitle": "ຕົວເລືອກການກັ່ນຕອງ",
+    "filters": {
+      "surname": "ນາມສະກຸນ",
+      "originRegion": "ເຂດຖິ່ນກຳເນີດ",
+      "targetRegion": "ເຂດປາຍທາງ",
+      "seekerType": "ທິດທາງການຄົ້ນຫາ",
+      "status": "ສະຖານະ",
+      "yearRange": "ຊ່ວງປີ"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→ໄທ",
+      "thai_to_chaoshan": "ໄທ→Teochew",
+      "all": "ທັງໝົດ"
+    },
+    "status": {
+      "searching": "ກຳລັງຄົ້ນຫາ",
+      "found": "ພົບແລ້ວ",
+      "pending": "ກຳລັງລໍຖ້າ",
+      "closed": "ປິດແລ້ວ"
+    },
+    "clearFilters": "ລ້າງການກັ່ນຕອງ"
+  },
+  "detail": {
+    "seekerName": "ຜູ້ໂພສ",
+    "surname": "ນາມສະກຸນ",
+    "originRegion": "ຖິ່ນກຳເນີດ",
+    "targetRegion": "ປາຍທາງ",
+    "estimatedYear": "ປີໂດຍປະມານ",
+    "familyStory": "ເລື່ອງຄອບຄົວ",
+    "photos": "ຮູບພາບທີ່ກ່ຽວຂ້ອງ",
+    "provideClue": "ໃຫ້ເບາະແສ",
+    "contact": "ຕິດຕໍ່ຜູ້ໂພສ",
+    "share": "ແບ່ງປັນ",
+    "favorite": "ມັກ"
+  },
+  "publish": {
+    "title": "ເຜີຍແຜ່ໂພສ",
+    "step1": "ຂໍ້ມູນພື້ນຖານ",
+    "step2": "ສະຖານທີ່ ແລະ ເວລາ",
+    "step3": "ເລື່ອງຄອບຄົວ",
+    "step4": "ຢືນຢັນ",
+    "form": {
+      "seekerName": "ຊື່ຂອງທ່ານ",
+      "seekerType": "ທິດທາງການຄົ້ນຫາ",
+      "surname": "ນາມສະກຸນ",
+      "originRegion": "ເຂດຖິ່ນກຳເນີດ",
+      "targetRegion": "ເຂດປາຍທາງ",
+      "estimatedYear": "ປີໂດຍປະມານ",
+      "familyStory": "ເລື່ອງຄອບຄົວ",
+      "photos": "ຮູບພາບທີ່ກ່ຽວຂ້ອງ"
+    },
+    "success": "ເຜີຍແຜ່ສຳເລັດ!",
+    "successDesc": "ໂພສຂອງທ່ານກຳລັງຖືກກວດສອບ ແລະ ຈະປະກົດຢູ່ເວທີເມື່ອໄດ້ຮັບການອະນຸມັດ"
+  },
+  "profile": {
+    "myPosts": "ໂພສຂອງຂ້ອຍ",
+    "favorites": "ລາຍການທີ່ມັກ",
+    "messages": "ຂໍ້ຄວາມ",
+    "settings": "ການຕັ້ງຄ່າ",
+    "authStatus": "ສະຖານະການຢືນຢັນ",
+    "verified": "ຢືນຢັນແລ້ວ",
+    "unverified": "ຍັງບໍ່ໄດ້ຢືນຢັນ",
+    "switchLang": "ປ່ຽນພາສາ"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "ເລື່ອງຄວາມສຳເລັດ",
+    "storyTitle": "ຫົວຂໍ້ເລື່ອງ",
+    "location": "ສະຖານທີ່",
+    "date": "ວັນທີ",
+    "readMore": "ອ່ານເພີ່ມ"
+  }
+}

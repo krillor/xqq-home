@@ -1,0 +1,124 @@
+{
+  "appName": "RootFinder",
+  "appDescription": "វេទិកាភ្ជាប់ប្រជាជន Teochew ជាមួយសហគមន៍នៅក្រៅប្រទេស",
+  "common": {
+    "loading": "កំពុងផ្ទុក...",
+    "submit": "ដាក់ស្នើ",
+    "cancel": "បោះបង់",
+    "confirm": "បញ្ជាក់",
+    "back": "ត្រឡប់ក្រោយ",
+    "save": "រក្សាទុក",
+    "delete": "លុប",
+    "edit": "កែសម្រួល",
+    "search": "ស្វែងរក",
+    "filter": "ត្រង",
+    "viewAll": "មើលទាំងអស់",
+    "loadMore": "ផ្ទុកបន្ថែម",
+    "noData": "គ្មានទិន្នន័យ",
+    "tryAgain": "ព្យាយាមម្តងទៀត"
+  },
+  "navigation": {
+    "home": "ទំព័រដើម",
+    "search": "ស្វែងរក",
+    "publish": "បោះពុម្ពផ្សាយ",
+    "profile": "ប្រវត្តិរូប",
+    "successStories": "រឿងជោគជ័យ"
+  },
+  "home": {
+    "heroTitle": "សំបុត្រជូនជីដូន",
+    "heroSubtitle": "ឆ្លងកាត់ពេលវេលា និងលំហ",
+    "quickSearch": "ស្វែងរករហ័ស",
+    "selectSurname": "ជ្រើសរើសនាមត្រកូល",
+    "selectOrigin": "ជ្រើសរើសដើមកំណើត",
+    "selectTarget": "ជ្រើសរើសគោលដៅ",
+    "latestPosts": "ការបង្ហោះថ្មីៗ",
+    "stats": {
+      "totalPosts": "រឿងជួបជុំ",
+      "success": "រឿងជោគជ័យ",
+      "activeSeekers": "អ្នកស្វែងរកសកម្ម",
+      "regions": "តំបន់"
+    }
+  },
+  "search": {
+    "title": "បញ្ជីស្វែងរក",
+    "filterTitle": "ជម្រើសត្រង",
+    "filters": {
+      "surname": "នាមត្រកូល",
+      "originRegion": "តំបន់ដើមកំណើត",
+      "targetRegion": "តំបន់គោលដៅ",
+      "seekerType": "ទិសដៅស្វែងរក",
+      "status": "ស្ថានភាព",
+      "yearRange": "ចន្លោះឆ្នាំ"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→ថៃ",
+      "thai_to_chaoshan": "ថៃ→Teochew",
+      "all": "ទាំងអស់"
+    },
+    "status": {
+      "searching": "កំពុងស្វែងរក",
+      "found": "បានរកឃើញ",
+      "pending": "កំពុងរង់ចាំ",
+      "closed": "បានបិទ"
+    },
+    "clearFilters": "សម្អាតការត្រង"
+  },
+  "detail": {
+    "seekerName": "អ្នកបង្ហោះ",
+    "surname": "នាមត្រកូល",
+    "originRegion": "ដើមកំណើត",
+    "targetRegion": "គោលដៅ",
+    "estimatedYear": "ឆ្នាំប៉ាន់ស្មាន",
+    "familyStory": "រឿងគ្រួសារ",
+    "photos": "រូបភាពពាក់ព័ន្ធ",
+    "provideClue": "ផ្តល់តម្រុយ",
+    "contact": "ទាក់ទងអ្នកបង្ហោះ",
+    "share": "ចែករំលែក",
+    "favorite": "ចូលចិត្ត"
+  },
+  "publish": {
+    "title": "បង្ហោះការប្រកាស",
+    "step1": "ព័ត៌មានមូលដ្ឋាន",
+    "step2": "ទីកន្លែង និងពេលវេលា",
+    "step3": "រឿងគ្រួសារ",
+    "step4": "បញ្ជាក់",
+    "form": {
+      "seekerName": "ឈ្មោះរបស់អ្នក",
+      "seekerType": "ទិសដៅស្វែងរក",
+      "surname": "នាមត្រកូល",
+      "originRegion": "តំបន់ដើមកំណើត",
+      "targetRegion": "តំបន់គោលដៅ",
+      "estimatedYear": "ឆ្នាំប៉ាន់ស្មាន",
+      "familyStory": "រឿងគ្រួសារ",
+      "photos": "រូបភាពពាក់ព័ន្ធ"
+    },
+    "success": "បានបង្ហោះដោយជោគជ័យ!",
+    "successDesc": "ការប្រកាសរបស់អ្នកកំពុងត្រូវបានពិនិត្យ ហើយនឹងបង្ហាញនៅពេលត្រូវបានអនុម័ត"
+  },
+  "profile": {
+    "myPosts": "ការបង្ហោះរបស់ខ្ញុំ",
+    "favorites": "ចំណូលចិត្ត",
+    "messages": "សារ",
+    "settings": "ការកំណត់",
+    "authStatus": "ស្ថានភាពផ្ទៀងផ្ទាត់",
+    "verified": "បានផ្ទៀងផ្ទាត់",
+    "unverified": "មិនទាន់ផ្ទៀងផ្ទាត់",
+    "switchLang": "ប្តូរភាសា"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "រឿងជោគជ័យ",
+    "storyTitle": "ចំណងជើងរឿង",
+    "location": "ទីតាំង",
+    "date": "កាលបរិច្ឆេទ",
+    "readMore": "អានបន្ថែម"
+  }
+}

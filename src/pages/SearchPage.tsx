@@ -1,13 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search as SearchIcon, Filter, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Search as SearchIcon, Filter, MapPin, Clock } from 'lucide-react';
 import { FamilyMap } from '../components/FamilyMap';
-import { regionData as newRegionData } from '../data/regionData';
 import LocationSelect from '../components/LocationSelect';
-import { allPosts, PostData } from '../data/postData';
+import { allPosts } from '../data/postData';
 
 const SearchPage: React.FC = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'map' | 'list'>('map');
   const [filterRegion, setFilterRegion] = useState<string>(searchParams.get('region') || '');
@@ -47,8 +48,8 @@ const SearchPage: React.FC = () => {
   
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'success': return '已找到';
-      default: return '寻找中';
+      case 'success': return t('search.status.found');
+      default: return t('search.status.searching');
     }
   };
   
@@ -61,10 +62,10 @@ const SearchPage: React.FC = () => {
           className="mb-8"
         >
           <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-4">
-            寻亲信息
+            {t('search.pageTitle')}
           </h1>
           <p className="text-[#8D6E63]">
-            浏览和搜索所有寻亲信息，或使用地图查看分布
+            {t('search.subtitle')}
           </p>
         </motion.div>
         
@@ -81,7 +82,7 @@ const SearchPage: React.FC = () => {
                 <SearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
-                  placeholder="搜索姓氏、标题或内容..."
+                  placeholder={t('search.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#E67E22] focus:outline-none transition-colors"
@@ -89,7 +90,7 @@ const SearchPage: React.FC = () => {
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <LocationSelect
-                  placeholder="筛选地区"
+                  placeholder={t('search.filterRegion')}
                   value={selectedLocation}
                   onChange={setSelectedLocation}
                 />
@@ -98,9 +99,9 @@ const SearchPage: React.FC = () => {
                   onChange={(e) => setFilterStatus(e.target.value)}
                   className="px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#E67E22] focus:outline-none transition-colors"
                 >
-                  <option value="">所有状态</option>
-                  <option value="active">寻找中</option>
-                  <option value="success">已找到</option>
+                  <option value="">{t('search.allStatus')}</option>
+                  <option value="active">{t('search.status.searching')}</option>
+                  <option value="success">{t('search.status.found')}</option>
                 </select>
               </div>
             </div>
@@ -124,7 +125,7 @@ const SearchPage: React.FC = () => {
               }`}
             >
               <MapPin className="w-4 h-4 inline mr-2" />
-              地图视图
+              {t('search.mapView')}
             </button>
             <button
               onClick={() => setViewMode('list')}
@@ -135,7 +136,7 @@ const SearchPage: React.FC = () => {
               }`}
             >
               <Filter className="w-4 h-4 inline mr-2" />
-              列表视图
+              {t('search.listView')}
             </button>
           </div>
         </motion.div>
@@ -163,9 +164,9 @@ const SearchPage: React.FC = () => {
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#5D4037]">
-              {selectedLocation?.displayName 
-                ? `${selectedLocation.displayName}的寻亲信息` 
-                : '所有寻亲信息'
+              {selectedLocation?.displayName
+                ? `${selectedLocation.displayName}${t('search.regionPostsSuffix')}`
+                : t('search.allPosts')
               }
               <span className="ml-2 text-[#E67E22]">({filteredPosts.length})</span>
             </h2>
@@ -211,7 +212,7 @@ const SearchPage: React.FC = () => {
                     </div>
                     <div className="bg-orange-50 px-6 py-3 border-t border-orange-100">
                       <span className="text-[#E67E22] font-medium text-sm">
-                        查看详情 →
+                        {t('search.viewDetail')} →
                       </span>
                     </div>
                   </div>
@@ -224,10 +225,10 @@ const SearchPage: React.FC = () => {
             <div className="text-center py-16">
               <SearchIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-500 mb-2">
-                没有找到相关信息
+                {t('search.noResults')}
               </h3>
               <p className="text-gray-400">
-                尝试调整筛选条件或搜索其他关键词
+                {t('search.noResultsHint')}
               </p>
             </div>
           )}

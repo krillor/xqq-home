@@ -1,0 +1,124 @@
+{
+  "appName": "RootFinder",
+  "appDescription": "Teochew လူမျိုးများကို ပြည်ပရှိ ဆွေမျိုးများနှင့် ပြန်လည်ဆက်သွယ်ပေးသော ပလက်ဖောင်း",
+  "common": {
+    "loading": "ဖွင့်နေသည်...",
+    "submit": "တင်သွင်းမည်",
+    "cancel": "ပယ်ဖျက်မည်",
+    "confirm": "အတည်ပြုမည်",
+    "back": "နောက်သို့",
+    "save": "သိမ်းမည်",
+    "delete": "ဖျက်မည်",
+    "edit": "တည်းဖြတ်မည်",
+    "search": "ရှာဖွေမည်",
+    "filter": "စစ်ထုတ်မည်",
+    "viewAll": "အားလုံးကြည့်ရန်",
+    "loadMore": "ပိုမိုဖွင့်ရန်",
+    "noData": "အချက်အလက်မရှိပါ",
+    "tryAgain": "ပြန်လည်ကြိုးစားပါ"
+  },
+  "navigation": {
+    "home": "ပင်မ",
+    "search": "ရှာဖွေရန်",
+    "publish": "တင်သွင်းရန်",
+    "profile": "ကိုယ်ရေးအချက်အလက်",
+    "successStories": "အောင်မြင်မှုပုံပြင်များ"
+  },
+  "home": {
+    "heroTitle": "အဖွားထံ စာ",
+    "heroSubtitle": "အချိန်နှင့် နေရာကို ကျော်လွန်၍",
+    "quickSearch": "အမြန်ရှာဖွေမှု",
+    "selectSurname": "မျိုးနွယ်အမည် ရွေးပါ",
+    "selectOrigin": "မူရင်းဒေသ ရွေးပါ",
+    "selectTarget": "ဦးတည်ရာ ရွေးပါ",
+    "latestPosts": "နောက်ဆုံးပို့စ်များ",
+    "stats": {
+      "totalPosts": "ပြန်လည်ဆုံတွေ့မှုပုံပြင်များ",
+      "success": "အောင်မြင်မှုပုံပြင်များ",
+      "activeSeekers": "လက်ရှိရှာဖွေသူများ",
+      "regions": "ဒေသများ"
+    }
+  },
+  "search": {
+    "title": "ရှာဖွေမှုစာရင်း",
+    "filterTitle": "စစ်ထုတ်မှုရွေးချယ်စရာများ",
+    "filters": {
+      "surname": "မျိုးနွယ်အမည်",
+      "originRegion": "မူရင်းဒေသ",
+      "targetRegion": "ဦးတည်ဒေသ",
+      "seekerType": "ရှာဖွေမှုဦးတည်ချက်",
+      "status": "အခြေအနေ",
+      "yearRange": "နှစ်အပိုင်းအခြား"
+    },
+    "seekerTypes": {
+      "chaoshan_to_thai": "Teochew→ထိုင်း",
+      "thai_to_chaoshan": "ထိုင်း→Teochew",
+      "all": "အားလုံး"
+    },
+    "status": {
+      "searching": "ရှာဖွေနေသည်",
+      "found": "တွေ့ရှိပြီး",
+      "pending": "ဆိုင်းငံ့",
+      "closed": "ပိတ်ပြီး"
+    },
+    "clearFilters": "စစ်ထုတ်မှုဖယ်ရှားရန်"
+  },
+  "detail": {
+    "seekerName": "တင်သွင်းသူ",
+    "surname": "မျိုးနွယ်အမည်",
+    "originRegion": "မူရင်းဒေသ",
+    "targetRegion": "ဦးတည်ရာ",
+    "estimatedYear": "ခန့်မှန်းနှစ်",
+    "familyStory": "မိသားစုပုံပြင်",
+    "photos": "ဆက်စပ်ဓာတ်ပုံများ",
+    "provideClue": "သဲလွန်စ ပေးရန်",
+    "contact": "တင်သွင်းသူကို ဆက်သွယ်ရန်",
+    "share": "မျှဝေရန်",
+    "favorite": "အကြိုက်ဆုံး"
+  },
+  "publish": {
+    "title": "ပို့စ်တင်ရန်",
+    "step1": "အခြေခံအချက်အလက်",
+    "step2": "နေရာနှင့်အချိန်",
+    "step3": "မိသားစုပုံပြင်",
+    "step4": "အတည်ပြုရန်",
+    "form": {
+      "seekerName": "သင့်အမည်",
+      "seekerType": "ရှာဖွေမှုဦးတည်ချက်",
+      "surname": "မျိုးနွယ်အမည်",
+      "originRegion": "မူရင်းဒေသ",
+      "targetRegion": "ဦးတည်ဒေသ",
+      "estimatedYear": "ခန့်မှန်းနှစ်",
+      "familyStory": "မိသားစုပုံပြင်",
+      "photos": "ဆက်စပ်ဓာတ်ပုံများ"
+    },
+    "success": "အောင်မြင်စွာ တင်သွင်းပြီး!",
+    "successDesc": "သင့်ပို့စ်ကို စစ်ဆေးနေပြီး အတည်ပြုပြီးနောက် ပလက်ဖောင်းတွင် ပေါ်လာပါမည်"
+  },
+  "profile": {
+    "myPosts": "ကျွန်ုပ်၏ပို့စ်များ",
+    "favorites": "အကြိုက်ဆုံးများ",
+    "messages": "မက်ဆေ့ဂျ်များ",
+    "settings": "ဆက်တင်များ",
+    "authStatus": "အတည်ပြုမှုအခြေအနေ",
+    "verified": "အတည်ပြုပြီး",
+    "unverified": "အတည်မပြုရသေး",
+    "switchLang": "ဘာသာစကားပြောင်းရန်"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "zhTW": "繁體中文",
+    "thTH": "ไทย",
+    "msMY": "Bahasa Melayu",
+    "idID": "Bahasa Indonesia",
+    "frFR": "Français",
+    "enUS": "English"
+  },
+  "success": {
+    "title": "အောင်မြင်မှုပုံပြင်များ",
+    "storyTitle": "ပုံပြင်ခေါင်းစဉ်",
+    "location": "တည်နေရာ",
+    "date": "ရက်စွဲ",
+    "readMore": "ဆက်ဖတ်ရန်"
+  }
+}

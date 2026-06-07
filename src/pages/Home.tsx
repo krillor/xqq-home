@@ -11,10 +11,10 @@ export default function Home() {
   const { userRole, setUserRole } = useAppStore();
 
   const stats = [
-    { icon: Search, value: 0, label: '寻亲信息' },
-    { icon: Heart, value: 0, label: '成功案例' },
-    { icon: Users, value: 0, label: '活跃用户' },
-    { icon: MapPin, value: 0, label: '覆盖地区' },
+    { icon: Search, value: 0, label: t('home.stats.totalPosts') },
+    { icon: Heart, value: 0, label: t('home.stats.success') },
+    { icon: Users, value: 0, label: t('home.stats.activeSeekers') },
+    { icon: MapPin, value: 0, label: t('home.stats.regions') },
   ];
 
   return (
@@ -34,10 +34,10 @@ export default function Home() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              寻亲桥
+              {t('brand')}
             </h1>
             <p className="text-xl md:text-2xl text-orange-100 mb-8 max-w-2xl mx-auto">
-              跨越山海，连接全球华人血脉亲情
+              {t('home.heroSlogan')}
             </p>
             
             {!userRole ? (
@@ -60,7 +60,7 @@ export default function Home() {
                   className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-xl font-semibold text-lg hover:bg-white/30 transition-all shadow-lg border border-white/30 flex items-center justify-center gap-2"
                 >
                   <UserCheck className="w-5 h-5" />
-                  加入志愿者
+                  {t('home.joinVolunteer')}
                 </button>
               </div>
             ) : (
@@ -69,7 +69,7 @@ export default function Home() {
                   to={`/personal?tab=${userRole === 'seeker' ? 'archive' : 'volunteer'}`}
                   className="px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg"
                 >
-                  继续{userRole === 'seeker' ? '寻亲' : '志愿'}
+                  {userRole === 'seeker' ? t('home.continueSeeking') : t('home.continueVolunteer')}
                 </Link>
                 <Link
                   to="/search"
@@ -94,10 +94,10 @@ export default function Home() {
           >
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-4">
-                寻亲地图
+                {t('home.mapTitle')}
               </h2>
               <p className="text-lg text-[#8D6E63] max-w-2xl mx-auto">
-                点击地图上的标记，查看各地区的寻亲信息
+                {t('home.mapSubtitle')}
               </p>
             </div>
             <div className="max-w-6xl mx-auto shadow-xl">
@@ -131,10 +131,10 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-4">
-              如何开始
+              {t('home.howTitle')}
             </h2>
             <p className="text-lg text-[#8D6E63]">
-              简单三步，让爱团圆
+              {t('home.howSubtitle')}
             </p>
           </motion.div>
 
@@ -149,9 +149,9 @@ export default function Home() {
               <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl font-bold text-[#E67E22]">1</span>
               </div>
-              <h3 className="text-xl font-bold text-[#5D4037] mb-3">选择角色</h3>
+              <h3 className="text-xl font-bold text-[#5D4037] mb-3">{t('home.step1Title')}</h3>
               <p className="text-gray-600">
-                您是要寻亲，还是想作为志愿者帮助他人？
+                {t('home.step1Desc')}
               </p>
             </motion.div>
 
@@ -165,9 +165,9 @@ export default function Home() {
               <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl font-bold text-[#E67E22]">2</span>
               </div>
-              <h3 className="text-xl font-bold text-[#5D4037] mb-3">发布信息</h3>
+              <h3 className="text-xl font-bold text-[#5D4037] mb-3">{t('home.step2Title')}</h3>
               <p className="text-gray-600">
-                填写您的家族故事，上传老照片，系统会智能识别位置信息
+                {t('home.step2Desc')}
               </p>
             </motion.div>
 
@@ -181,9 +181,9 @@ export default function Home() {
               <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl font-bold text-[#E67E22]">3</span>
               </div>
-              <h3 className="text-xl font-bold text-[#5D4037] mb-3">连接团圆</h3>
+              <h3 className="text-xl font-bold text-[#5D4037] mb-3">{t('home.step3Title')}</h3>
               <p className="text-gray-600">
-                信息将推送给对应地区的志愿者，获得更多帮助
+                {t('home.step3Desc')}
               </p>
             </motion.div>
           </div>
@@ -200,16 +200,16 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              让爱不再等待
+              {t('home.ctaTitle')}
             </h2>
             <p className="text-lg text-orange-100 mb-8 max-w-2xl mx-auto">
-              每一条信息，都承载着一个家庭的期盼。开始您的寻亲之旅，或者成为志愿者，帮助更多家庭团圆。
+              {t('home.ctaDesc')}
             </p>
             <Link
               to="/role-selection"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg"
             >
-              立即开始
+              {t('home.ctaButton')}
               <ChevronDown size={20} className="rotate-[-90deg]" />
             </Link>
           </motion.div>

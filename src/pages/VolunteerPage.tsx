@@ -16,11 +16,11 @@ const VolunteerPage: React.FC = () => {
     unreadCount
   } = useAppStore()
 
-  const [selectedRegions, setSelectedRegions] = useState<string[]>(['曼谷', '新加坡', '巴黎'])
+  const [selectedRegions, setSelectedRegions] = useState<string[]>(['曼谷', '新加坡', '槟城'])
 
   const allRegions = [
-    '曼谷', '清迈', '普吉岛', '新加坡', '吉隆坡', 
-    '雅加达', '巴黎', '曼谷'
+    '曼谷', '清迈', '普吉岛', '新加坡', '吉隆坡',
+    '槟城', '雅加达', '胡志明市', '马尼拉'
   ]
 
   const toggleRegion = (region: string) => {

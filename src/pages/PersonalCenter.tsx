@@ -11,7 +11,7 @@ import {
 import { useAppStore } from '../store/appStore'
 import LocationSelect from '../components/LocationSelect'
 import VoiceRecorder from '../components/VoiceRecorder'
-import { regionData, Country, Province, City } from '../data/regionData'
+import { regionData, regionGroups, Country, Province, City } from '../data/regionData'
 
 const PersonalCenter: React.FC = () => {
   const navigate = useNavigate()
@@ -776,7 +776,7 @@ const VolunteerContent: React.FC = () => {
     unreadCount
   } = useAppStore()
 
-  const [selectedRegions, setSelectedRegions] = useState<Array<{country: Country, province?: Province, city: City}>>([])
+  const [selectedRegions, setSelectedRegions] = useState<Array<{country: Country, province?: Province, city?: City}>>([])
   const [expandedCountries, setExpandedCountries] = useState<string[]>([])
   const [expandedProvinces, setExpandedProvinces] = useState<string[]>([])
 
@@ -798,23 +798,40 @@ const VolunteerContent: React.FC = () => {
     )
   }
 
+  type RegionSel = { country: Country, province?: Province, city?: City }
+
+  // 判断 a 是否覆盖 b（a 是 b 的上级或与 b 相同）
+  const covers = (a: RegionSel, b: RegionSel): boolean => {
+    if (a.country.id !== b.country.id) return false
+    if (!a.province) return true            // a = 整个国家，覆盖该国一切
+    if (!b.province) return false           // b 是整国，a 只是省 → 不覆盖
+    if (a.province.id !== b.province.id) return false
+    if (!a.city) return true                // a = 整个省，覆盖该省一切
+    if (!b.city) return false               // b 是整省，a 只是市 → 不覆盖
+    return a.city.id === b.city.id
+  }
+
+  // 该地区自身或其上级是否已被选中（已选中则禁用，避免层级重复）
   const isRegionSelected = (country: Country, province?: Province, city?: City) => {
-    return selectedRegions.some(region => 
-      region.country.id === country.id && 
-      (!province || region.province?.id === province.id) && 
-      (!city || region.city?.id === city.id)
-    )
+    const target: RegionSel = { country, province, city }
+    return selectedRegions.some(region => covers(region, target))
   }
 
   const addRegion = (country: Country, province?: Province, city?: City) => {
-    if (selectedRegions.length >= MAX_REGIONS) {
-      alert(`最多只能添加 ${MAX_REGIONS} 个关注地区`)
+    const target: RegionSel = { country, province, city }
+    // 自身或上级已选，直接忽略
+    if (selectedRegions.some(r => covers(r, target))) {
       return
     }
-    if (isRegionSelected(country, province, city)) {
-      return
-    }
-    setSelectedRegions(prev => [...prev, { country, province, city }])
+    setSelectedRegions(prev => {
+      // 移除被新地区覆盖的更细级冗余项
+      const pruned = prev.filter(r => !covers(target, r))
+      if (pruned.length >= MAX_REGIONS) {
+        alert(`最多只能添加 ${MAX_REGIONS} 个关注地区`)
+        return prev
+      }
+      return [...pruned, target]
+    })
   }
 
   const removeRegion = (index: number) => {
@@ -929,7 +946,13 @@ const VolunteerContent: React.FC = () => {
             </p>
 
             <div className="space-y-2 max-h-96 overflow-y-auto">
-              {regionData.map(country => (
+              {regionGroups.map(group => {
+                const groupCountries = regionData.filter(c => (c.group ?? '') === group)
+                if (groupCountries.length === 0) return null
+                return (
+                  <div key={group} className="space-y-2">
+                    <div className="px-1 pt-1 text-xs font-semibold text-amber-700">{group}</div>
+                    {groupCountries.map(country => (
                 <div key={country.id} className="border border-gray-200 rounded-lg overflow-hidden">
                   <button
                     onClick={() => toggleCountry(country.id)}
@@ -1007,7 +1030,10 @@ const VolunteerContent: React.FC = () => {
                     </div>
                   )}
                 </div>
-              ))}
+                    ))}
+                  </div>
+                )
+              })}
             </div>
 
             <button className="w-full mt-4 py-3 bg-[#5D4037] text-white rounded-xl font-medium hover:bg-[#4E342E] transition-colors">

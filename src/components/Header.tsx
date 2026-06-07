@@ -21,11 +21,11 @@ export default function Header() {
     : '/personal';
 
   const navItems = [
-    { path: '/', label: '首页', icon: Home },
-    { path: '/search', label: '寻亲列表', icon: Search },
-    { path: '/personal', label: '个人中心', icon: FileText, href: personalPath },
-    { path: '/parser', label: '工具箱', icon: Sparkles },
-    { path: '/associations', label: '官方组织', icon: Building2 },
+    { path: '/', label: t('navigation.home'), icon: Home },
+    { path: '/search', label: t('navigation.search'), icon: Search },
+    { path: '/personal', label: t('navigation.profile'), icon: FileText, href: personalPath },
+    { path: '/parser', label: t('navigation.tools'), icon: Sparkles },
+    { path: '/associations', label: t('navigation.associations'), icon: Building2 },
   ];
 
   const isActive = (path: string) => {
@@ -34,14 +34,14 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-amber-100 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-[1100] bg-white/95 backdrop-blur-sm border-b border-amber-100 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-[#E67E22] to-amber-500 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-lg">寻</span>
             </div>
-            <span className="font-bold text-xl text-[#5D4037] hidden sm:block">寻亲桥</span>
+            <span className="font-bold text-xl text-[#5D4037] hidden sm:block">{t('brand')}</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-1">
@@ -78,7 +78,7 @@ export default function Header() {
                   className="flex items-center gap-2 px-4 py-2 text-sm text-[#8D6E63] hover:text-[#5D4037] hover:bg-orange-50 rounded-lg"
                 >
                   <LogOut size={16} />
-                  退出
+                  {t('navigation.logout')}
                 </button>
               </div>
             ) : (
@@ -87,7 +87,7 @@ export default function Header() {
                 className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg hover:from-amber-700 hover:to-orange-700"
               >
                 <LogIn size={16} />
-                登录
+                {t('navigation.login')}
               </Link>
             )}
           </div>
@@ -144,7 +144,7 @@ export default function Header() {
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-[#8D6E63] hover:text-[#5D4037]"
               >
                 <LogOut size={20} />
-                <span className="font-sans">退出登录</span>
+                <span className="font-sans">{t('navigation.logout')}</span>
               </button>
             ) : (
               <Link
@@ -153,7 +153,7 @@ export default function Header() {
                 className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-amber-600 to-orange-600 text-white"
               >
                 <LogIn size={20} />
-                <span className="font-sans">登录</span>
+                <span className="font-sans">{t('navigation.login')}</span>
               </Link>
             )}
           </nav>

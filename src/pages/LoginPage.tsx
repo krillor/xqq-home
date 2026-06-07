@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store/appStore'
 import { Mail, Lock, Send } from 'lucide-react'
 import SliderCaptcha from '../components/SliderCaptcha'
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const { sendVerificationCode, login } = useAppStore()
 
   const [step, setStep] = useState<'email' | 'code'>('email')
@@ -25,10 +27,10 @@ const LoginPage: React.FC = () => {
     setError('')
     try {
       await sendVerificationCode(email)
-      setSuccess('验证码已发送！请使用 123456 登录（演示用）')
+      setSuccess(t('auth.codeSent'))
       setStep('code')
     } catch (err) {
-      setError('发送验证码失败，请重试')
+      setError(t('auth.errorSendCode'))
       // 发送失败则重置滑块
       setCaptchaVerified(false)
       setCaptchaReset(r => !r)
@@ -48,10 +50,10 @@ const LoginPage: React.FC = () => {
       if (success) {
         navigate('/')
       } else {
-        setError('验证码错误，请重试')
+        setError(t('auth.errorCodeWrong'))
       }
     } catch (err) {
-      setError('登录失败，请重试')
+      setError(t('auth.errorLoginFail'))
     } finally {
       setLoading(false)
     }
@@ -62,8 +64,8 @@ const LoginPage: React.FC = () => {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden">
         <div className="bg-gradient-to-r from-amber-600 to-orange-600 px-8 py-10">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-white mb-2">寻亲桥</h1>
-            <p className="text-amber-100">登录您的账户</p>
+            <h1 className="text-3xl font-bold text-white mb-2">{t('brand')}</h1>
+            <p className="text-amber-100">{t('auth.loginTitle')}</p>
           </div>
         </div>
 
@@ -72,7 +74,7 @@ const LoginPage: React.FC = () => {
             <form onSubmit={handleSendCode} className="space-y-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
-                  邮箱地址
+                  {t('auth.email')}
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -80,7 +82,7 @@ const LoginPage: React.FC = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="请输入您的邮箱"
+                    placeholder={t('auth.emailPlaceholder')}
                     className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                     required
                   />
@@ -110,11 +112,11 @@ const LoginPage: React.FC = () => {
                 className="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-3 rounded-lg font-medium hover:from-amber-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
               >
                 {loading ? (
-                  <span>发送中...</span>
+                  <span>{t('auth.sending')}</span>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    发送验证码
+                    {t('auth.sendCode')}
                   </>
                 )}
               </button>
@@ -122,13 +124,13 @@ const LoginPage: React.FC = () => {
           ) : (
             <form onSubmit={handleLogin} className="space-y-6">
               <div className="bg-gray-50 border border-gray-200 px-4 py-3 rounded-lg">
-                <p className="text-sm text-gray-600">邮箱地址</p>
+                <p className="text-sm text-gray-600">{t('auth.email')}</p>
                 <p className="text-gray-800 font-medium">{email}</p>
               </div>
 
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
-                  验证码
+                  {t('auth.verificationCode')}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -136,14 +138,14 @@ const LoginPage: React.FC = () => {
                     type="text"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    placeholder="请输入6位验证码"
+                    placeholder={t('auth.codePlaceholder')}
                     maxLength={6}
                     className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                     required
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  演示验证码：123456
+                  {t('auth.demoCode')}
                 </p>
               </div>
 
@@ -159,21 +161,21 @@ const LoginPage: React.FC = () => {
                   onClick={() => setStep('email')}
                   className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
                 >
-                  返回
+                  {t('auth.back')}
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
                   className="flex-1 bg-gradient-to-r from-amber-600 to-orange-600 text-white py-3 rounded-lg font-medium hover:from-amber-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {loading ? '登录中...' : '登录'}
+                  {loading ? t('auth.loggingIn') : t('auth.login')}
                 </button>
               </div>
             </form>
           )}
 
           <div className="mt-8 text-center text-gray-600 text-sm">
-            浏览不需要登录，发帖和回帖需要登录
+            {t('auth.browseHint')}
           </div>
         </div>
       </div>

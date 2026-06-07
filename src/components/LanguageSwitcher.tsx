@@ -6,12 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const languages = [
   { code: 'zh-CN', name: '简体中文' },
   { code: 'zh-TW', name: '繁體中文' },
-  { code: 'en-US', name: 'English' },
-  { code: 'th-TH', name: 'ไทย' },
-  { code: 'id-ID', name: 'Bahasa Indonesia' },
-  { code: 'vi-VN', name: 'Tiếng Việt' },
-  { code: 'ms-MY', name: 'Bahasa Melayu' },
-  { code: 'fr-FR', name: 'Français' }
+  { code: 'en-US', name: 'English' }
 ];
 
 const LanguageSwitcher = () => {

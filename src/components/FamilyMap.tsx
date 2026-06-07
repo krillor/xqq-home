@@ -215,7 +215,7 @@ export const FamilyMap: React.FC<FamilyMapProps> = ({
   }, [viewMode]);
   
   return (
-    <div className="relative">
+    <div className="relative isolate">
       {/* Map controls */}
       <div className="absolute top-4 left-4 z-[1000] flex gap-2">
         <button

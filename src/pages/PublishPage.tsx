@@ -350,7 +350,7 @@ const PublishPage: React.FC = () => {
                       <input
                         type="text"
                         className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none transition-colors"
-                        placeholder="例如：泰国、新加坡、马来西亚、美国等"
+                        placeholder="例如：泰国、新加坡、马来西亚、印尼等"
                         value={formData.targetRegion}
                         onChange={(e) => setFormData({ ...formData, targetRegion: e.target.value })}
                       />

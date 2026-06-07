@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import {
   Upload, X, ScanText, MapPin, Search,
   Camera, MessageSquare, Clock, Users
@@ -7,6 +8,7 @@ import {
 import { regionData, placeNameAlias } from '../data/regionData'
 
 const IntelligentParser: React.FC = () => {
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<'ocr' | 'location' | 'dialect'>('ocr')
   const [loading, setLoading] = useState(false)
   const [parseResults, setParseResults] = useState<any>(null)
@@ -159,17 +161,17 @@ const IntelligentParser: React.FC = () => {
 
         {/* 页面标题 */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#5D4037] mb-2">智能线索解析器</h1>
-          <p className="text-[#8D6E63]">上传照片、输入模糊线索，让 AI 帮你解析可检索的寻根信息</p>
+          <h1 className="text-3xl font-bold text-[#5D4037] mb-2">{t('tools.title')}</h1>
+          <p className="text-[#8D6E63]">{t('tools.subtitle')}</p>
         </motion.div>
 
         {/* Tab 导航 */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="flex border-b border-gray-100 overflow-hidden rounded-t-2xl">
             {[
-              { id: 'ocr' as const, label: '照片 / OCR 解析', icon: Camera, sub: '侨批、墓碑、老照片' },
-              { id: 'location' as const, label: '模糊地名匹配', icon: MapPin, sub: '方言 / 英文拼写地名' },
-              { id: 'dialect' as const, label: '方言翻译器', icon: MessageSquare, sub: '音译姓氏、堂号' },
+              { id: 'ocr' as const, label: t('tools.tabOcr'), icon: Camera, sub: t('tools.tabOcrSub') },
+              { id: 'location' as const, label: t('tools.tabLocation'), icon: MapPin, sub: t('tools.tabLocationSub') },
+              { id: 'dialect' as const, label: t('tools.tabDialect'), icon: MessageSquare, sub: t('tools.tabDialectSub') },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -202,8 +204,8 @@ const IntelligentParser: React.FC = () => {
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <Upload className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                      <p className="text-gray-600 font-medium mb-1">点击或拖拽上传照片</p>
-                      <p className="text-sm text-gray-400">支持 JPG、PNG 格式</p>
+                      <p className="text-gray-600 font-medium mb-1">{t('tools.uploadHint')}</p>
+                      <p className="text-sm text-gray-400">{t('tools.uploadFormat')}</p>
                       <input ref={fileInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileSelect} />
                     </div>
                   ) : (
@@ -228,9 +230,9 @@ const IntelligentParser: React.FC = () => {
                       >
                         {loading ? (
                           <span className="flex items-center justify-center gap-2">
-                            <Clock className="w-4 h-4 animate-spin" /> AI 分析中…
+                            <Clock className="w-4 h-4 animate-spin" /> {t('tools.analyzing')}
                           </span>
-                        ) : '开始智能解析'}
+                        ) : t('tools.startParse')}
                       </button>
                     </div>
                   )}
@@ -239,7 +241,7 @@ const IntelligentParser: React.FC = () => {
                   {parseResults && (
                     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-6 space-y-4">
                       <div className="flex items-center gap-2 text-sm font-semibold text-gray-600">
-                        <ScanText className="w-4 h-4" /> 识别结果
+                        <ScanText className="w-4 h-4" /> {t('tools.ocrResult')}
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         {parseResults.map((r: any, i: number) => (
@@ -256,12 +258,12 @@ const IntelligentParser: React.FC = () => {
                       </div>
                       {parseResults.some((r: any) => r.type === '郡望') && (
                         <div className="p-3 bg-purple-50 border border-purple-100 rounded-xl text-sm text-purple-700">
-                          💡 <span className="font-medium">郡望提示：</span>"颍川" 通常对应陈姓，可搜索颍川相关宗亲会获取更多线索。
+                          💡 <span className="font-medium">{t('tools.junwangLabel')}</span>{t('tools.junwangHint')}
                         </div>
                       )}
                       <div className="flex gap-3 pt-1">
-                        <button className="flex-1 py-2.5 bg-[#E67E22] text-white rounded-xl text-sm font-semibold hover:bg-[#D35400] transition-colors">导出结果</button>
-                        <button className="px-5 py-2.5 border border-gray-200 text-gray-600 rounded-xl text-sm hover:bg-gray-50 transition-colors">保存档案</button>
+                        <button className="flex-1 py-2.5 bg-[#E67E22] text-white rounded-xl text-sm font-semibold hover:bg-[#D35400] transition-colors">{t('tools.exportResult')}</button>
+                        <button className="px-5 py-2.5 border border-gray-200 text-gray-600 rounded-xl text-sm hover:bg-gray-50 transition-colors">{t('tools.saveArchive')}</button>
                       </div>
                     </motion.div>
                   )}
@@ -278,7 +280,7 @@ const IntelligentParser: React.FC = () => {
                       value={locationInput}
                       onChange={(e) => setLocationInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleLocationSearch()}
-                      placeholder="输入地名拼音或英文，如 Amoy、Tong An…"
+                      placeholder={t('tools.locationPlaceholder')}
                       className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none text-sm transition-colors"
                     />
                     <button
@@ -286,7 +288,7 @@ const IntelligentParser: React.FC = () => {
                       disabled={loading || !locationInput}
                       className="px-6 py-3 bg-[#E67E22] text-white rounded-xl text-sm font-semibold hover:bg-[#D35400] transition-colors disabled:opacity-50"
                     >
-                      {loading ? '搜索中…' : '匹配'}
+                      {loading ? t('tools.matching') : t('tools.match')}
                     </button>
                   </div>
 
@@ -307,14 +309,14 @@ const IntelligentParser: React.FC = () => {
                         </button>
                         {openGroup === group.region && (
                           <div className="absolute top-full left-0 mt-1 z-20 bg-white border border-gray-100 rounded-xl shadow-lg py-1 min-w-[160px]">
-                            {group.terms.map((t) => (
+                            {group.terms.map((term) => (
                               <button
-                                key={t.label}
-                                onClick={() => { setLocationInput(t.label); setParseResults(null); setOpenGroup(null) }}
+                                key={term.label}
+                                onClick={() => { setLocationInput(term.label); setParseResults(null); setOpenGroup(null) }}
                                 className="w-full flex items-center justify-between px-3 py-2 text-xs hover:bg-amber-50 hover:text-amber-700 transition-colors text-left"
                               >
-                                <span className="font-medium text-gray-700 hover:text-amber-700">{t.label}</span>
-                                <span className="text-gray-400 ml-4">{t.hint}</span>
+                                <span className="font-medium text-gray-700 hover:text-amber-700">{term.label}</span>
+                                <span className="text-gray-400 ml-4">{term.hint}</span>
                               </button>
                             ))}
                           </div>
@@ -329,12 +331,12 @@ const IntelligentParser: React.FC = () => {
                       {parseResults[0]?.notFound ? (
                         <div className="p-4 bg-orange-50 border border-orange-100 rounded-xl text-sm text-orange-700">
                           <Search className="w-4 h-4 inline mr-1.5" />
-                          未找到 <span className="font-semibold">"{parseResults[0].searchInput}"</span> 对应地名。{parseResults[0].message}
+                          {t('tools.notFoundLocation')} <span className="font-semibold">"{parseResults[0].searchInput}"</span>
                         </div>
                       ) : (
                         <div className="space-y-2">
                           <div className="text-xs font-semibold text-gray-400 flex items-center gap-1.5 mb-3">
-                            <MapPin className="w-3.5 h-3.5" /> 匹配结果
+                            <MapPin className="w-3.5 h-3.5" /> {t('tools.matchResult')}
                           </div>
                           {parseResults.map((m: { name: string; currentRegion: string; historicalName?: string; confidence: number }, i: number) => (
                             <motion.div
@@ -346,8 +348,8 @@ const IntelligentParser: React.FC = () => {
                             >
                               <div>
                                 <span className="font-bold text-gray-800 mr-2">{m.name}</span>
-                                <span className="text-sm text-gray-400">今 {m.currentRegion}</span>
-                                {m.historicalName && <span className="ml-2 text-xs text-gray-400">· 旧称 {m.historicalName}</span>}
+                                <span className="text-sm text-gray-400">{t('tools.now')} {m.currentRegion}</span>
+                                {m.historicalName && <span className="ml-2 text-xs text-gray-400">· {t('tools.oldName')} {m.historicalName}</span>}
                               </div>
                               <span className="text-xs px-2 py-1 bg-green-50 text-green-600 rounded-full font-medium">{m.confidence}%</span>
                             </motion.div>
@@ -369,7 +371,7 @@ const IntelligentParser: React.FC = () => {
                       value={dialectInput}
                       onChange={(e) => setDialectInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleDialectSearch()}
-                      placeholder="输入方言拼音，如 Tan、Lim、Koh…"
+                      placeholder={t('tools.dialectPlaceholder')}
                       className="flex-1 px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none text-sm transition-colors"
                     />
                     <button
@@ -377,19 +379,19 @@ const IntelligentParser: React.FC = () => {
                       disabled={loading || !dialectInput}
                       className="px-6 py-3 bg-[#E67E22] text-white rounded-xl text-sm font-semibold hover:bg-[#D35400] transition-colors disabled:opacity-50"
                     >
-                      {loading ? '翻译中…' : '翻译'}
+                      {loading ? t('tools.translating') : t('tools.translate')}
                     </button>
                   </div>
 
                   {/* 快捷标签 */}
                   <div className="flex flex-wrap gap-2 mb-5">
-                    {['Tan', 'Lim', 'Ng', 'Ong', 'Lee', 'Teo', 'Koh', 'Chua', 'Goh', 'Wong'].map((t) => (
+                    {['Tan', 'Lim', 'Ng', 'Ong', 'Lee', 'Teo', 'Koh', 'Chua', 'Goh', 'Wong'].map((tag) => (
                       <button
-                        key={t}
-                        onClick={() => { setDialectInput(t); setParseResults(null) }}
+                        key={tag}
+                        onClick={() => { setDialectInput(tag); setParseResults(null) }}
                         className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium hover:bg-amber-50 hover:text-amber-700 transition-colors"
                       >
-                        {t}
+                        {tag}
                       </button>
                     ))}
                   </div>
@@ -399,7 +401,7 @@ const IntelligentParser: React.FC = () => {
                     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
                       {parseResults[0]?.notFound ? (
                         <div className="p-4 bg-orange-50 border border-orange-100 rounded-xl text-sm text-orange-700">
-                          未找到 <span className="font-semibold">"{parseResults[0].searchInput}"</span> 对应姓氏。{parseResults[0].message}
+                          {t('tools.notFoundSurname')} <span className="font-semibold">"{parseResults[0].searchInput}"</span>
                         </div>
                       ) : (
                         <div className="space-y-3">
@@ -416,10 +418,10 @@ const IntelligentParser: React.FC = () => {
                                   <Users className="w-5 h-5 text-purple-500" />
                                 </div>
                                 <div>
-                                  <span className="font-bold text-gray-800 text-base">{item.surname}姓</span>
-                                  <span className="ml-2 text-xs text-gray-400">堂号：{item.hallName}</span>
+                                  <span className="font-bold text-gray-800 text-base">{item.surname}{t('tools.surnameSuffix')}</span>
+                                  <span className="ml-2 text-xs text-gray-400">{t('tools.hallName')}{item.hallName}</span>
                                   <div className="text-xs text-gray-400 mt-0.5">
-                                    方言发音：{Array.isArray(item.dialectPronunciation) ? item.dialectPronunciation.join(' / ') : item.dialectPronunciation}
+                                    {t('tools.dialectPron')}{Array.isArray(item.dialectPronunciation) ? item.dialectPronunciation.join(' / ') : item.dialectPronunciation}
                                   </div>
                                 </div>
                               </div>
