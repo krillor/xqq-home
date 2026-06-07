@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
-import { MapPin, Phone, Mail, Globe, Search, Building2, ExternalLink, Info, Facebook, BookOpen, Users, Heart } from 'lucide-react'
+import { MapPin, Phone, Mail, Globe, Search, Building2, ExternalLink, Info, BookOpen, Users, Heart } from 'lucide-react'
 
 // ─── 类型定义 ──────────────────────────────────────────────────────────────────
 
 type Category = 'chamber' | 'clan' | 'archive' | 'china'
-
-interface SocialMedia {
-  platform: 'facebook' | 'twitter' | 'line' | 'instagram' | 'linkedin'
-  label: string
-  url: string
-}
 
 interface Association {
   id: string
@@ -23,7 +17,6 @@ interface Association {
   email?: string
   description: string
   website?: string
-  social?: SocialMedia[]
   surnames?: string[]
   tags?: string[]
 }
@@ -46,9 +39,6 @@ const associations: Association[] = [
     email: 'enquiry@sccci.org.sg',
     description: '成立于1906年，新加坡最具影响力的华商组织，历史档案丰富',
     website: 'https://www.sccci.org.sg',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/SCCCI1906' },
-    ]
   },
   {
     id: 'sg-sfcca',
@@ -62,9 +52,6 @@ const associations: Association[] = [
     email: 'admin@sfcca.sg',
     description: '代表超过200个宗乡会馆的最高华人社团机构，寻根资源极为丰富',
     website: 'https://www.sfcca.sg',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/sfcca.sg' },
-    ]
   },
   {
     id: 'my-acccim',
@@ -78,9 +65,6 @@ const associations: Association[] = [
     email: 'admin@acccim.org.my',
     description: '成立于1921年，全马华商核心代表机构，覆盖13个州',
     website: 'https://www.acccim.org.my',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/ACCCIM' },
-    ]
   },
   {
     id: 'my-huazong',
@@ -93,24 +77,6 @@ const associations: Association[] = [
     phone: '+60 3-2272 3383',
     email: 'info@huazong.my',
     description: '全马华人社团最高领导机构，侧重文化传承与侨务工作',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/Huazong.MY' },
-    ]
-  },
-  {
-    id: 'my-penang',
-    category: 'chamber',
-    name: '槟城中华总商会 (PCCCI)',
-    country: '马来西亚',
-    countryFlag: '🇲🇾',
-    city: '槟城',
-    address: '95 Jalan Penang, 10000 George Town, Penang',
-    phone: '+60 4-261 5015',
-    email: 'pcccipenang@gmail.com',
-    description: '槟城华商核心机构，对潮汕、闽南籍华侨的历史档案保存尤为完整',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/pcccipenang' },
-    ]
   },
   {
     id: 'th-tcc',
@@ -124,23 +90,6 @@ const associations: Association[] = [
     email: 'info@thaicc.org',
     description: '泰国最具影响力的华人商会，在政商界地位举足轻重',
     website: 'https://www.thaicc.org',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/thaicc.org' },
-    ]
-  },
-  {
-    id: 'th-chaozhou',
-    category: 'chamber',
-    name: '泰国潮州会馆',
-    country: '泰国',
-    countryFlag: '🇹🇭',
-    city: '曼谷',
-    address: '531 Yaowarat Road, Samphanthawong, Bangkok 10100',
-    phone: '+66 2 222 3977',
-    description: '泰国最大的华人地缘社团，潮汕籍华侨核心机构，宗亲档案极丰富',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/thaiteochew' },
-    ]
   },
   {
     id: 'id-permit',
@@ -154,23 +103,6 @@ const associations: Association[] = [
     email: 'secretariat@permit.or.id',
     description: '印尼华商核心组织，致力于促进中印尼经贸与文化交流',
     website: 'https://www.permit.or.id',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/permitIndonesia' },
-    ]
-  },
-  {
-    id: 'id-inti',
-    category: 'chamber',
-    name: '印尼华裔总会 (INTI)',
-    country: '印度尼西亚',
-    countryFlag: '🇮🇩',
-    city: '雅加达',
-    address: 'Jl. Gajah Mada No.88, Taman Sari, Jakarta Barat',
-    phone: '+62 21 639 1988',
-    description: '印尼主要华人社团，关注华裔权益保护与文化传承',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/DPP.INTI' },
-    ]
   },
   {
     id: 'ph-ffcccii',
@@ -184,65 +116,6 @@ const associations: Association[] = [
     email: 'ffcccii@gmail.com',
     description: '成立于1954年，菲律宾华社"龙头"组织，简称"商总"',
     website: 'https://www.ffcccii.org',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/ffcccii' },
-    ]
-  },
-  {
-    id: 'vn-cbcc',
-    category: 'chamber',
-    name: '中国商会越南分会 (CBCC)',
-    country: '越南',
-    countryFlag: '🇻🇳',
-    city: '河内',
-    address: '49-51 Hai Ba Trung Street, Hoan Kiem District, Hanoi',
-    phone: '+84 24 3825 3999',
-    email: 'contact@cbccvn.org',
-    description: '由在越中资企业及常驻代表机构组成的非营利性社团组织',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/CBCCVietnam' },
-    ]
-  },
-  {
-    id: 'kh-ccc',
-    category: 'chamber',
-    name: '柬埔寨中华总商会',
-    country: '柬埔寨',
-    countryFlag: '🇰🇭',
-    city: '金边',
-    address: 'No. 28, St. 110, Phnom Penh',
-    phone: '+855 23 217 983',
-    description: '柬埔寨华商的核心组织，对闽南、潮汕籍华侨有相关档案资料',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/cambodiachinesechamber' },
-    ]
-  },
-  {
-    id: 'la-ccc',
-    category: 'chamber',
-    name: '老挝中国商会',
-    country: '老挝',
-    countryFlag: '🇱🇦',
-    city: '万象',
-    address: 'Unit 9, Km3, Thadeua Road, Vientiane',
-    phone: '+856 21 315 166',
-    email: 'ccclaos@gmail.com',
-    description: '老挝华人华商联合组织，服务在老华人社区',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/ccclaos' },
-    ]
-  },
-  {
-    id: 'bn-scba',
-    category: 'chamber',
-    name: '文莱中华商会 (SCBA)',
-    country: '文莱',
-    countryFlag: '🇧🇳',
-    city: '斯里巴加湾',
-    address: 'No. 72, Jalan Tutong, Bandar Seri Begawan BS8211, Brunei',
-    phone: '+673 222 3718',
-    email: 'scba@brunet.bn',
-    description: '文莱华商联合会，华人社区历史档案的重要保存机构',
   },
   {
     id: 'hk-chaochow',
@@ -256,9 +129,6 @@ const associations: Association[] = [
     email: 'info@chiu-chow.org.hk',
     description: '港澳地区潮汕籍华侨最重要的联络机构，拥有大量海外潮人族谱资料',
     website: 'https://www.chiu-chow.org.hk',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/chiuchowcc' },
-    ]
   },
   {
     id: 'hk-fukien',
@@ -272,23 +142,6 @@ const associations: Association[] = [
     email: 'info@hkfba.com.hk',
     description: '闽籍华侨在港重要联络机构，保存有大量闽南族谱与海外移民资料',
     website: 'https://www.hkfba.com.hk',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/hkfba' },
-    ]
-  },
-  {
-    id: 'mm-ccc',
-    category: 'chamber',
-    name: '缅甸华商会',
-    country: '缅甸',
-    countryFlag: '🇲🇲',
-    city: '仰光',
-    address: 'No.118, Shwebontha Street, Kyauktada Township, Yangon',
-    phone: '+95 1 252 880',
-    description: '缅甸华人商业团体代表组织，与闽南、潮汕籍华侨社区关系密切',
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/myanmarchinesechamber' },
-    ]
   },
 
   // ── 宗亲会 ───────────────────────────────────────────────────────────────────
@@ -305,9 +158,6 @@ const associations: Association[] = [
     description: '新加坡最大陈氏宗亲组织，保存有东南亚陈氏族谱及各支系迁徙记录',
     website: 'https://www.yingchuan.org.sg',
     surnames: ['陈', 'Tan', 'Chan', 'Chen'],
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/yingchuansg' },
-    ]
   },
   {
     id: 'clan-lin-sg',
@@ -320,9 +170,6 @@ const associations: Association[] = [
     phone: '+65 6253 0729',
     description: '新加坡林氏宗亲总机构，收录东南亚林氏各支谱牒与迁徙资料',
     surnames: ['林', 'Lim', 'Lam', 'Lin'],
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/xihelinsg' },
-    ]
   },
   {
     id: 'clan-huang-sg',
@@ -337,18 +184,6 @@ const associations: Association[] = [
     surnames: ['黄', 'Ng', 'Wong', 'Huang'],
   },
   {
-    id: 'clan-wang-sg',
-    category: 'clan',
-    name: '新加坡太原王氏公会',
-    country: '新加坡',
-    countryFlag: '🇸🇬',
-    city: '新加坡',
-    address: '4 Lor 1 Toa Payoh, Singapore 319746',
-    phone: '+65 6256 0882',
-    description: '新加坡王氏宗亲核心机构，收录太原王氏东南亚各支系资料',
-    surnames: ['王', 'Ong', 'Wong', 'Wang'],
-  },
-  {
     id: 'clan-li-my',
     category: 'clan',
     name: '马来西亚陇西李氏宗祠',
@@ -359,21 +194,6 @@ const associations: Association[] = [
     phone: '+60 3-2078 1388',
     description: '全马李氏宗亲总机构，保有马来西亚各州李氏族谱及源流记载',
     surnames: ['李', 'Lee', 'Li'],
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/liassociationmy' },
-    ]
-  },
-  {
-    id: 'clan-zhang-my',
-    category: 'clan',
-    name: '马来西亚清河张氏宗祠',
-    country: '马来西亚',
-    countryFlag: '🇲🇾',
-    city: '吉隆坡',
-    address: 'Jalan Pudu, 55100 Kuala Lumpur',
-    phone: '+60 3-2148 5588',
-    description: '马来西亚张氏宗亲联合机构，收录闽南、潮汕、客家各支系张氏族谱',
-    surnames: ['张', 'Teo', 'Cheong', 'Zhang'],
   },
   {
     id: 'clan-chen-th',
@@ -386,33 +206,6 @@ const associations: Association[] = [
     phone: '+66 2 222 9111',
     description: '泰国规模最大的陈氏宗亲机构，保存泰国各地陈氏家族渊源资料',
     surnames: ['陈', 'Tan', 'Chan'],
-    social: [
-      { platform: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/chenthaiclan' },
-    ]
-  },
-  {
-    id: 'clan-cai-sg',
-    category: 'clan',
-    name: '新加坡济阳柯蔡公会',
-    country: '新加坡',
-    countryFlag: '🇸🇬',
-    city: '新加坡',
-    address: '18 Toa Payoh Lor 4, Singapore 319819',
-    phone: '+65 6253 0111',
-    description: '新加坡蔡、柯两姓宗亲联合机构，保有济阳堂系东南亚支系资料',
-    surnames: ['蔡', '柯', 'Chua', 'Cai', 'Koh'],
-  },
-  {
-    id: 'clan-guo-sg',
-    category: 'clan',
-    name: '新加坡郭氏公会',
-    country: '新加坡',
-    countryFlag: '🇸🇬',
-    city: '新加坡',
-    address: '4 Lor 1 Toa Payoh, Singapore 319746',
-    phone: '+65 6256 3920',
-    description: '新加坡郭氏宗亲组织，主要涵盖闽南、潮汕籍郭姓华侨后代',
-    surnames: ['郭', 'Quek', 'Kwok'],
   },
 
   // ── 档案 / 族谱资源 ──────────────────────────────────────────────────────────
@@ -445,18 +238,6 @@ const associations: Association[] = [
     tags: ['福建', '闽南', '泉州', '漳州', '福州'],
   },
   {
-    id: 'archive-qz',
-    category: 'archive',
-    name: '泉州华侨历史博物馆',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '泉州',
-    address: '福建省泉州市丰泽区泉秀街道泉秀路华侨大厦',
-    phone: '+86 595-2281 1997',
-    description: '专注闽南籍华侨历史，馆藏侨批、族谱、移民证件等原始文献，可协助寻根',
-    tags: ['泉州', '闽南', '南洋', '侨批'],
-  },
-  {
     id: 'archive-sw',
     category: 'archive',
     name: '汕头侨批文物馆',
@@ -468,17 +249,6 @@ const associations: Association[] = [
     description: '世界文化遗产"侨批"的核心收藏地，馆藏数万件潮汕华侨往来信件与汇款凭证',
     website: 'https://www.stqb.com.cn',
     tags: ['潮汕', '侨批', '汕头', '下南洋'],
-  },
-  {
-    id: 'archive-online-roots',
-    category: 'archive',
-    name: '世界华人寻根网',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '在线',
-    description: '可在线搜索中国各地族谱数据库，支持按姓氏、省份检索，覆盖数千个姓氏',
-    website: 'https://www.chineseroots.com',
-    tags: ['在线', '族谱', '姓氏', '全国'],
   },
   {
     id: 'archive-familysearch',
@@ -506,87 +276,7 @@ const associations: Association[] = [
     description: '中国最高侨务组织，拥有最完整的海外华侨华人档案及联络网络，可提供官方寻亲协助',
     website: 'https://www.chinaql.org',
   },
-  {
-    id: 'china-gd-qb',
-    category: 'china',
-    name: '广东省侨务办公室',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '广州',
-    address: '广州市越秀区东风中路305号省府大院综合楼',
-    phone: '+86 20-8363 0195',
-    email: 'gdqb@gd.gov.cn',
-    description: '广东省政府涉侨机构，可协助查询广东籍海外华侨资料，对接东南亚华社',
-    website: 'https://www.gdoverseaschinese.gov.cn',
-  },
-  {
-    id: 'china-fj-qb',
-    category: 'china',
-    name: '福建省侨务办公室',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '福州',
-    address: '福州市鼓楼区华林路76号',
-    phone: '+86 591-8779 5727',
-    email: 'fjqb@fujian.gov.cn',
-    description: '福建省政府涉侨机构，可协助闽籍华侨寻根问祖及族谱查阅',
-    website: 'https://www.fjoverseaschinese.gov.cn',
-  },
-  {
-    id: 'china-mofcom',
-    category: 'china',
-    name: '中国贸促会海外代表处',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '北京',
-    address: '北京市西城区月坛北街2号',
-    phone: '+86 10-8807 5678',
-    description: '在东南亚各主要城市设有代表处，可协助联系当地华商组织，是对接侨领的官方渠道',
-    website: 'https://www.ccpit.org',
-  },
-  {
-    id: 'china-shantou-qb',
-    category: 'china',
-    name: '汕头市侨务局',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '汕头',
-    address: '广东省汕头市金平区长平路华侨大厦',
-    phone: '+86 754-8832 1234',
-    description: '汕头市政府涉侨机构，专项服务潮汕籍海外华侨寻根，与泰国、马来西亚潮人社团联系紧密',
-  },
-  {
-    id: 'china-quanzhou-qb',
-    category: 'china',
-    name: '泉州市侨务办公室',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '泉州',
-    address: '福建省泉州市鲤城区庄府巷1号',
-    phone: '+86 595-2228 5678',
-    description: '泉州市政府涉侨机构，对接东南亚闽南籍华侨，可协助查阅闽南族谱资料',
-  },
 ]
-
-// ─── 工具函数 ──────────────────────────────────────────────────────────────────
-
-const platformIcon = (platform: string) => {
-  if (platform === 'facebook')  return <Facebook className="w-3.5 h-3.5" />
-  if (platform === 'twitter')   return <span className="font-bold text-[11px] leading-none">𝕏</span>
-  if (platform === 'instagram') return <span className="text-[11px] leading-none">📷</span>
-  if (platform === 'linkedin')  return <span className="font-bold text-[10px] leading-none">in</span>
-  if (platform === 'line')      return <span className="font-bold text-[10px] leading-none">LINE</span>
-  return <Globe className="w-3.5 h-3.5" />
-}
-
-const platformStyle = (platform: string) => {
-  if (platform === 'facebook')  return 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-  if (platform === 'twitter')   return 'bg-gray-900 text-white hover:bg-black'
-  if (platform === 'instagram') return 'bg-pink-50 text-pink-600 hover:bg-pink-100'
-  if (platform === 'linkedin')  return 'bg-blue-700 text-white hover:bg-blue-800'
-  if (platform === 'line')      return 'bg-green-500 text-white hover:bg-green-600'
-  return 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-}
 
 // ─── 分类配置 ──────────────────────────────────────────────────────────────────
 
@@ -663,16 +353,7 @@ const AssocCard: React.FC<{ assoc: Association }> = ({ assoc }) => {
           )}
         </div>
 
-        {assoc.social && assoc.social.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100 mt-auto">
-            {assoc.social.map((s, i) => (
-              <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
-                className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium transition-colors ${platformStyle(s.platform)}`}>
-                {platformIcon(s.platform)}{s.label}
-              </a>
-            ))}
-          </div>
-        )}
+
       </div>
     </div>
   )
@@ -792,7 +473,7 @@ const AssociationsPage: React.FC = () => {
             ))}
           </div>
           <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
-            <strong>注意：</strong>社交媒体账号及联系方式可能随时更新，建议优先通过官方网站核实最新信息。X / Instagram / Line 链接仅供参考，请以各机构官网公布为准。
+            <strong>注意：</strong>联系方式可能随时更新，建议优先通过官方网站核实最新信息。
           </div>
         </div>
 
