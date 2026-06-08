@@ -28,19 +28,6 @@ const associations: Association[] = [
   // ── 商会 / 侨联 ──────────────────────────────────────────────────────────────
 
   {
-    id: 'sg-sccci',
-    category: 'chamber',
-    name: '新加坡中华总商会 (SCCCI)',
-    country: '新加坡',
-    countryFlag: '🇸🇬',
-    city: '新加坡',
-    address: '47 Hill Street, #09-00 SCCCI Building, Singapore 179365',
-    phone: '+65 6337 8381',
-    email: 'enquiry@sccci.org.sg',
-    description: '成立于1906年，新加坡最具影响力的华商组织，历史档案丰富',
-    website: 'https://www.sccci.org.sg',
-  },
-  {
     id: 'sg-sfcca',
     category: 'chamber',
     name: '新加坡宗乡会馆联合总会 (SFCCA)',
@@ -65,18 +52,6 @@ const associations: Association[] = [
     email: 'admin@acccim.org.my',
     description: '成立于1921年，全马华商核心代表机构，覆盖13个州',
     website: 'https://www.acccim.org.my',
-  },
-  {
-    id: 'my-huazong',
-    category: 'chamber',
-    name: '马来西亚华人大会堂总会 (华总)',
-    country: '马来西亚',
-    countryFlag: '🇲🇾',
-    city: '吉隆坡',
-    address: '1 Jalan Maharajalela, 50150 Kuala Lumpur',
-    phone: '+60 3-2272 3383',
-    email: 'info@huazong.my',
-    description: '全马华人社团最高领导机构，侧重文化传承与侨务工作',
   },
   {
     id: 'th-tcc',
@@ -130,19 +105,6 @@ const associations: Association[] = [
     description: '港澳地区潮汕籍华侨最重要的联络机构，拥有大量海外潮人族谱资料',
     website: 'https://www.chiu-chow.org.hk',
   },
-  {
-    id: 'hk-fukien',
-    category: 'chamber',
-    name: '香港福建商会',
-    country: '香港',
-    countryFlag: '🇭🇰',
-    city: '香港',
-    address: '香港上环永乐街193-209号福建大厦4-5楼',
-    phone: '+852 2543 3808',
-    email: 'info@hkfba.com.hk',
-    description: '闽籍华侨在港重要联络机构，保存有大量闽南族谱与海外移民资料',
-    website: 'https://www.hkfba.com.hk',
-  },
 
   // ── 宗亲会 ───────────────────────────────────────────────────────────────────
 
@@ -158,30 +120,6 @@ const associations: Association[] = [
     description: '新加坡最大陈氏宗亲组织，保存有东南亚陈氏族谱及各支系迁徙记录',
     website: 'https://www.yingchuan.org.sg',
     surnames: ['陈', 'Tan', 'Chan', 'Chen'],
-  },
-  {
-    id: 'clan-lin-sg',
-    category: 'clan',
-    name: '新加坡西河林氏公会',
-    country: '新加坡',
-    countryFlag: '🇸🇬',
-    city: '新加坡',
-    address: '4 Lor 1 Toa Payoh, #02-01, Singapore 319746',
-    phone: '+65 6253 0729',
-    description: '新加坡林氏宗亲总机构，收录东南亚林氏各支谱牒与迁徙资料',
-    surnames: ['林', 'Lim', 'Lam', 'Lin'],
-  },
-  {
-    id: 'clan-huang-sg',
-    category: 'clan',
-    name: '新加坡江夏黄氏总会',
-    country: '新加坡',
-    countryFlag: '🇸🇬',
-    city: '新加坡',
-    address: '180 Bencoolen Street, #09-03, Singapore 189648',
-    phone: '+65 6337 3230',
-    description: '东南亚黄氏宗亲联络机构，保有江夏黄氏历代族谱',
-    surnames: ['黄', 'Ng', 'Wong', 'Huang'],
   },
   {
     id: 'clan-li-my',
@@ -210,33 +148,6 @@ const associations: Association[] = [
 
   // ── 档案 / 族谱资源 ──────────────────────────────────────────────────────────
 
-  {
-    id: 'archive-gd',
-    category: 'archive',
-    name: '广东省档案馆华侨档案查询',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '广州',
-    address: '广州市越秀区中山四路124号',
-    phone: '+86 20-8380 2837',
-    email: 'gdag@gd.gov.cn',
-    description: '收录大量广东籍华侨下南洋的移民档案、侨批原件及族谱资料，可申请查阅',
-    website: 'https://www.gdag.gov.cn',
-    tags: ['广东', '潮汕', '珠三角', '客家'],
-  },
-  {
-    id: 'archive-fj',
-    category: 'archive',
-    name: '福建省图书馆闽台族谱中心',
-    country: '中国',
-    countryFlag: '🇨🇳',
-    city: '福州',
-    address: '福州市鼓楼区湖东路162号',
-    phone: '+86 591-8377 5363',
-    description: '中国最大的闽台族谱收藏机构之一，馆藏族谱逾两万册，提供查询服务',
-    website: 'https://www.fjlib.net',
-    tags: ['福建', '闽南', '泉州', '漳州', '福州'],
-  },
   {
     id: 'archive-sw',
     category: 'archive',

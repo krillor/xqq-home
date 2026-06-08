@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, Users, Heart, MapPin, ChevronDown, PlusCircle, UserCheck, Globe, Building2 } from 'lucide-react';
+import { Search, Users, Heart, ChevronDown, PlusCircle, UserCheck } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
 import { FamilyMap } from '../components/FamilyMap';
 
@@ -14,7 +14,6 @@ export default function Home() {
     { icon: Search, value: 0, label: t('home.stats.totalPosts') },
     { icon: Heart, value: 0, label: t('home.stats.success') },
     { icon: Users, value: 0, label: t('home.stats.activeSeekers') },
-    { icon: MapPin, value: 0, label: t('home.stats.regions') },
   ];
 
   return (
