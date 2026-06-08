@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, MapPin, Clock, User, MessageCircle, Heart, Share2, AlertCircle } from 'lucide-react';
 import CommentsSection from '../components/CommentsSection';
+import { getStatusColor, getStatusText } from '../lib/utils';
 import { getPostById } from '../data/postData';
 
 const PostDetailPage: React.FC = () => {
@@ -10,20 +11,6 @@ const PostDetailPage: React.FC = () => {
   const navigate = useNavigate();
   
   const post = id ? getPostById(id) : undefined;
-  
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'success': return 'bg-green-100 text-green-800';
-      default: return 'bg-orange-100 text-orange-800';
-    }
-  };
-  
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'success': return '已找到';
-      default: return '寻找中';
-    }
-  };
   
   if (!post) {
     return (

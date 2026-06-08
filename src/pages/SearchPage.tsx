@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Search as SearchIcon, Filter, MapPin, Clock } from 'lucide-react';
+import { Search as SearchIcon, Filter, MapPin } from 'lucide-react';
 import { FamilyMap } from '../components/FamilyMap';
 import LocationSelect from '../components/LocationSelect';
+import PostCard from '../components/PostCard';
+import { getStatusText } from '../lib/utils';
 import { allPosts } from '../data/postData';
 
 const SearchPage: React.FC = () => {
@@ -38,20 +40,6 @@ const SearchPage: React.FC = () => {
       return matchesLocation && matchesStatus && matchesSearch;
     });
   }, [selectedLocation, filterStatus, searchQuery]);
-  
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'success': return 'bg-green-100 text-green-800';
-      default: return 'bg-orange-100 text-orange-800';
-    }
-  };
-  
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'success': return t('search.status.found');
-      default: return t('search.status.searching');
-    }
-  };
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white pt-24 pb-12">
@@ -174,50 +162,14 @@ const SearchPage: React.FC = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post, index) => (
-              <motion.div
+              <PostCard
                 key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ y: -4 }}
-                className="h-full"
-              >
-                <Link to={`/detail/${post.id}`} className="block h-full">
-                  <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden border border-orange-50 h-full flex flex-col">
-                    <div className="p-6 flex-1">
-                      <div className="flex items-start justify-between mb-3">
-                        <span className="text-2xl font-bold text-[#E67E22]">
-                          {post.surname}氏
-                        </span>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(post.status)}`}>
-                          {getStatusText(post.status)}
-                        </span>
-                      </div>
-                      <h3 className="text-base font-bold text-[#5D4037] mb-3 line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                        {post.description}
-                      </p>
-                      <div className="space-y-2 text-sm text-gray-500">
-                        <div className="flex items-start gap-1">
-                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                          <span className="line-clamp-1">{post.originRegion} → {post.targetRegion}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4 flex-shrink-0" />
-                          <span>{post.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-orange-50 px-6 py-3 border-t border-orange-100">
-                      <span className="text-[#E67E22] font-medium text-sm">
-                        {t('search.viewDetail')} →
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
+                post={post}
+                index={index}
+                foundLabel={t('search.status.found')}
+                searchingLabel={t('search.status.searching')}
+                viewDetailLabel={`${t('search.viewDetail')} →`}
+              />
             ))}
           </div>
           
