@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, Users, Heart, ChevronDown, PlusCircle, UserCheck } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
-import { FamilyMap } from '../components/FamilyMap';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -82,35 +81,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Interactive Map */}
+      {/* Stats */}
       <section className="relative bg-white py-16 -mt-12">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-4">
-                {t('home.mapTitle')}
-              </h2>
-              <p className="text-lg text-[#8D6E63] max-w-2xl mx-auto">
-                {t('home.mapSubtitle')}
-              </p>
-            </div>
-            <div className="max-w-6xl mx-auto shadow-xl">
-              <FamilyMap height="600px" />
-            </div>
-          </motion.div>
-          
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12"
+            className="grid grid-cols-3 gap-6 max-w-3xl mx-auto"
           >
             {stats.map((stat, index) => (
               <StatCard key={index} {...stat} />
