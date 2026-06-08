@@ -105,6 +105,52 @@ const associations: Association[] = [
     website: 'https://www.cgcc.org.hk',
   },
 
+  {
+    id: 'vn-chba',
+    category: 'chamber',
+    name: '越南华人工商总会',
+    country: '越南',
+    countryFlag: '🇻🇳',
+    city: '胡志明市',
+    address: '234 Trần Hưng Đạo, Quận 1, TP.HCM',
+    phone: '+84 28 3836 9003',
+    description: '越南最大华人商业总会，以胡志明市华人聚居区为核心，联系越南各省华商网络',
+  },
+  {
+    id: 'mm-cccm',
+    category: 'chamber',
+    name: '缅甸中华总商会 (CCCM)',
+    country: '缅甸',
+    countryFlag: '🇲🇲',
+    city: '仰光',
+    address: 'No.150-152, Shwe Bon Thar Street, Kyauktada Township, Yangon',
+    phone: '+95 1 246 320',
+    description: '缅甸华商最高代表机构，成立逾百年，覆盖仰光及曼德勒等主要华人聚居城市',
+  },
+  {
+    id: 'kh-cccik',
+    category: 'chamber',
+    name: '柬埔寨华人工商总会',
+    country: '柬埔寨',
+    countryFlag: '🇰🇭',
+    city: '金边',
+    address: 'No. 64, Street 110, Phnom Penh',
+    phone: '+855 23 217 808',
+    description: '柬埔寨华人社区最具代表性的商业总会，积极促进中柬经贸与文化交流',
+  },
+  {
+    id: 'bn-ccic',
+    category: 'chamber',
+    name: '文莱中华总商会 (CCIB)',
+    country: '文莱',
+    countryFlag: '🇧🇳',
+    city: '斯里巴加湾',
+    address: 'No.72, Jalan Roberts, Bandar Seri Begawan BS8711',
+    phone: '+673 222 3718',
+    description: '文莱唯一的华人综合商会，代表文莱华商与政府及国际商界沟通联络',
+    website: 'https://www.ccib.org.bn',
+  },
+
   // ── 中国国内对口机构 ──────────────────────────────────────────────────────────
 
   {
