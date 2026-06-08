@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, Users, Heart, ChevronDown, PlusCircle, UserCheck } from 'lucide-react';
+import { Search, Users, Heart, MapPin, ChevronDown, PlusCircle, UserCheck } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
 
 export default function Home() {
@@ -13,6 +13,7 @@ export default function Home() {
     { icon: Search, value: 0, label: t('home.stats.totalPosts') },
     { icon: Heart, value: 0, label: t('home.stats.success') },
     { icon: Users, value: 0, label: t('home.stats.activeSeekers') },
+    { icon: MapPin, value: 0, label: t('home.stats.regions') },
   ];
 
   return (
@@ -89,7 +90,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid grid-cols-3 gap-6 max-w-3xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
           >
             {stats.map((stat, index) => (
               <StatCard key={index} {...stat} />
