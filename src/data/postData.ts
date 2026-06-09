@@ -28,8 +28,9 @@ export const allPosts: PostData[] = [
     seekerName: '陈先生（汕头）',
     date: '2024-01-15',
     images: [
-      'https://picsum.photos/400/300?random=1',
-      'https://picsum.photos/400/300?random=2',
+      'https://picsum.photos/seed/qiaopi-letter-1/400/300',
+      'https://picsum.photos/seed/oldphoto-chen/400/300',
+      'https://picsum.photos/seed/chaoshan-port/400/300',
     ],
     isSample: true,
   },
@@ -46,7 +47,9 @@ export const allPosts: PostData[] = [
     seekerName: '林女士（曼谷）',
     date: '2023-11-20',
     images: [
-      'https://picsum.photos/400/300?random=3',
+      'https://picsum.photos/seed/qiaopi-lin-doc/400/300',
+      'https://picsum.photos/seed/bangkok-chinatown/400/300',
+      'https://picsum.photos/seed/chaozhou-ancestral/400/300',
     ],
     isSample: true,
   },
