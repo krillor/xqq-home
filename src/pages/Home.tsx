@@ -42,20 +42,14 @@ export default function Home() {
             {!userRole ? (
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
-                  onClick={() => {
-                    setUserRole('seeker');
-                    navigate('/personal?tab=archive');
-                  }}
+                  onClick={() => { setUserRole('seeker'); navigate('/personal?tab=archive'); }}
                   className="px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg flex items-center justify-center gap-2"
                 >
                   <PlusCircle className="w-5 h-5" />
                   {t('navigation.publish')}
                 </button>
                 <button
-                  onClick={() => {
-                    setUserRole('volunteer');
-                    navigate('/personal?tab=volunteer');
-                  }}
+                  onClick={() => { setUserRole('volunteer'); navigate('/personal?tab=volunteer'); }}
                   className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-xl font-semibold text-lg hover:bg-white/30 transition-all shadow-lg border border-white/30 flex items-center justify-center gap-2"
                 >
                   <UserCheck className="w-5 h-5" />
@@ -185,7 +179,7 @@ export default function Home() {
               {t('home.ctaDesc')}
             </p>
             <Link
-              to="/role-selection"
+              to="/personal"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg"
             >
               {t('home.ctaButton')}

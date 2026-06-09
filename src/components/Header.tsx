@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Search, Menu, X, Bell, Building2, LogIn, LogOut, FileText } from 'lucide-react';
+import { Home, Search, Building2, Menu, X, FileText, LogIn, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -10,10 +10,9 @@ export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const { userRole, unreadCount, isLoggedIn, currentUser, logout } = useAppStore();
+  const { userRole, isLoggedIn, currentUser, logout } = useAppStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // 个人中心按角色跳对应 tab
   const personalPath = userRole === 'seeker'
     ? '/personal?tab=archive'
     : userRole === 'volunteer'
@@ -42,13 +41,13 @@ export default function Header() {
             </div>
             <span className="font-bold text-xl text-[#5D4037] hidden sm:block">{t('brand')}</span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={'href' in item ? item.href! : item.path}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 relative ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                   isActive(item.path)
                     ? 'bg-[#E67E22] text-white shadow-md'
                     : 'text-[#5D4037] hover:bg-orange-50'
@@ -56,11 +55,6 @@ export default function Header() {
               >
                 <item.icon size={18} />
                 <span className="font-sans text-sm">{item.label}</span>
-                {item.path === '/personal' && unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                    {unreadCount}
-                  </span>
-                )}
               </Link>
             ))}
           </nav>
@@ -69,9 +63,7 @@ export default function Header() {
             <LanguageSwitcher />
             {isLoggedIn ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600">
-                  {currentUser?.name}
-                </span>
+                <span className="text-sm text-gray-600">{currentUser?.name}</span>
                 <button
                   onClick={logout}
                   className="flex items-center gap-2 px-4 py-2 text-sm text-[#8D6E63] hover:text-[#5D4037] hover:bg-orange-50 rounded-lg"
@@ -93,14 +85,6 @@ export default function Header() {
 
           <div className="md:hidden flex items-center gap-2">
             <LanguageSwitcher />
-            {unreadCount > 0 && (
-              <Link to={personalPath} className="relative p-2">
-                <Bell size={20} className="text-[#5D4037]" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                  {unreadCount}
-                </span>
-              </Link>
-            )}
             <button
               className="p-2 rounded-lg hover:bg-orange-50 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -136,10 +120,7 @@ export default function Header() {
             ))}
             {isLoggedIn ? (
               <button
-                onClick={() => {
-                  logout();
-                  setMobileMenuOpen(false);
-                }}
+                onClick={() => { logout(); setMobileMenuOpen(false); }}
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-[#8D6E63] hover:text-[#5D4037]"
               >
                 <LogOut size={20} />

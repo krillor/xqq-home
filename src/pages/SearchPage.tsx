@@ -2,8 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Search as SearchIcon, Filter, MapPin } from 'lucide-react';
-import { FamilyMap } from '../components/FamilyMap';
+import { Search as SearchIcon } from 'lucide-react';
 import LocationSelect from '../components/LocationSelect';
 import PostCard from '../components/PostCard';
 import { getStatusText } from '../lib/utils';
@@ -12,8 +11,7 @@ import { allPosts } from '../data/postData';
 const SearchPage: React.FC = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
-  const [viewMode, setViewMode] = useState<'map' | 'list'>('map');
-  const [filterRegion, setFilterRegion] = useState<string>(searchParams.get('region') || '');
+  const [filterRegion] = useState<string>(searchParams.get('region') || '');
   const [filterStatus, setFilterStatus] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -96,59 +94,11 @@ const SearchPage: React.FC = () => {
           </div>
         </motion.div>
         
-        {/* View Toggle */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="flex justify-center mb-6"
-        >
-          <div className="inline-flex bg-white rounded-xl shadow-md p-1">
-            <button
-              onClick={() => setViewMode('map')}
-              className={`px-6 py-2 rounded-lg font-medium transition-colors ${
-                viewMode === 'map'
-                  ? 'bg-[#E67E22] text-white'
-                  : 'text-[#5D4037] hover:bg-orange-50'
-              }`}
-            >
-              <MapPin className="w-4 h-4 inline mr-2" />
-              {t('search.mapView')}
-            </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={`px-6 py-2 rounded-lg font-medium transition-colors ${
-                viewMode === 'list'
-                  ? 'bg-[#E67E22] text-white'
-                  : 'text-[#5D4037] hover:bg-orange-50'
-              }`}
-            >
-              <Filter className="w-4 h-4 inline mr-2" />
-              {t('search.listView')}
-            </button>
-          </div>
-        </motion.div>
-        
-        {/* Map View */}
-        {viewMode === 'map' && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mb-8"
-          >
-            <FamilyMap 
-              regionId={filterRegion || undefined} 
-              height="600px" 
-            />
-          </motion.div>
-        )}
-        
         {/* List View */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: viewMode === 'list' ? 0.3 : 0.4 }}
+          transition={{ delay: 0.3 }}
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-[#5D4037]">
