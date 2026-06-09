@@ -898,14 +898,14 @@ const VolunteerContent: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 gap-8 items-stretch">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
-          className="md:col-span-1"
+          className="md:col-span-1 flex flex-col"
         >
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col flex-1">
             <div className="flex items-center gap-2 mb-4">
               <Settings className="w-5 h-5 text-[#5D4037]" />
               <h2 className="text-lg font-bold text-[#5D4037]">
@@ -939,7 +939,7 @@ const VolunteerContent: React.FC = () => {
               选择你熟悉的地区，接收相关推送
             </p>
 
-            <div className="space-y-2 max-h-96 overflow-y-auto">
+            <div className="space-y-2 flex-1 overflow-y-auto" style={{maxHeight: '360px'}}>
               {regionGroups.map(group => {
                 const groupCountries = regionData.filter(c => (c.group ?? '') === group)
                 if (groupCountries.length === 0) return null
@@ -1040,9 +1040,9 @@ const VolunteerContent: React.FC = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
-          className="md:col-span-2"
+          className="md:col-span-2 flex flex-col"
         >
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col flex-1">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
                 <Bell className="w-5 h-5 text-[#E67E22]" />
@@ -1065,6 +1065,7 @@ const VolunteerContent: React.FC = () => {
               )}
             </div>
 
+            <div className="flex-1">
             {notifications.length === 0 ? (
               <div className="text-center py-12 text-gray-500">
                 <BellOff className="w-12 h-12 mx-auto mb-4 text-gray-300" />
@@ -1124,6 +1125,7 @@ const VolunteerContent: React.FC = () => {
                 </p>
               </div>
             )}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -1138,22 +1140,22 @@ const VolunteerContent: React.FC = () => {
           <h2 className="text-lg font-bold text-[#5D4037] mb-6">
             我的协助案例
           </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-4 bg-green-50 rounded-xl border border-green-200">
-              <div className="flex items-center gap-2 mb-2">
-                <CheckCircle className="w-5 h-5 text-green-600" />
+          <div className="grid md:grid-cols-2 gap-4 items-stretch">
+            <div className="p-4 bg-green-50 rounded-xl border border-green-200 flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <span className="font-medium text-green-800">成功案例</span>
               </div>
-              <p className="text-sm text-green-700">
+              <p className="text-sm text-green-700 leading-relaxed">
                 帮助陈氏家族在曼谷找到失散多年的亲人
               </p>
             </div>
-            <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
-              <div className="flex items-center gap-2 mb-2">
-                <MapPin className="w-5 h-5 text-blue-600" />
+            <div className="p-4 bg-blue-50 rounded-xl border border-blue-200 flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0" />
                 <span className="font-medium text-blue-800">进行中</span>
               </div>
-              <p className="text-sm text-blue-700">
+              <p className="text-sm text-blue-700 leading-relaxed">
                 协助新加坡林氏寻根问祖
               </p>
             </div>
