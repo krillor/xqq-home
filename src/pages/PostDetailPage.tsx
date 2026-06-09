@@ -156,22 +156,24 @@ const PostDetailPage: React.FC = () => {
                 </div>
                 
                 {/* Actions */}
-                <div className="p-8 bg-gray-50 border-t border-gray-100">
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <button className="flex-1 py-4 bg-[#E67E22] text-white rounded-xl font-semibold hover:bg-[#D35400] transition-colors flex items-center justify-center gap-2">
-                      <MessageCircle className="w-5 h-5" />
-                      提供线索
-                    </button>
-                    <button className="py-4 px-6 border-2 border-[#E67E22] text-[#E67E22] rounded-xl font-semibold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2">
-                      <Heart className="w-5 h-5" />
-                      收藏
-                    </button>
-                    <button className="py-4 px-6 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
-                      <Share2 className="w-5 h-5" />
-                      分享
-                    </button>
+                {!post.isSample && (
+                  <div className="p-8 bg-gray-50 border-t border-gray-100">
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <button className="flex-1 py-4 bg-[#E67E22] text-white rounded-xl font-semibold hover:bg-[#D35400] transition-colors flex items-center justify-center gap-2">
+                        <MessageCircle className="w-5 h-5" />
+                        提供线索
+                      </button>
+                      <button className="py-4 px-6 border-2 border-[#E67E22] text-[#E67E22] rounded-xl font-semibold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2">
+                        <Heart className="w-5 h-5" />
+                        收藏
+                      </button>
+                      <button className="py-4 px-6 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
+                        <Share2 className="w-5 h-5" />
+                        分享
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
             
@@ -188,7 +190,7 @@ const PostDetailPage: React.FC = () => {
                     查看更多寻亲信息
                   </Link>
                   <Link
-                    to="/publish"
+                    to="/personal?tab=archive"
                     className="block w-full py-3 bg-[#5D4037] text-white rounded-xl text-center font-medium hover:bg-[#4E342E] transition-colors"
                   >
                     我也来发布

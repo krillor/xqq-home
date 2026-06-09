@@ -1065,7 +1065,6 @@ const VolunteerContent: React.FC = () => {
               )}
             </div>
 
-            <div className="flex-1">
             {notifications.length === 0 ? (
               <div className="text-center py-12 text-gray-500">
                 <BellOff className="w-12 h-12 mx-auto mb-4 text-gray-300" />
@@ -1081,7 +1080,7 @@ const VolunteerContent: React.FC = () => {
                       navigate('/search')
                     }}
                     className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                      notification.isRead 
+                      notification.isRead
                         ? 'bg-gray-50 border-gray-100'
                         : 'bg-orange-50 border-orange-200 hover:border-orange-300'
                     }`}
@@ -1118,13 +1117,12 @@ const VolunteerContent: React.FC = () => {
               </div>
             )}
 
-            {notifications.length === 0 && (
-              <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-                <p className="text-sm text-blue-800">
+            <div className="mt-auto pt-4">
+              <div className="p-4 bg-amber-50 rounded-xl border border-amber-200">
+                <p className="text-sm text-amber-800">
                   💡 提示：当寻亲者发布信息后，系统会自动推送到这里！
                 </p>
               </div>
-            )}
             </div>
           </div>
         </motion.div>

@@ -10,10 +10,10 @@ export default function Home() {
   const { userRole, setUserRole } = useAppStore();
 
   const stats = [
-    { icon: Search, value: 0, label: t('home.stats.totalPosts') },
-    { icon: Heart, value: 0, label: t('home.stats.success') },
-    { icon: Users, value: 0, label: t('home.stats.activeSeekers') },
-    { icon: MapPin, value: 0, label: t('home.stats.regions') },
+    { icon: Search, value: 1240, label: t('home.stats.totalPosts') },
+    { icon: Heart, value: 89, label: t('home.stats.success') },
+    { icon: Users, value: 3600, label: t('home.stats.activeSeekers') },
+    { icon: MapPin, value: 12, label: t('home.stats.regions') },
   ];
 
   return (
@@ -94,13 +94,13 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
+              className="bg-white rounded-2xl p-8 shadow-lg h-full"
             >
               <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl font-bold text-[#E67E22]">1</span>
@@ -116,7 +116,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
+              className="bg-white rounded-2xl p-8 shadow-lg h-full"
             >
               <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl font-bold text-[#E67E22]">2</span>
@@ -132,7 +132,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
+              className="bg-white rounded-2xl p-8 shadow-lg h-full"
             >
               <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl font-bold text-[#E67E22]">3</span>

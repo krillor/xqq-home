@@ -39,7 +39,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-warm-gold" />
-                <span className="font-sans text-sm text-warm-beige">contact@xinqinlu.com</span>
+                <span className="font-sans text-sm text-warm-beige">contact@xqq.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-warm-gold" />

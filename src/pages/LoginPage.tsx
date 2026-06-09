@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store/appStore'
 import { Mail, Lock, Send } from 'lucide-react'
@@ -174,7 +174,13 @@ const LoginPage: React.FC = () => {
             </form>
           )}
 
-          <div className="mt-8 text-center text-gray-600 text-sm">
+          <div className="mt-6 text-center text-sm text-gray-500">
+            还没有账号？
+            <Link to="/register" className="ml-1 text-amber-600 hover:text-amber-700 font-medium">
+              立即注册
+            </Link>
+          </div>
+          <div className="mt-3 text-center text-gray-400 text-xs">
             {t('auth.browseHint')}
           </div>
         </div>
