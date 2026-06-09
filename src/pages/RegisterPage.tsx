@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Mail, Lock, User, Send, CheckCircle } from 'lucide-react'
+
 import { useAppStore } from '../store/appStore'
 import SliderCaptcha from '../components/SliderCaptcha'
 
@@ -14,8 +15,6 @@ const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
-    confirmPassword: '',
   })
   const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
@@ -26,18 +25,8 @@ const RegisterPage: React.FC = () => {
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!formData.email || !formData.name || !formData.password) {
+    if (!formData.email || !formData.name) {
       setError(t('auth.errorRequired'))
-      return
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setError(t('auth.errorPasswordMismatch'))
-      return
-    }
-
-    if (formData.password.length < 6) {
-      setError(t('auth.errorPasswordShort'))
       return
     }
 
@@ -142,42 +131,6 @@ const RegisterPage: React.FC = () => {
                     placeholder={t('auth.emailPlaceholder')}
                     className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                     required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  {t('auth.password')} <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="password"
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    placeholder={t('auth.passwordPlaceholder')}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
-                    required
-                    minLength={6}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">
-                  {t('auth.confirmPassword')} <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="password"
-                    value={formData.confirmPassword}
-                    onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                    placeholder={t('auth.confirmPasswordPlaceholder')}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
-                    required
-                    minLength={6}
                   />
                 </div>
               </div>
