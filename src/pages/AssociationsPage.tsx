@@ -276,17 +276,17 @@ const AssociationsPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100">
 
       {/* Hero Banner */}
-      <div className="bg-gradient-to-r from-amber-700 via-orange-600 to-amber-600 text-white">
+      <div className="bg-gradient-to-br from-[#5D4037] via-[#795548] to-[#8D6E63] text-white">
         <div className="max-w-7xl mx-auto px-4 py-14">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
-              <Building2 className="w-5 h-5 text-amber-200" />
-              <span className="text-amber-200 text-sm font-medium tracking-wide">官方侨联 · 商会</span>
+              <Building2 className="w-5 h-5 text-orange-200" />
+              <span className="text-orange-200 text-sm font-medium tracking-wide">官方侨联 · 商会</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
               连接海内外华人社群
             </h1>
-            <p className="text-amber-100 text-base leading-relaxed mb-6">
+            <p className="text-orange-100 text-base leading-relaxed mb-6">
               收录东南亚10个国家及地区总商会与中国侨联，是寻亲路上最可信赖的官方支援网络
             </p>
             <div className="flex flex-wrap gap-3">
@@ -297,7 +297,7 @@ const AssociationsPage: React.FC = () => {
               ].map(s => (
                 <div key={s.label} className="bg-white/15 backdrop-blur-sm rounded-xl px-4 py-2.5 text-center">
                   <div className="text-xl font-bold">{s.value}</div>
-                  <div className="text-amber-200 text-xs">{s.label}</div>
+                  <div className="text-orange-200 text-xs">{s.label}</div>
                 </div>
               ))}
             </div>
