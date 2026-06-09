@@ -23,10 +23,6 @@ const PersonalCenter: React.FC = () => {
                      userRole === 'volunteer' ? 'volunteer' : 'archive'
   const [activeTab, setActiveTab] = useState<'archive' | 'volunteer'>(defaultTab)
 
-  // 显示哪些 tab：有明确角色只显示对应的；无角色两个都显示
-  const showArchive = userRole !== 'volunteer'
-  const showVolunteer = userRole !== 'seeker'
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 pt-24 pb-12">
       <div className="container mx-auto px-4">
@@ -36,35 +32,33 @@ const PersonalCenter: React.FC = () => {
           className="text-center mb-8"
         >
           <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-6">个人中心</h1>
-          
-          {(showArchive && showVolunteer) && (
-            <div className="inline-flex bg-white rounded-xl shadow-md p-1 gap-1">
-              <button
-                onClick={() => setActiveTab('archive')}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeTab === 'archive'
-                    ? 'bg-[#E67E22] text-white shadow-md'
-                    : 'text-[#5D4037] hover:bg-orange-50'
-                }`}
-              >
-                寻根档案
-              </button>
-              <button
-                onClick={() => setActiveTab('volunteer')}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeTab === 'volunteer'
-                    ? 'bg-[#E67E22] text-white shadow-md'
-                    : 'text-[#5D4037] hover:bg-orange-50'
-                }`}
-              >
-                志愿者中心
-              </button>
-            </div>
-          )}
+
+          <div className="inline-flex bg-white rounded-xl shadow-md p-1 gap-1">
+            <button
+              onClick={() => setActiveTab('archive')}
+              className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                activeTab === 'archive'
+                  ? 'bg-[#E67E22] text-white shadow-md'
+                  : 'text-[#5D4037] hover:bg-orange-50'
+              }`}
+            >
+              发布寻亲
+            </button>
+            <button
+              onClick={() => setActiveTab('volunteer')}
+              className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                activeTab === 'volunteer'
+                  ? 'bg-[#E67E22] text-white shadow-md'
+                  : 'text-[#5D4037] hover:bg-orange-50'
+              }`}
+            >
+              志愿者中心
+            </button>
+          </div>
         </motion.div>
 
         <AnimatePresence mode="wait">
-          {(showArchive && activeTab === 'archive') || (showArchive && !showVolunteer) ? (
+          {activeTab === 'archive' ? (
             <RootSearchArchiveContent key="archive" />
           ) : (
             <VolunteerContent key="volunteer" />
@@ -268,12 +262,12 @@ const RootSearchArchiveContent: React.FC = () => {
           <div className="p-8 space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <button
-                onClick={() => navigate('/parser')}
+                onClick={() => navigate('/search')}
                 className="p-6 bg-blue-50 border border-blue-200 rounded-xl text-center hover:bg-blue-100 transition-colors"
               >
                 <Sparkles className="w-10 h-10 text-blue-500 mx-auto mb-3" />
-                <div className="font-semibold text-blue-800">继续解析线索</div>
-                <p className="text-sm text-blue-600">使用智能解析器分析更多线索</p>
+                <div className="font-semibold text-blue-800">浏览寻亲列表</div>
+                <p className="text-sm text-blue-600">查看其他寻亲信息</p>
               </button>
               <button
                 onClick={() => navigate('/')}
