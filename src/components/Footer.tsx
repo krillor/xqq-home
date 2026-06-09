@@ -30,7 +30,6 @@ export default function Footer() {
               <Link to="/" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.home')}</Link>
               <Link to="/search" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.search')}</Link>
               <Link to="/personal" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.profile')}</Link>
-              <Link to="/associations" className="font-sans text-sm text-warm-beige hover:text-warm-gold transition-colors">{t('navigation.associations')}</Link>
             </nav>
           </div>
 

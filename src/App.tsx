@@ -3,7 +3,6 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
 import PostDetailPage from './pages/PostDetailPage';
-import AssociationsPage from './pages/AssociationsPage';
 import PersonalCenter from './pages/PersonalCenter';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -18,7 +17,6 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/detail/:id" element={<PostDetailPage />} />
-          <Route path="/associations" element={<AssociationsPage />} />
           <Route path="/personal" element={<PersonalCenter />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
