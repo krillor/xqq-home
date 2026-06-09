@@ -13,7 +13,6 @@ import VolunteerProfilePage from './pages/VolunteerProfilePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AssociationsPage from './pages/AssociationsPage';
-import IntelligentParser from './pages/IntelligentParser';
 import PersonalCenter from './pages/PersonalCenter';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
@@ -28,7 +27,7 @@ export default function App() {
           <Route path="/role-selection" element={<RoleSelectionPage />} />
           <Route path="/publish" element={<Navigate to="/personal?tab=archive" replace />} />
           <Route path="/personal" element={<PersonalCenter />} />
-          <Route path="/parser" element={<IntelligentParser />} />
+          <Route path="/parser" element={<Navigate to="/" replace />} />
           <Route path="/volunteer" element={<Navigate to="/personal?tab=volunteer" replace />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/success-stories" element={<SuccessStoriesPage />} />

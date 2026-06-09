@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Search, Menu, X, Bell, Building2, LogIn, LogOut, Sparkles, FileText } from 'lucide-react';
+import { Home, Search, Menu, X, Bell, Building2, LogIn, LogOut, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -24,7 +24,6 @@ export default function Header() {
     { path: '/', label: t('navigation.home'), icon: Home },
     { path: '/search', label: t('navigation.search'), icon: Search },
     { path: '/personal', label: t('navigation.profile'), icon: FileText, href: personalPath },
-    { path: '/parser', label: t('navigation.tools'), icon: Sparkles },
     { path: '/associations', label: t('navigation.associations'), icon: Building2 },
   ];
 
