@@ -59,6 +59,13 @@ const PostDetailPage: React.FC = () => {
             {/* Main Content */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                {/* Sample Banner */}
+                {post.isSample && (
+                  <div className="bg-amber-50 border-b border-amber-100 px-8 py-2 flex items-center gap-2">
+                    <span className="text-amber-500 text-sm">⚠</span>
+                    <span className="text-amber-600 text-sm font-medium">样例数据，仅供展示，非真实寻亲信息</span>
+                  </div>
+                )}
                 {/* Header */}
                 <div className="p-8 border-b border-gray-100">
                   <div className="flex items-start justify-between mb-4">

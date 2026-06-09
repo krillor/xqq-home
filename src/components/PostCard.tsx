@@ -4,6 +4,7 @@ import { MapPin, Clock } from 'lucide-react';
 import { getStatusColor, getStatusText } from '../lib/utils';
 import type { PostData } from '../data/postData';
 
+
 interface PostCardProps {
   post: PostData;
   index?: number;
@@ -29,6 +30,12 @@ export default function PostCard({
     >
       <Link to={`/detail/${post.id}`} className="block h-full">
         <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden border border-orange-50 h-full flex flex-col">
+          {post.isSample && (
+            <div className="bg-amber-50 border-b border-amber-100 px-4 py-1.5 flex items-center gap-1.5">
+              <span className="text-amber-500 text-xs">⚠</span>
+              <span className="text-amber-600 text-xs font-medium">样例数据，仅供展示</span>
+            </div>
+          )}
           <div className="p-6 flex-1">
             <div className="flex items-start justify-between mb-3">
               <span className="text-2xl font-bold text-[#E67E22]">
