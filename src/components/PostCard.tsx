@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { MapPin, Clock } from 'lucide-react';
 import { getStatusColor, getStatusText } from '../lib/utils';
 import type { PostData } from '../data/postData';
@@ -16,10 +17,14 @@ interface PostCardProps {
 export default function PostCard({
   post,
   index = 0,
-  foundLabel = '已找到',
-  searchingLabel = '寻找中',
-  viewDetailLabel = '查看详情 →',
+  foundLabel,
+  searchingLabel,
+  viewDetailLabel,
 }: PostCardProps) {
+  const { t } = useTranslation();
+  foundLabel = foundLabel ?? t('search.status.found');
+  searchingLabel = searchingLabel ?? t('search.status.searching');
+  viewDetailLabel = viewDetailLabel ?? `${t('search.viewDetail')} →`;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,13 +38,13 @@ export default function PostCard({
           {post.isSample && (
             <div className="bg-amber-50 border-b border-amber-100 px-4 py-1.5 flex items-center gap-1.5">
               <span className="text-amber-500 text-xs">⚠</span>
-              <span className="text-amber-600 text-xs font-medium">样例数据，仅供展示</span>
+              <span className="text-amber-600 text-xs font-medium">{t('postCard.sample')}</span>
             </div>
           )}
           <div className="p-6 flex-1">
             <div className="flex items-start justify-between mb-3">
               <span className="text-2xl font-bold text-[#E67E22]">
-                {post.surname}氏
+                {post.surname}{t('postCard.familySuffix')}
               </span>
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(post.status)}`}>
                 {getStatusText(post.status, foundLabel, searchingLabel)}

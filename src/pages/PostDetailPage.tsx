@@ -1,12 +1,14 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, MapPin, Clock, User, MessageCircle, Heart, Share2, AlertCircle } from 'lucide-react';
 import CommentsSection from '../components/CommentsSection';
 import { getStatusColor, getStatusText } from '../lib/utils';
 import { getPostById } from '../data/postData';
 
 const PostDetailPage: React.FC = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   
@@ -21,17 +23,17 @@ const PostDetailPage: React.FC = () => {
             className="flex items-center gap-2 text-[#5D4037] hover:text-[#E67E22] mb-6 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            返回
+            {t('detailPage.back')}
           </button>
           <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
             <AlertCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-500 mb-2">信息未找到</h2>
-            <p className="text-gray-400 mb-6">该寻亲信息可能已被删除或不存在</p>
+            <h2 className="text-2xl font-bold text-gray-500 mb-2">{t('detailPage.notFound')}</h2>
+            <p className="text-gray-400 mb-6">{t('detailPage.notFoundDesc')}</p>
             <Link
               to="/search"
               className="inline-block px-6 py-3 bg-[#E67E22] text-white rounded-xl font-medium hover:bg-[#D35400] transition-colors"
             >
-              返回寻亲列表
+              {t('detailPage.backToList')}
             </Link>
           </div>
         </div>
@@ -52,9 +54,9 @@ const PostDetailPage: React.FC = () => {
             className="flex items-center gap-2 text-[#5D4037] hover:text-[#E67E22] mb-6 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            返回
+            {t('detailPage.back')}
           </button>
-          
+
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2">
@@ -63,7 +65,7 @@ const PostDetailPage: React.FC = () => {
                 {post.isSample && (
                   <div className="bg-amber-50 border-b border-amber-100 px-8 py-2 flex items-center gap-2">
                     <span className="text-amber-500 text-sm">⚠</span>
-                    <span className="text-amber-600 text-sm font-medium">样例数据，仅供展示，非真实寻亲信息</span>
+                    <span className="text-amber-600 text-sm font-medium">{t('postCard.sampleFull')}</span>
                   </div>
                 )}
                 {/* Header */}
@@ -71,11 +73,11 @@ const PostDetailPage: React.FC = () => {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <span className="text-3xl font-bold text-[#E67E22]">
-                        {post.surname}氏
+                        {post.surname}{t('postCard.familySuffix')}
                       </span>
                     </div>
                     <span className={`px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(post.status)}`}>
-                      {getStatusText(post.status)}
+                      {getStatusText(post.status, t('search.status.found'), t('search.status.searching'))}
                     </span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-bold text-[#5D4037] mb-2">
@@ -96,13 +98,13 @@ const PostDetailPage: React.FC = () => {
                 {/* Images */}
                 {post.images && post.images.length > 0 && (
                   <div className="p-8 border-b border-gray-100">
-                    <h3 className="font-semibold text-[#5D4037] mb-4">相关照片</h3>
+                    <h3 className="font-semibold text-[#5D4037] mb-4">{t('detailPage.photos')}</h3>
                     <div className="grid grid-cols-2 gap-4">
                       {post.images.map((img, index) => (
                         <img
                           key={index}
                           src={img}
-                          alt={`照片${index + 1}`}
+                          alt={`${t('detailPage.photoAlt')}${index + 1}`}
                           className="w-full h-48 object-cover rounded-xl"
                         />
                       ))}
@@ -113,17 +115,17 @@ const PostDetailPage: React.FC = () => {
                 {/* Details */}
                 <div className="p-8 space-y-6">
                   <div>
-                    <h3 className="font-semibold text-[#5D4037] mb-3">寻亲信息</h3>
+                    <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.info')}</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="bg-orange-50 p-4 rounded-xl">
-                        <p className="text-sm text-gray-500 mb-1">出发地</p>
+                        <p className="text-sm text-gray-500 mb-1">{t('detailPage.origin')}</p>
                         <p className="text-[#5D4037] font-medium flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-[#E67E22]" />
                           {post.originRegion}
                         </p>
                       </div>
                       <div className="bg-orange-50 p-4 rounded-xl">
-                        <p className="text-sm text-gray-500 mb-1">目的地</p>
+                        <p className="text-sm text-gray-500 mb-1">{t('detailPage.destination')}</p>
                         <p className="text-[#5D4037] font-medium flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-[#E67E22]" />
                           {post.targetRegion}
@@ -131,7 +133,7 @@ const PostDetailPage: React.FC = () => {
                       </div>
                       {post.estimatedYear && (
                         <div className="bg-orange-50 p-4 rounded-xl">
-                          <p className="text-sm text-gray-500 mb-1">年代</p>
+                          <p className="text-sm text-gray-500 mb-1">{t('detailPage.era')}</p>
                           <p className="text-[#5D4037] font-medium">{post.estimatedYear}</p>
                         </div>
                       )}
@@ -139,13 +141,13 @@ const PostDetailPage: React.FC = () => {
                   </div>
                   
                   <div>
-                    <h3 className="font-semibold text-[#5D4037] mb-3">详细描述</h3>
+                    <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.description')}</h3>
                     <p className="text-gray-600 leading-relaxed">{post.description}</p>
                   </div>
                   
                   {post.familyStory && (
                     <div>
-                      <h3 className="font-semibold text-[#5D4037] mb-3">家族故事</h3>
+                      <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.familyStory')}</h3>
                       <div className="bg-amber-50 border border-amber-200 p-6 rounded-xl">
                         <p className="text-gray-700 italic leading-relaxed">
                           "{post.familyStory}"
@@ -161,15 +163,15 @@ const PostDetailPage: React.FC = () => {
                     <div className="flex flex-col sm:flex-row gap-3">
                       <button className="flex-1 py-4 bg-[#E67E22] text-white rounded-xl font-semibold hover:bg-[#D35400] transition-colors flex items-center justify-center gap-2">
                         <MessageCircle className="w-5 h-5" />
-                        提供线索
+                        {t('detailPage.provideClue')}
                       </button>
                       <button className="py-4 px-6 border-2 border-[#E67E22] text-[#E67E22] rounded-xl font-semibold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2">
                         <Heart className="w-5 h-5" />
-                        收藏
+                        {t('detailPage.favorite')}
                       </button>
                       <button className="py-4 px-6 border-2 border-gray-300 text-gray-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
                         <Share2 className="w-5 h-5" />
-                        分享
+                        {t('detailPage.share')}
                       </button>
                     </div>
                   </div>
@@ -181,31 +183,31 @@ const PostDetailPage: React.FC = () => {
             <div className="space-y-6">
               {/* Quick Actions */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="font-semibold text-[#5D4037] mb-4">快速操作</h3>
+                <h3 className="font-semibold text-[#5D4037] mb-4">{t('detailPage.quickActions')}</h3>
                 <div className="space-y-3">
                   <Link
                     to="/search"
                     className="block w-full py-3 bg-orange-50 text-[#E67E22] rounded-xl text-center font-medium hover:bg-orange-100 transition-colors"
                   >
-                    查看更多寻亲信息
+                    {t('detailPage.viewMore')}
                   </Link>
                   <Link
                     to="/personal?tab=archive"
                     className="block w-full py-3 bg-[#5D4037] text-white rounded-xl text-center font-medium hover:bg-[#4E342E] transition-colors"
                   >
-                    我也来发布
+                    {t('detailPage.alsoPublish')}
                   </Link>
                 </div>
               </div>
               
               {/* Tips */}
               <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 border border-orange-100">
-                <h3 className="font-semibold text-[#5D4037] mb-3">温馨提示</h3>
+                <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.tips')}</h3>
                 <ul className="text-sm text-gray-600 space-y-2">
-                  <li>• 注意保护个人隐私</li>
-                  <li>• 提供线索前请核实信息</li>
-                  <li>• 涉及金钱交易请谨慎</li>
-                  <li>• 联系当地侨团组织可获得更多帮助</li>
+                  <li>• {t('detailPage.tip1')}</li>
+                  <li>• {t('detailPage.tip2')}</li>
+                  <li>• {t('detailPage.tip3')}</li>
+                  <li>• {t('detailPage.tip4')}</li>
                 </ul>
               </div>
             </div>

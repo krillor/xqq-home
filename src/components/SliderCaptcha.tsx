@@ -1,4 +1,5 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ChevronsRight, CheckCircle2, ShieldCheck } from 'lucide-react'
 
 interface SliderCaptchaProps {
@@ -9,6 +10,7 @@ interface SliderCaptchaProps {
 const THRESHOLD = 0.88 // 滑到 88% 即视为成功
 
 const SliderCaptcha: React.FC<SliderCaptchaProps> = ({ onVerified, reset }) => {
+  const { t } = useTranslation()
   const trackRef = useRef<HTMLDivElement>(null)
   const [dragging, setDragging] = useState(false)
   const [offset, setOffset] = useState(0)
@@ -102,11 +104,11 @@ const SliderCaptcha: React.FC<SliderCaptchaProps> = ({ onVerified, reset }) => {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {verified ? (
             <span className="flex items-center gap-1.5 text-sm font-medium text-green-700">
-              <CheckCircle2 className="w-4 h-4" /> 验证通过
+              <CheckCircle2 className="w-4 h-4" /> {t('auth.sliderVerified')}
             </span>
           ) : (
             <span className="text-sm text-gray-400 font-medium">
-              {dragging ? '继续向右滑动…' : '拖动滑块完成验证'}
+              {dragging ? t('auth.sliderDragging') : t('auth.sliderDrag')}
             </span>
           )}
         </div>
@@ -134,7 +136,7 @@ const SliderCaptcha: React.FC<SliderCaptchaProps> = ({ onVerified, reset }) => {
 
       {!verified && (
         <p className="text-xs text-gray-400 mt-1.5 text-center">
-          向右拖动滑块以证明您是真人
+          {t('auth.sliderHint')}
         </p>
       )}
     </div>

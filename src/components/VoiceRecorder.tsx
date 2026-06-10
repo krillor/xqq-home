@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mic, StopCircle, Play, Pause, Trash2 } from 'lucide-react';
 
 interface VoiceRecorderProps {
@@ -10,6 +11,7 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
   onRecordingComplete,
   className = ''
 }) => {
+  const { t } = useTranslation();
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -52,7 +54,7 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
       }, 1000);
     } catch (err) {
       console.error('Failed to start recording:', err);
-      alert('无法访问麦克风，请检查浏览器权限设置');
+      alert(t('voice.micError'));
     }
   };
 
@@ -108,7 +110,7 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
             {isRecording ? <StopCircle className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
           </button>
           <p className="mt-3 text-sm text-gray-600">
-            {isRecording ? `正在录音... ${formatDuration(duration)}` : '点击录音录制语音'}
+            {isRecording ? `${t('voice.recording')} ${formatDuration(duration)}` : t('voice.clickToRecord')}
           </p>
         </div>
       ) : (
@@ -122,7 +124,7 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
           </button>
           <div className="flex-1">
             <div className="text-sm font-medium text-gray-700">
-              录音已完成 - {formatDuration(duration)}
+              {t('voice.completed')} - {formatDuration(duration)}
             </div>
             <audio 
               ref={audioRef} 

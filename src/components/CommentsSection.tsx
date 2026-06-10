@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Image, Heart, X, ThumbsUp, User, LogIn } from 'lucide-react';
 import { useAppStore, Comment } from '../store/appStore';
@@ -9,6 +10,7 @@ interface CommentsSectionProps {
 }
 
 const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
+  const { t } = useTranslation();
   const { comments, addComment, likeComment, getCommentsByPostId, isLoggedIn, currentUser } = useAppStore();
   const [content, setContent] = useState('');
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
@@ -22,7 +24,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
     addComment({
       postId,
       userId: currentUser?.id || 'current-user',
-      userName: currentUser?.name || '当前用户',
+      userName: currentUser?.name || t('comments.currentUser'),
       userAvatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${currentUser?.email || 'User'}`,
       content,
       images: uploadedImages.length > 0 ? uploadedImages : undefined,
@@ -50,20 +52,12 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
     setUploadedImages(prev => prev.filter((_, i) => i !== index));
   };
 
-  const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString('zh-CN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
-
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-gray-100">
         <h2 className="text-xl font-bold text-[#5D4037]">
-          评论 ({comments.filter(c => c.postId === postId).length})
+          {t('comments.title')} ({comments.filter(c => c.postId === postId).length})
         </h2>
       </div>
 
@@ -74,13 +68,13 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
               <LogIn className="w-8 h-8 text-[#E67E22]" />
             </div>
-            <h3 className="text-lg font-medium text-[#5D4037] mb-2">需要登录才能评论</h3>
-            <p className="text-gray-500 mb-4">登录后可以发布评论和图片线索</p>
+            <h3 className="text-lg font-medium text-[#5D4037] mb-2">{t('comments.loginRequired')}</h3>
+            <p className="text-gray-500 mb-4">{t('comments.loginHint')}</p>
             <Link
               to="/login"
               className="px-6 py-2 bg-[#E67E22] text-white rounded-xl font-medium hover:bg-[#D35400] transition-colors"
             >
-              立即登录
+              {t('comments.loginNow')}
             </Link>
           </div>
         ) : (
@@ -92,7 +86,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="写下您的评论，提供线索或建议..."
+                placeholder={t('comments.placeholder')}
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#E67E22] focus:outline-none transition-colors resize-none"
                 rows={3}
               />
@@ -128,7 +122,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
                   className="flex items-center gap-2 text-gray-500 hover:text-[#E67E22] transition-colors"
                 >
                   <Image className="w-5 h-5" />
-                  <span className="text-sm">添加图片</span>
+                  <span className="text-sm">{t('comments.addImage')}</span>
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -144,7 +138,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
                   className="px-6 py-2 bg-[#E67E22] text-white rounded-xl font-medium hover:bg-[#D35400] transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  发布评论
+                  {t('comments.submit')}
                 </button>
               </div>
             </div>
@@ -157,7 +151,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
         {postComments.length === 0 ? (
           <div className="text-center py-12 text-gray-400">
             <ThumbsUp className="w-12 h-12 mx-auto mb-3 opacity-50" />
-            <p>暂无评论，来发表第一条评论吧！</p>
+            <p>{t('comments.empty')}</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -176,8 +170,9 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
 };
 
 const CommentItem: React.FC<{ comment: Comment; onLike: () => void }> = ({ comment, onLike }) => {
+  const { i18n } = useTranslation();
   const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString('zh-CN', {
+    return new Date(date).toLocaleDateString(i18n.language, {
       year: 'numeric',
       month: 'short',
       day: 'numeric',

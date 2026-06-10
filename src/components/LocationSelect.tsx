@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronDown, MapPin } from 'lucide-react';
 import { regionData, regionGroups, Country, Province, City } from '../data/regionData';
 
@@ -23,9 +24,11 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
   label,
   value,
   onChange,
-  placeholder = '选择地区',
+  placeholder,
   className = ''
 }) => {
+  const { t } = useTranslation();
+  placeholder = placeholder ?? t('location.selectRegion');
   const [selectedCountryId, setSelectedCountryId] = useState<string | undefined>(value?.countryId);
   const [selectedProvinceId, setSelectedProvinceId] = useState<string | undefined>(value?.provinceId);
   const [selectedCityId, setSelectedCityId] = useState<string | undefined>(value?.cityId);
@@ -123,7 +126,7 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
           {/* 国家选择（按分组显示标题） */}
           <div className="flex-1 border-r border-gray-200 overflow-y-auto max-h-80">
             <div className="p-2 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
-              国家/地区
+              {t('location.countryRegion')}
             </div>
             {regionGroups.map((group) => {
               const groupCountries = regionData.filter(c => (c.group ?? '') === group);
@@ -153,7 +156,7 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
           {selectedCountry && (
             <div className="flex-1 border-r border-gray-200 overflow-y-auto max-h-80">
               <div className="p-2 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                省份/州
+                {t('location.provinceState')}
               </div>
               {selectedCountry.provinces.map((province) => (
                 <button
@@ -173,7 +176,7 @@ const LocationSelect: React.FC<LocationSelectProps> = ({
           {selectedProvince && (
             <div className="flex-1 overflow-y-auto max-h-80">
               <div className="p-2 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                城市
+                {t('location.city')}
               </div>
               {selectedProvince.cities.map((city) => (
                 <button

@@ -175,9 +175,9 @@ const LoginPage: React.FC = () => {
           )}
 
           <div className="mt-6 text-center text-sm text-gray-500">
-            还没有账号？
+            {t('auth.noAccount')}
             <Link to="/register" className="ml-1 text-amber-600 hover:text-amber-700 font-medium">
-              立即注册
+              {t('auth.registerNow')}
             </Link>
           </div>
           <div className="mt-3 text-center text-gray-400 text-xs">

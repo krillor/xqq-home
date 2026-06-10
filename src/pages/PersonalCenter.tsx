@@ -8,12 +8,14 @@ import {
   BookOpen, FileText, Search, Mic, Bell, BellOff, BellRing, Settings, MessageCircle,
   ChevronDown, ChevronUp, Trash2
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store/appStore'
 import LocationSelect from '../components/LocationSelect'
 import VoiceRecorder from '../components/VoiceRecorder'
 import { regionData, regionGroups, Country, Province, City } from '../data/regionData'
 
 const PersonalCenter: React.FC = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const { userRole } = useAppStore()
@@ -31,7 +33,7 @@ const PersonalCenter: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-6">个人中心</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-6">{t('personal.title')}</h1>
 
           <div className="inline-flex bg-white rounded-xl shadow-md p-1 gap-1">
             <button
@@ -42,7 +44,7 @@ const PersonalCenter: React.FC = () => {
                   : 'text-[#5D4037] hover:bg-orange-50'
               }`}
             >
-              发布寻亲
+              {t('personal.tabPublish')}
             </button>
             <button
               onClick={() => setActiveTab('volunteer')}
@@ -52,7 +54,7 @@ const PersonalCenter: React.FC = () => {
                   : 'text-[#5D4037] hover:bg-orange-50'
               }`}
             >
-              志愿者中心
+              {t('personal.tabVolunteer')}
             </button>
           </div>
         </motion.div>
@@ -71,6 +73,7 @@ const PersonalCenter: React.FC = () => {
 
 // 寻根档案组件
 const RootSearchArchiveContent: React.FC = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { uploadedPhotos, addUploadedPhoto, removeUploadedPhoto, clearUploadedPhotos, addPost, isLoggedIn } = useAppStore()
   
@@ -121,18 +124,18 @@ const RootSearchArchiveContent: React.FC = () => {
   const totalSteps = 5
 
   const searchTypeOptions = [
-    { id: 'find-china', label: '我想找中国的祖籍地/亲人', description: '祖辈下南洋后，我们想找回老家' },
-    { id: 'find-overseas', label: '我想找下南洋后失联的亲戚后代', description: '知道老家，想找南洋失联的那一支' },
+    { id: 'find-china', label: t('personal.searchTypeChina'), description: t('personal.searchTypeChinaDesc') },
+    { id: 'find-overseas', label: t('personal.searchTypeOverseas'), description: t('personal.searchTypeOverseasDesc') },
   ]
 
   const clueOptions = [
-    { id: 'hasQiaopi', label: '有侨批', icon: FileText },
-    { id: 'hasTombstone', label: '有墓碑照片', icon: Building2 },
-    { id: 'knowsBirthplace', label: '知道籍贯地', icon: MapPin },
-    { id: 'knowsDialect', label: '知道方言口音', icon: Search },
-    { id: 'hasDNA', label: '有DNA数据', icon: Sparkles },
-    { id: 'hasFamilyTree', label: '有家谱', icon: BookOpen },
-    { id: 'hasOldPhotos', label: '有老照片', icon: ImageIcon },
+    { id: 'hasQiaopi', label: t('personal.clueQiaopi'), icon: FileText },
+    { id: 'hasTombstone', label: t('personal.clueTombstone'), icon: Building2 },
+    { id: 'knowsBirthplace', label: t('personal.clueBirthplace'), icon: MapPin },
+    { id: 'knowsDialect', label: t('personal.clueDialect'), icon: Search },
+    { id: 'hasDNA', label: t('personal.clueDNA'), icon: Sparkles },
+    { id: 'hasFamilyTree', label: t('personal.clueFamilyTree'), icon: BookOpen },
+    { id: 'hasOldPhotos', label: t('personal.clueOldPhotos'), icon: ImageIcon },
   ]
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -195,8 +198,8 @@ const RootSearchArchiveContent: React.FC = () => {
   }
 
   const handleSubmit = () => {
-    const originDisplay = originLocation?.displayName || '未知'
-    const targetDisplay = targetLocation?.displayName || '未知'
+    const originDisplay = originLocation?.displayName || t('personal.unknown')
+    const targetDisplay = targetLocation?.displayName || t('personal.unknown')
     
     addPost({
       title: `${formData.surname || '某'}氏寻根 - ${originDisplay} → ${targetDisplay}`,
@@ -207,7 +210,7 @@ const RootSearchArchiveContent: React.FC = () => {
       seekerType: formData.searchType === 'find-china' ? 'overseas-china' : 'china-overseas',
       status: 'active',
       photos: uploadedPhotos,
-      createdBy: currentStep === 1 ? '匿名' : formData.ancestorName,
+      createdBy: currentStep === 1 ? t('personal.anonymous') : formData.ancestorName,
     })
     clearUploadedPhotos()
     setCurrentStep(6)
@@ -220,22 +223,22 @@ const RootSearchArchiveContent: React.FC = () => {
           <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <User className="w-8 h-8 text-purple-600" />
           </div>
-          <h1 className="text-2xl font-bold text-[#5D4037] mb-4">需要登录</h1>
+          <h1 className="text-2xl font-bold text-[#5D4037] mb-4">{t('personal.loginRequired')}</h1>
           <p className="text-gray-600 mb-8">
-            登录后才能创建寻根档案
+            {t('personal.loginRequiredDesc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate('/login')}
               className="px-8 py-3 bg-[#E67E22] text-white rounded-xl font-semibold hover:bg-[#D35400] transition-colors"
             >
-              立即登录
+              {t('personal.loginNow')}
             </button>
             <button
               onClick={() => navigate('/')}
               className="px-8 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
             >
-              返回首页
+              {t('personal.backHome')}
             </button>
           </div>
         </div>
@@ -254,8 +257,8 @@ const RootSearchArchiveContent: React.FC = () => {
           <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-8 py-10">
             <div className="text-center">
               <CheckCircle className="w-16 h-16 text-white mx-auto mb-4" />
-              <h1 className="text-2xl font-bold text-white mb-2">档案创建成功！</h1>
-              <p className="text-green-100">您的寻根档案已保存</p>
+              <h1 className="text-2xl font-bold text-white mb-2">{t('personal.archiveCreated')}</h1>
+              <p className="text-green-100">{t('personal.archiveSaved')}</p>
             </div>
           </div>
 
@@ -266,16 +269,16 @@ const RootSearchArchiveContent: React.FC = () => {
                 className="p-6 bg-blue-50 border border-blue-200 rounded-xl text-center hover:bg-blue-100 transition-colors"
               >
                 <Sparkles className="w-10 h-10 text-blue-500 mx-auto mb-3" />
-                <div className="font-semibold text-blue-800">浏览寻亲列表</div>
-                <p className="text-sm text-blue-600">查看其他寻亲信息</p>
+                <div className="font-semibold text-blue-800">{t('personal.browseList')}</div>
+                <p className="text-sm text-blue-600">{t('personal.browseListDesc')}</p>
               </button>
               <button
                 onClick={() => navigate('/')}
                 className="p-6 bg-amber-50 border border-amber-200 rounded-xl text-center hover:bg-amber-100 transition-colors"
               >
                 <BookOpen className="w-10 h-10 text-amber-500 mx-auto mb-3" />
-                <div className="font-semibold text-amber-800">返回首页</div>
-                <p className="text-sm text-amber-600">查看其他功能</p>
+                <div className="font-semibold text-amber-800">{t('personal.backHome')}</div>
+                <p className="text-sm text-amber-600">{t('personal.backHomeDesc')}</p>
               </button>
             </div>
           </div>
@@ -317,9 +320,9 @@ const RootSearchArchiveContent: React.FC = () => {
             >
               <h2 className="text-2xl font-bold text-[#5D4037] mb-6 flex items-center gap-3">
                 <Users className="w-7 h-7" />
-                你想寻找什么？
+                {t('personal.step1Title')}
               </h2>
-              <p className="text-gray-500 mb-6">选择你的寻根目标，系统会推荐相应的策略</p>
+              <p className="text-gray-500 mb-6">{t('personal.step1Desc')}</p>
 
               <div className="space-y-4">
                 {searchTypeOptions.map((option) => (
@@ -363,9 +366,9 @@ const RootSearchArchiveContent: React.FC = () => {
             >
               <h2 className="text-2xl font-bold text-[#5D4037] mb-6 flex items-center gap-3">
                 <Sparkles className="w-7 h-7" />
-                你有什么线索？
+                {t('personal.step2Title')}
               </h2>
-              <p className="text-gray-500 mb-6">选择你现有的材料，每一项都可能是突破口</p>
+              <p className="text-gray-500 mb-6">{t('personal.step2Desc')}</p>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {clueOptions.map((opt) => (
@@ -408,33 +411,33 @@ const RootSearchArchiveContent: React.FC = () => {
             >
               <h2 className="text-2xl font-bold text-[#5D4037] mb-6 flex items-center gap-3">
                 <User className="w-7 h-7" />
-                祖辈基本信息
+                {t('personal.step3Title')}
               </h2>
-              <p className="text-gray-500 mb-6">填写你知道的祖辈信息，不精确也没关系</p>
+              <p className="text-gray-500 mb-6">{t('personal.step3Desc')}</p>
 
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-[#5D4037] font-medium mb-2">
-                      姓氏
+                      {t('personal.surname')}
                     </label>
                     <input
                       type="text"
                       value={formData.surname}
                       onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
-                      placeholder="例如: 陈、林、李"
+                      placeholder={t('personal.surnamePlaceholder')}
                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none"
                     />
                   </div>
                   <div>
                     <label className="block text-[#5D4037] font-medium mb-2">
-                      堂号/郡望 (如果知道)
+                      {t('personal.clanName')}
                     </label>
                     <input
                       type="text"
                       value={formData.clanName}
                       onChange={(e) => setFormData({ ...formData, clanName: e.target.value })}
-                      placeholder="例如: 颍川、西河"
+                      placeholder={t('personal.clanPlaceholder')}
                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none"
                     />
                   </div>
@@ -443,25 +446,25 @@ const RootSearchArchiveContent: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-[#5D4037] font-medium mb-2">
-                      祖辈姓名
+                      {t('personal.ancestorName')}
                     </label>
                     <input
                       type="text"
                       value={formData.ancestorName}
                       onChange={(e) => setFormData({ ...formData, ancestorName: e.target.value })}
-                      placeholder="知道多少填多少"
+                      placeholder={t('personal.ancestorNamePlaceholder')}
                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none"
                     />
                   </div>
                   <div>
                     <label className="block text-[#5D4037] font-medium mb-2">
-                      出生年份 (大约)
+                      {t('personal.birthYear')}
                     </label>
                     <input
                       type="text"
                       value={formData.ancestorBirthYear}
                       onChange={(e) => setFormData({ ...formData, ancestorBirthYear: e.target.value })}
-                      placeholder="例如: 1900, 清光绪年间"
+                      placeholder={t('personal.birthYearPlaceholder')}
                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none"
                     />
                   </div>
@@ -470,31 +473,31 @@ const RootSearchArchiveContent: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-[#5D4037] font-medium mb-2">
-                      下南洋年份
+                      {t('personal.departureYear')}
                     </label>
                     <input
                       type="text"
                       value={formData.ancestorDepartureYear}
                       onChange={(e) => setFormData({ ...formData, ancestorDepartureYear: e.target.value })}
-                      placeholder="例如: 1920, 民国初年"
+                      placeholder={t('personal.departureYearPlaceholder')}
                       className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none"
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-6">
-                  <h3 className="font-semibold text-[#5D4037]">选择地区</h3>
+                  <h3 className="font-semibold text-[#5D4037]">{t('personal.selectRegionTitle')}</h3>
                   <LocationSelect
-                    label="祖籍地/出发地"
+                    label={t('personal.originLabel')}
                     value={originLocation}
                     onChange={setOriginLocation}
-                    placeholder="选择祖辈来自哪里"
+                    placeholder={t('personal.originPlaceholder')}
                   />
                   <LocationSelect
-                    label="目的地/现居地"
+                    label={t('personal.targetLabel')}
                     value={targetLocation}
                     onChange={setTargetLocation}
-                    placeholder="选择祖辈去了哪里"
+                    placeholder={t('personal.targetPlaceholder')}
                   />
                 </div>
 
@@ -502,16 +505,16 @@ const RootSearchArchiveContent: React.FC = () => {
                   <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
                     <h4 className="font-semibold text-purple-800 mb-3 flex items-center gap-2">
                       <Clock className="w-5 h-5" />
-                      📅 代际推算
+                      📅 {t('personal.genTitle')}
                     </h4>
                     {(() => {
                       const gen = calculateGenerations();
                       if (!gen) return null;
                       return (
                         <div className="text-purple-700 text-sm space-y-2">
-                          <p>距离 {formData.ancestorDepartureYear} 年已过去约 <span className="font-bold">{gen.yearsPassed}</span> 年</p>
-                          <p>可能经历了约 <span className="font-bold">{gen.estimatedGen}</span> 代人</p>
-                          <p>祖辈可能出生于 <span className="font-bold">{gen.birthYearRange.min}-{gen.birthYearRange.max}</span> 年</p>
+                          <p>{t('personal.genYearsPassed', { year: formData.ancestorDepartureYear, years: gen.yearsPassed })}</p>
+                          <p>{t('personal.genGenerations', { gen: gen.estimatedGen })}</p>
+                          <p>{t('personal.genBirthRange', { min: gen.birthYearRange.min, max: gen.birthYearRange.max })}</p>
                         </div>
                       );
                     })()}
@@ -531,9 +534,9 @@ const RootSearchArchiveContent: React.FC = () => {
             >
               <h2 className="text-2xl font-bold text-[#5D4037] mb-6 flex items-center gap-3">
                 <ImageIcon className="w-7 h-7" />
-                上传照片和资料
+                {t('personal.step4Title')}
               </h2>
-              <p className="text-gray-500 mb-6">上传侨批、墓碑、老照片等任何可能有帮助的材料</p>
+              <p className="text-gray-500 mb-6">{t('personal.step4Desc')}</p>
 
               {uploadedPhotos.length === 0 ? (
                 <div
@@ -541,8 +544,8 @@ const RootSearchArchiveContent: React.FC = () => {
                   onClick={() => fileInputRef.current?.click()}
                 >
                   <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 font-medium mb-2">点击或拖拽上传照片</p>
-                  <p className="text-sm text-gray-400">支持JPG、PNG格式，最多10张</p>
+                  <p className="text-gray-600 font-medium mb-2">{t('personal.uploadClick')}</p>
+                  <p className="text-sm text-gray-400">{t('personal.uploadFormat')}</p>
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -576,7 +579,7 @@ const RootSearchArchiveContent: React.FC = () => {
                     onClick={() => fileInputRef.current?.click()}
                     className="w-full py-4 border-2 border-dashed border-gray-300 text-gray-500 rounded-xl hover:border-[#E67E22] hover:text-[#E67E22] transition-colors"
                   >
-                    + 添加更多照片
+                    {t('personal.addMorePhotos')}
                   </button>
                   <input
                     ref={fileInputRef}
@@ -592,10 +595,10 @@ const RootSearchArchiveContent: React.FC = () => {
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-[#5D4037] mb-3 flex items-center gap-2">
                   <Mic className="w-5 h-5" />
-                  录制语音
+                  {t('personal.voiceTitle')}
                 </h3>
                 <p className="text-gray-500 text-sm mb-4">
-                  可以录下长辈口述的故事，比文字更方便也更真实
+                  {t('personal.voiceDesc')}
                 </p>
                 
                 <VoiceRecorder onRecordingComplete={handleVoiceRecordingComplete} />
@@ -605,13 +608,13 @@ const RootSearchArchiveContent: React.FC = () => {
                     {voiceRecordings.map((recording) => (
                       <div key={recording.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                         <span className="text-sm text-gray-600">
-                          语音记录 - {Math.floor(recording.duration / 60)}:{(recording.duration % 60).toString().padStart(2, '0')}
+                          {t('personal.voiceItem')} - {Math.floor(recording.duration / 60)}:{(recording.duration % 60).toString().padStart(2, '0')}
                         </span>
                         <button
                           onClick={() => removeVoiceRecording(recording.id)}
                           className="text-red-500 hover:text-red-700 text-sm"
                         >
-                          删除
+                          {t('personal.delete')}
                         </button>
                       </div>
                     ))}
@@ -621,12 +624,12 @@ const RootSearchArchiveContent: React.FC = () => {
 
               <div>
                 <label className="block text-[#5D4037] font-medium mb-2">
-                  家族故事和其他信息
+                  {t('personal.storyLabel')}
                 </label>
                 <textarea
                   value={formData.familyStory}
                   onChange={(e) => setFormData({ ...formData, familyStory: e.target.value })}
-                  placeholder="写下你听说的家族故事，任何小事都可能是线索..."
+                  placeholder={t('personal.storyPlaceholder')}
                   rows={5}
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#E67E22] focus:outline-none resize-none"
                 />
@@ -644,67 +647,67 @@ const RootSearchArchiveContent: React.FC = () => {
             >
               <h2 className="text-2xl font-bold text-[#5D4037] mb-6 flex items-center gap-3">
                 <CheckCircle className="w-7 h-7" />
-                确认你的档案
+                {t('personal.step5Title')}
               </h2>
 
               <div className="space-y-6">
                 <div className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="font-semibold text-gray-700 mb-4">已收集信息</h3>
+                  <h3 className="font-semibold text-gray-700 mb-4">{t('personal.collectedInfo')}</h3>
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
                     {formData.searchType && (
                       <div>
-                        <span className="text-gray-500">寻根目标：</span>
+                        <span className="text-gray-500">{t('personal.fieldGoal')}：</span>
                         <span className="text-gray-800 ml-2">{
-                          formData.searchType === 'find-china' ? '找中国祖籍' : '找南洋亲戚'
+                          formData.searchType === 'find-china' ? t('personal.goalChina') : t('personal.goalOverseas')
                         }</span>
                       </div>
                     )}
                     {formData.surname && (
                       <div>
-                        <span className="text-gray-500">姓氏：</span>
+                        <span className="text-gray-500">{t('personal.fieldSurname')}：</span>
                         <span className="text-gray-800 ml-2">{formData.surname}</span>
                       </div>
                     )}
                     {formData.clanName && (
                       <div>
-                        <span className="text-gray-500">堂号：</span>
+                        <span className="text-gray-500">{t('personal.fieldClan')}：</span>
                         <span className="text-gray-800 ml-2">{formData.clanName}</span>
                       </div>
                     )}
                     {formData.ancestorName && (
                       <div>
-                        <span className="text-gray-500">祖辈姓名：</span>
+                        <span className="text-gray-500">{t('personal.fieldAncestor')}：</span>
                         <span className="text-gray-800 ml-2">{formData.ancestorName}</span>
                       </div>
                     )}
                     {originLocation?.displayName && (
                       <div>
-                        <span className="text-gray-500">祖籍地：</span>
+                        <span className="text-gray-500">{t('personal.fieldOrigin')}：</span>
                         <span className="text-gray-800 ml-2">{originLocation.displayName}</span>
                       </div>
                     )}
                     {targetLocation?.displayName && (
                       <div>
-                        <span className="text-gray-500">目的地：</span>
+                        <span className="text-gray-500">{t('personal.fieldTarget')}：</span>
                         <span className="text-gray-800 ml-2">{targetLocation.displayName}</span>
                       </div>
                     )}
                     {uploadedPhotos.length > 0 && (
                       <div>
-                        <span className="text-gray-500">照片数量：</span>
-                        <span className="text-gray-800 ml-2">{uploadedPhotos.length} 张</span>
+                        <span className="text-gray-500">{t('personal.fieldPhotos')}：</span>
+                        <span className="text-gray-800 ml-2">{uploadedPhotos.length} {t('personal.photosUnit')}</span>
                       </div>
                     )}
                     {voiceRecordings.length > 0 && (
                       <div>
-                        <span className="text-gray-500">语音记录：</span>
-                        <span className="text-gray-800 ml-2">{voiceRecordings.length} 条</span>
+                        <span className="text-gray-500">{t('personal.fieldVoice')}：</span>
+                        <span className="text-gray-800 ml-2">{voiceRecordings.length} {t('personal.voiceUnit')}</span>
                       </div>
                     )}
                   </div>
 
                   <div className="mt-4 pt-4 border-t border-gray-200">
-                    <h4 className="font-semibold text-gray-700 mb-2">线索标签：</h4>
+                    <h4 className="font-semibold text-gray-700 mb-2">{t('personal.clueTags')}：</h4>
                     <div className="flex flex-wrap gap-2">
                       {clueOptions.filter(opt => formData[opt.id as keyof typeof formData]).map(opt => (
                         <span key={opt.id} className="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">
@@ -716,11 +719,11 @@ const RootSearchArchiveContent: React.FC = () => {
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">💡 下一步建议</h4>
+                  <h4 className="font-semibold text-blue-800 mb-3">💡 {t('personal.nextSuggestions')}</h4>
                   <ul className="text-blue-700 text-sm space-y-2">
-                    <li>• 使用智能解析器分析你上传的照片和线索</li>
-                    <li>• 查看知识库，学习如何寻找更多线索</li>
-                    <li>• 查阅东南亚宗亲会黄页，寻找相关组织</li>
+                    <li>• {t('personal.suggestion1')}</li>
+                    <li>• {t('personal.suggestion2')}</li>
+                    <li>• {t('personal.suggestion3')}</li>
                   </ul>
                 </div>
               </div>
@@ -734,7 +737,7 @@ const RootSearchArchiveContent: React.FC = () => {
             className="px-6 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-medium hover:border-gray-300 transition-colors flex items-center gap-2"
           >
             <ChevronLeft className="w-5 h-5" />
-            {currentStep > 1 ? '上一步' : '返回'}
+            {currentStep > 1 ? t('personal.prev') : t('personal.back')}
           </button>
           <button
             onClick={currentStep < 5 ? handleNext : handleSubmit}
@@ -746,11 +749,11 @@ const RootSearchArchiveContent: React.FC = () => {
           >
             {currentStep < 5 ? (
               <>
-                下一步
+                {t('personal.next')}
                 <ChevronRight className="w-5 h-5" />
               </>
             ) : (
-              '创建档案'
+              t('personal.createArchive')
             )}
           </button>
         </div>
@@ -761,6 +764,7 @@ const RootSearchArchiveContent: React.FC = () => {
 
 // 志愿者中心组件
 const VolunteerContent: React.FC = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { 
     notifications, 
@@ -821,7 +825,7 @@ const VolunteerContent: React.FC = () => {
       // 移除被新地区覆盖的更细级冗余项
       const pruned = prev.filter(r => !covers(target, r))
       if (pruned.length >= MAX_REGIONS) {
-        alert(`最多只能添加 ${MAX_REGIONS} 个关注地区`)
+        alert(t('personal.maxRegionsAlert', { max: MAX_REGIONS }))
         return prev
       }
       return [...pruned, target]
@@ -858,7 +862,7 @@ const VolunteerContent: React.FC = () => {
             </div>
             <div>
               <p className="text-2xl font-bold text-[#5D4037]">{unreadCount}</p>
-              <p className="text-gray-500">待处理线索</p>
+              <p className="text-gray-500">{t('personal.pendingClues')}</p>
             </div>
           </div>
         </motion.div>
@@ -875,7 +879,7 @@ const VolunteerContent: React.FC = () => {
             </div>
             <div>
               <p className="text-2xl font-bold text-[#5D4037]">2</p>
-              <p className="text-gray-500">已协助案例</p>
+              <p className="text-gray-500">{t('personal.assistedCases')}</p>
             </div>
           </div>
         </motion.div>
@@ -892,7 +896,7 @@ const VolunteerContent: React.FC = () => {
             </div>
             <div>
               <p className="text-2xl font-bold text-[#5D4037]">{selectedRegions.length}</p>
-              <p className="text-gray-500">关注地区</p>
+              <p className="text-gray-500">{t('personal.followedRegions')}</p>
             </div>
           </div>
         </motion.div>
@@ -909,7 +913,7 @@ const VolunteerContent: React.FC = () => {
             <div className="flex items-center gap-2 mb-4">
               <Settings className="w-5 h-5 text-[#5D4037]" />
               <h2 className="text-lg font-bold text-[#5D4037]">
-                关注地区
+                {t('personal.regionSettings')}
               </h2>
               <span className="ml-auto text-sm text-gray-500">
                 {selectedRegions.length}/{MAX_REGIONS}
@@ -918,7 +922,7 @@ const VolunteerContent: React.FC = () => {
 
             {selectedRegions.length > 0 && (
               <div className="mb-4 p-3 bg-orange-50 rounded-lg">
-                <p className="text-sm font-medium text-[#5D4037] mb-2">已关注：</p>
+                <p className="text-sm font-medium text-[#5D4037] mb-2">{t('personal.followed')}</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedRegions.map((region, index) => (
                     <span key={index} className="inline-flex items-center gap-1 px-3 py-1 bg-[#E67E22] text-white rounded-full text-sm">
@@ -936,7 +940,7 @@ const VolunteerContent: React.FC = () => {
             )}
 
             <p className="text-sm text-gray-500 mb-4">
-              选择你熟悉的地区，接收相关推送
+              {t('personal.regionHint')}
             </p>
 
             <div className="space-y-2 flex-1 overflow-y-auto" style={{maxHeight: '360px'}}>
@@ -971,7 +975,7 @@ const VolunteerContent: React.FC = () => {
                             : 'hover:bg-gray-100 text-gray-700'
                         }`}
                       >
-                        全部 {country.nameCn}
+                        {t('personal.allOf')} {country.nameCn}
                       </button>
 
                       {country.provinces.map(province => (
@@ -1001,7 +1005,7 @@ const VolunteerContent: React.FC = () => {
                                     : 'hover:bg-gray-50 text-gray-600'
                                 }`}
                               >
-                                全部 {province.nameCn}
+                                {t('personal.allOf')} {province.nameCn}
                               </button>
                               {province.cities.map(city => (
                                 <button
@@ -1031,7 +1035,7 @@ const VolunteerContent: React.FC = () => {
             </div>
 
             <button className="w-full mt-4 py-3 bg-[#5D4037] text-white rounded-xl font-medium hover:bg-[#4E342E] transition-colors">
-              保存设置
+              {t('personal.saveSettings')}
             </button>
           </div>
         </motion.div>
@@ -1047,7 +1051,7 @@ const VolunteerContent: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Bell className="w-5 h-5 text-[#E67E22]" />
                 <h2 className="text-lg font-bold text-[#5D4037]">
-                  待处理线索
+                  {t('personal.pendingTitle')}
                 </h2>
                 {unreadCount > 0 && (
                   <span className="px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">
@@ -1060,7 +1064,7 @@ const VolunteerContent: React.FC = () => {
                   onClick={markAllAsRead}
                   className="text-sm text-[#E67E22] hover:underline"
                 >
-                  全部标为已读
+                  {t('personal.markAllRead')}
                 </button>
               )}
             </div>
@@ -1068,7 +1072,7 @@ const VolunteerContent: React.FC = () => {
             {notifications.length === 0 ? (
               <div className="text-center py-12 text-gray-500">
                 <BellOff className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                <p>暂无新线索</p>
+                <p>{t('personal.noClues')}</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -1120,7 +1124,7 @@ const VolunteerContent: React.FC = () => {
             <div className="mt-auto pt-4">
               <div className="p-4 bg-amber-50 rounded-xl border border-amber-200">
                 <p className="text-sm text-amber-800">
-                  💡 提示：当寻亲者发布信息后，系统会自动推送到这里！
+                  💡 {t('personal.cluesHint')}
                 </p>
               </div>
             </div>
@@ -1136,25 +1140,25 @@ const VolunteerContent: React.FC = () => {
       >
         <div className="bg-white rounded-2xl p-6 shadow-lg">
           <h2 className="text-lg font-bold text-[#5D4037] mb-6">
-            我的协助案例
+            {t('personal.myCases')}
           </h2>
           <div className="grid md:grid-cols-2 gap-4 items-stretch">
             <div className="p-4 bg-green-50 rounded-xl border border-green-200 flex flex-col gap-2">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="font-medium text-green-800">成功案例</span>
+                <span className="font-medium text-green-800">{t('personal.caseSuccess')}</span>
               </div>
               <p className="text-sm text-green-700 leading-relaxed">
-                帮助陈氏家族在曼谷找到失散多年的亲人
+                {t('personal.caseSuccessDesc')}
               </p>
             </div>
             <div className="p-4 bg-blue-50 rounded-xl border border-blue-200 flex flex-col gap-2">
               <div className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                <span className="font-medium text-blue-800">进行中</span>
+                <span className="font-medium text-blue-800">{t('personal.caseOngoing')}</span>
               </div>
               <p className="text-sm text-blue-700 leading-relaxed">
-                协助新加坡林氏寻根问祖
+                {t('personal.caseOngoingDesc')}
               </p>
             </div>
           </div>
