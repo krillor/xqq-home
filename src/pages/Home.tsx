@@ -3,17 +3,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, Users, Heart, MapPin, ChevronDown, PlusCircle, UserCheck } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
+import { allPosts } from '../data/postData';
 
 export default function Home() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { userRole, setUserRole } = useAppStore();
 
+  // 从真实帖子数据统计
+  const successCount = allPosts.filter(p => p.status === 'success').length;
+  const seekerCount = new Set(allPosts.map(p => p.seekerName)).size;
+  const regionCount = new Set(allPosts.flatMap(p => [p.originRegion, p.targetRegion])).size;
+
   const stats = [
-    { icon: Search, value: 1240, label: t('home.stats.totalPosts') },
-    { icon: Heart, value: 89, label: t('home.stats.success') },
-    { icon: Users, value: 3600, label: t('home.stats.activeSeekers') },
-    { icon: MapPin, value: 12, label: t('home.stats.regions') },
+    { icon: Search, value: allPosts.length, label: t('home.stats.totalPosts') },
+    { icon: Heart, value: successCount, label: t('home.stats.success') },
+    { icon: Users, value: seekerCount, label: t('home.stats.activeSeekers') },
+    { icon: MapPin, value: regionCount, label: t('home.stats.regions') },
   ];
 
   return (
