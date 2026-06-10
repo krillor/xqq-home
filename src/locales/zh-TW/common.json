@@ -1,4 +1,4 @@
-{
+﻿{
   "appName": "木枝葉尋親橋",
   "appDescription": "連接中國與海外華僑的尋親平台",
   "common": {
@@ -98,7 +98,7 @@
   "search": {
     "title": "尋親列表",
     "pageTitle": "尋親資訊",
-    "subtitle": "瀏覽和搜尋所有尋親資訊，或使用地圖查看分佈",
+    "subtitle": "瀏覽和搜尋所有尋親資訊，找到與您相關的線索",
     "searchPlaceholder": "搜尋姓氏、標題或內容...",
     "filterRegion": "篩選地區",
     "allStatus": "所有狀態",

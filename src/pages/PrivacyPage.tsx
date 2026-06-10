@@ -119,7 +119,7 @@ const PrivacyPage: React.FC = () => {
                   如果您对本隐私政策有任何疑问，或需要行使您的权利，请通过以下方式联系我们：
                 </p>
                 <div className="mt-4 p-4 bg-amber-50 rounded-lg">
-                  <p><strong>邮箱</strong>：contact@xinqinlu.com</p>
+                  <p><strong>邮箱</strong>：contact@xqq.com</p>
                   <p><strong>电话</strong>：400-888-8888</p>
                 </div>
               </div>
