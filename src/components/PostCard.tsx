@@ -43,9 +43,15 @@ export default function PostCard({
           )}
           <div className="p-6 flex-1">
             <div className="flex items-start justify-between mb-3">
-              <span className="text-2xl font-bold text-[#E67E22]">
-                {post.surname}{t('postCard.familySuffix')}
-              </span>
+              {post.surname ? (
+                <span className="text-2xl font-bold text-[#E67E22]">
+                  {post.surname}{t('postCard.familySuffix')}
+                </span>
+              ) : (
+                <span className="text-base font-bold text-[#5D4037] line-clamp-1">
+                  {post.originRegion} → {post.targetRegion}
+                </span>
+              )}
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(post.status)}`}>
                 {getStatusText(post.status, foundLabel, searchingLabel)}
               </span>

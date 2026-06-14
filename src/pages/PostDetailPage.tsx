@@ -71,9 +71,11 @@ const PostDetailPage: React.FC = () => {
                 <div className="p-8 border-b border-gray-100">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <span className="text-3xl font-bold text-[#E67E22]">
-                        {post.surname}{t('postCard.familySuffix')}
-                      </span>
+                      {post.surname && (
+                        <span className="text-3xl font-bold text-[#E67E22]">
+                          {post.surname}{t('postCard.familySuffix')}
+                        </span>
+                      )}
                     </div>
                     <span className={`px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(post.status)}`}>
                       {getStatusText(post.status, t('search.status.found'), t('search.status.searching'))}
@@ -141,7 +143,15 @@ const PostDetailPage: React.FC = () => {
                   
                   <div>
                     <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.description')}</h3>
-                    <p className="text-gray-600 leading-relaxed">{post.description}</p>
+                    {post.story ? (
+                      <div className="space-y-4 text-gray-600 leading-relaxed">
+                        {post.story.map((para, i) => (
+                          <p key={i}>{para}</p>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-gray-600 leading-relaxed">{post.description}</p>
+                    )}
                   </div>
                   
                   {post.familyStory && (
