@@ -398,6 +398,15 @@ const RootSearchArchiveContent: React.FC = () => {
                   </button>
                 ))}
               </div>
+
+              <button
+                type="button"
+                onClick={() => navigate('/decode')}
+                className="mt-6 inline-flex items-center gap-2 text-sm text-[#E67E22] hover:text-[#D35400] transition-colors"
+              >
+                <Sparkles className="w-4 h-4" />
+                {t('personal.decodeHint')} →
+              </button>
             </motion.div>
           )}
 

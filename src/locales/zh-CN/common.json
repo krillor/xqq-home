@@ -31,7 +31,8 @@
     "successStories": "成功案例",
     "notifications": "通知",
     "login": "登录",
-    "logout": "退出"
+    "logout": "退出",
+    "decode": "线索解码"
   },
   "footer": {
     "description": "从自己的寻亲经历出发，我建起了这个网站。希望它能化作一座桥，帮更多华侨华人跨越山海，重新连接那份离散的亲情与血脉，也以此献给我远在天国的姥姥姥爷。",
@@ -79,12 +80,12 @@
     "mapSubtitle": "点击地图上的标记，查看各地区的寻亲信息",
     "howTitle": "如何开始",
     "howSubtitle": "简单三步，让爱团圆",
-    "step1Title": "选择角色",
-    "step1Desc": "您是要寻亲，还是想作为志愿者帮助他人？",
-    "step2Title": "发布信息",
-    "step2Desc": "填写您的家族故事，上传老照片，系统会智能识别位置信息",
-    "step3Title": "连接团圆",
-    "step3Desc": "信息将推送给对应地区的志愿者，获得更多帮助",
+    "step1Title": "解码线索",
+    "step1Desc": "把方言姓氏、旧地名、侨批等碎片，解码成可检索的中文信息",
+    "step2Title": "建立档案",
+    "step2Desc": "记录祖辈信息与家族故事，系统自动推算代际、收窄祖籍范围",
+    "step3Title": "对接寻根",
+    "step3Desc": "连接宗亲会、侨联与志愿者，让每一条线索找到归处",
     "ctaTitle": "让爱不再等待",
     "ctaDesc": "每一条信息，都承载着一个家庭的期盼。开始您的寻亲之旅，或者成为志愿者，帮助更多家庭团圆。",
     "ctaButton": "立即开始",
@@ -93,7 +94,9 @@
       "success": "成功案例",
       "activeSeekers": "活跃用户",
       "regions": "覆盖地区"
-    }
+    },
+    "heroDecodeCta": "解码我的线索",
+    "heroArchiveCta": "建立家族档案"
   },
   "search": {
     "title": "寻亲列表",
@@ -190,8 +193,8 @@
     "saveSettings": "保存设置"
   },
   "tools": {
-    "title": "智能线索解析器",
-    "subtitle": "上传照片、输入模糊线索，让 AI 帮你解析可检索的寻根信息",
+    "title": "寻根线索解码",
+    "subtitle": "把零碎的家族线索，解码成可检索的寻根信息",
     "tabOcr": "照片 / OCR 解析",
     "tabOcrSub": "侨批、墓碑、老照片",
     "tabLocation": "模糊地名匹配",
@@ -458,6 +461,7 @@
     "caseSuccess": "成功案例",
     "caseSuccessDesc": "帮助陈氏家族在曼谷找到失散多年的亲人",
     "caseOngoing": "进行中",
-    "caseOngoingDesc": "协助新加坡林氏寻根问祖"
+    "caseOngoingDesc": "协助新加坡林氏寻根问祖",
+    "decodeHint": "不确定线索怎么填？用线索解码工具试试"
   }
 }

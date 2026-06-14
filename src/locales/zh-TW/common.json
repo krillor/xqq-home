@@ -31,7 +31,8 @@
     "successStories": "成功案例",
     "notifications": "通知",
     "login": "登入",
-    "logout": "登出"
+    "logout": "登出",
+    "decode": "線索解碼"
   },
   "footer": {
     "description": "基於自身經歷開發此網站，希望幫助更多的華僑華人跨越山海，重新連接失散的親情與血脈。",
@@ -79,12 +80,12 @@
     "mapSubtitle": "點擊地圖上的標記，查看各地區的尋親資訊",
     "howTitle": "如何開始",
     "howSubtitle": "簡單三步，讓愛團圓",
-    "step1Title": "選擇角色",
-    "step1Desc": "您是要尋親，還是想作為志願者幫助他人？",
-    "step2Title": "發布資訊",
-    "step2Desc": "填寫您的家族故事，上傳老照片，系統會智慧識別位置資訊",
-    "step3Title": "連接團圓",
-    "step3Desc": "資訊將推送給對應地區的志願者，獲得更多幫助",
+    "step1Title": "解碼線索",
+    "step1Desc": "把方言姓氏、舊地名、僑批等碎片，解碼成可檢索的中文資訊",
+    "step2Title": "建立檔案",
+    "step2Desc": "記錄祖輩資訊與家族故事，系統自動推算代際、收窄祖籍範圍",
+    "step3Title": "對接尋根",
+    "step3Desc": "連接宗親會、僑聯與志願者，讓每一條線索找到歸處",
     "ctaTitle": "讓愛不再等待",
     "ctaDesc": "每一條資訊，都承載著一個家庭的期盼。開始您的尋親之旅，或者成為志願者，幫助更多家庭團圓。",
     "ctaButton": "立即開始",
@@ -93,7 +94,9 @@
       "success": "成功案例",
       "activeSeekers": "活躍用戶",
       "regions": "覆蓋地區"
-    }
+    },
+    "heroDecodeCta": "解碼我的線索",
+    "heroArchiveCta": "建立家族檔案"
   },
   "search": {
     "title": "尋親列表",
@@ -190,8 +193,8 @@
     "saveSettings": "儲存設定"
   },
   "tools": {
-    "title": "智慧線索解析器",
-    "subtitle": "上傳照片、輸入模糊線索，讓 AI 幫你解析可檢索的尋根資訊",
+    "title": "尋根線索解碼",
+    "subtitle": "把零碎的家族線索，解碼成可檢索的尋根資訊",
     "tabOcr": "照片 / OCR 解析",
     "tabOcrSub": "僑批、墓碑、老照片",
     "tabLocation": "模糊地名匹配",
@@ -454,6 +457,7 @@
     "caseSuccess": "成功案例",
     "caseSuccessDesc": "幫助陳氏家族在曼谷找到失散多年的親人",
     "caseOngoing": "進行中",
-    "caseOngoingDesc": "協助新加坡林氏尋根問祖"
+    "caseOngoingDesc": "協助新加坡林氏尋根問祖",
+    "decodeHint": "不確定線索怎麼填？用線索解碼工具試試"
   }
 }

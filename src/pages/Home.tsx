@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, Users, Heart, MapPin, ChevronDown, PlusCircle, UserCheck } from 'lucide-react';
+import { Search, Users, Heart, MapPin, ChevronDown, PlusCircle, ScanText } from 'lucide-react';
 import { useAppStore } from '../store/appStore';
 import { allPosts } from '../data/postData';
 
@@ -47,20 +47,26 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => { setUserRole('seeker'); navigate('/personal?tab=archive'); }}
+                onClick={() => navigate('/decode')}
                 className="px-8 py-4 bg-[#E67E22] text-white rounded-xl font-semibold text-lg hover:bg-[#D35400] transition-all shadow-lg flex items-center justify-center gap-2"
               >
-                <PlusCircle className="w-5 h-5" />
-                {t('navigation.publish')}
+                <ScanText className="w-5 h-5" />
+                {t('home.heroDecodeCta')}
               </button>
               <button
-                onClick={() => { setUserRole('volunteer'); navigate('/personal?tab=volunteer'); }}
+                onClick={() => { setUserRole('seeker'); navigate('/personal?tab=archive'); }}
                 className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-xl font-semibold text-lg hover:bg-white/30 transition-all shadow-lg border border-white/30 flex items-center justify-center gap-2"
               >
-                <UserCheck className="w-5 h-5" />
-                {t('home.joinVolunteer')}
+                <PlusCircle className="w-5 h-5" />
+                {t('home.heroArchiveCta')}
               </button>
             </div>
+            <button
+              onClick={() => { setUserRole('volunteer'); navigate('/personal?tab=volunteer'); }}
+              className="mt-5 text-orange-100 hover:text-white text-sm underline underline-offset-4 transition-colors"
+            >
+              {t('home.joinVolunteer')}
+            </button>
           </motion.div>
         </div>
       </section>

@@ -31,7 +31,8 @@
     "successStories": "Success Stories",
     "notifications": "Notifications",
     "login": "Log In",
-    "logout": "Log Out"
+    "logout": "Log Out",
+    "decode": "Decode Clues"
   },
   "footer": {
     "description": "Built from a personal journey, this platform helps overseas Chinese reconnect across oceans with lost family and roots.",
@@ -59,12 +60,12 @@
     "mapSubtitle": "Click a marker on the map to view reunion posts in each region",
     "howTitle": "How It Works",
     "howSubtitle": "Three simple steps to reunite families",
-    "step1Title": "Choose a Role",
-    "step1Desc": "Are you searching for family, or volunteering to help others?",
-    "step2Title": "Post Your Story",
-    "step2Desc": "Share your family story and upload old photos; the system detects location clues automatically",
-    "step3Title": "Reconnect",
-    "step3Desc": "Your post is pushed to volunteers in the matching region for more help",
+    "step1Title": "Decode Clues",
+    "step1Desc": "Turn fragments — dialect surnames, old place names, qiaopi letters — into searchable Chinese information",
+    "step2Title": "Build Your Archive",
+    "step2Desc": "Record ancestor details and family stories; the system estimates generations and narrows your ancestral region",
+    "step3Title": "Connect & Trace",
+    "step3Desc": "Reach clan associations, overseas Chinese federations, and volunteers so every clue finds its way",
     "ctaTitle": "Don't Let Love Wait",
     "ctaDesc": "Every post carries a family's hope. Start your search, or become a volunteer to help more families reunite.",
     "ctaButton": "Get Started",
@@ -73,7 +74,9 @@
       "success": "Success Stories",
       "activeSeekers": "Active Users",
       "regions": "Regions"
-    }
+    },
+    "heroDecodeCta": "Decode my clues",
+    "heroArchiveCta": "Build family archive"
   },
   "search": {
     "title": "Search List",
@@ -144,8 +147,8 @@
     "successDesc": "Your post is being reviewed and will appear on the platform once approved"
   },
   "tools": {
-    "title": "Smart Clue Parser",
-    "subtitle": "Upload photos or enter fuzzy clues, and let AI extract searchable roots information",
+    "title": "Roots Clue Decoder",
+    "subtitle": "Turn scattered family clues into searchable roots-tracing information",
     "tabOcr": "Photo / OCR",
     "tabOcrSub": "Remittance letters, tombstones, old photos",
     "tabLocation": "Fuzzy Place Match",
@@ -405,6 +408,7 @@
     "caseSuccess": "Success",
     "caseSuccessDesc": "Helped the Chen family reunite with long-lost relatives in Bangkok",
     "caseOngoing": "Ongoing",
-    "caseOngoingDesc": "Assisting the Lin family in Singapore to trace their roots"
+    "caseOngoingDesc": "Assisting the Lin family in Singapore to trace their roots",
+    "decodeHint": "Not sure how to fill in a clue? Try the clue decoder"
   }
 }
