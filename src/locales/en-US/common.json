@@ -25,7 +25,7 @@
     "roleSelection": "Select Role",
     "volunteer": "Volunteer",
     "volunteerCenter": "Volunteer Center",
-    "profile": "Profile",
+    "profile": "My Archive",
     "tools": "Toolbox",
     "associations": "Organizations",
     "successStories": "Success Stories",
@@ -307,7 +307,7 @@
     "completed": "Recording completed"
   },
   "personal": {
-    "title": "Personal Center",
+    "title": "My Roots Archive",
     "tabPublish": "Publish Post",
     "tabVolunteer": "Volunteer Center",
     "loginRequired": "Login required",
@@ -409,6 +409,9 @@
     "caseSuccessDesc": "Helped the Chen family reunite with long-lost relatives in Bangkok",
     "caseOngoing": "Ongoing",
     "caseOngoingDesc": "Assisting the Lin family in Singapore to trace their roots",
-    "decodeHint": "Not sure how to fill in a clue? Try the clue decoder"
+    "decodeHint": "Not sure how to fill in a clue? Try the clue decoder",
+    "archiveIntro": "Build your own roots-tracing archive. Data is stored only in your local browser and can be exported anytime — the platform holds nothing.",
+    "archiveSavedLocal": "Saved to your local browser and exportable anytime. The platform holds none of your data.",
+    "exportArchive": "Export archive (JSON)"
   }
 }

@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, MapPin, Clock, User, MessageCircle, Heart, Share2, AlertCircle } from 'lucide-react';
-import CommentsSection from '../components/CommentsSection';
 import { getStatusColor, getStatusText } from '../lib/utils';
 import { getPostById } from '../data/postData';
 
@@ -212,16 +211,6 @@ const PostDetailPage: React.FC = () => {
               </div>
             </div>
           </div>
-          
-          {/* Comments Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-3 mt-8"
-          >
-            <CommentsSection postId={id || '1'} />
-          </motion.div>
         </motion.div>
       </div>
     </div>

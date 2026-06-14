@@ -2,13 +2,11 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, Users, Heart, MapPin, ChevronDown, PlusCircle, ScanText } from 'lucide-react';
-import { useAppStore } from '../store/appStore';
 import { allPosts } from '../data/postData';
 
 export default function Home() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { userRole, setUserRole } = useAppStore();
 
   // 从真实帖子数据统计
   const successCount = allPosts.filter(p => p.status === 'success').length;
@@ -54,19 +52,13 @@ export default function Home() {
                 {t('home.heroDecodeCta')}
               </button>
               <button
-                onClick={() => { setUserRole('seeker'); navigate('/personal?tab=archive'); }}
+                onClick={() => navigate('/personal')}
                 className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-xl font-semibold text-lg hover:bg-white/30 transition-all shadow-lg border border-white/30 flex items-center justify-center gap-2"
               >
                 <PlusCircle className="w-5 h-5" />
                 {t('home.heroArchiveCta')}
               </button>
             </div>
-            <button
-              onClick={() => { setUserRole('volunteer'); navigate('/personal?tab=volunteer'); }}
-              className="mt-5 text-orange-100 hover:text-white text-sm underline underline-offset-4 transition-colors"
-            >
-              {t('home.joinVolunteer')}
-            </button>
           </motion.div>
         </div>
       </section>

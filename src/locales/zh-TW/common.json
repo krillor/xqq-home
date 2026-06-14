@@ -25,7 +25,7 @@
     "roleSelection": "選擇角色",
     "volunteer": "志願者",
     "volunteerCenter": "志願者中心",
-    "profile": "個人中心",
+    "profile": "尋根檔案",
     "tools": "工具箱",
     "associations": "官方組織",
     "successStories": "成功案例",
@@ -356,7 +356,7 @@
     "completed": "錄音已完成"
   },
   "personal": {
-    "title": "個人中心",
+    "title": "尋根檔案",
     "tabPublish": "發布尋親",
     "tabVolunteer": "志願者中心",
     "loginRequired": "需要登入",
@@ -458,6 +458,9 @@
     "caseSuccessDesc": "幫助陳氏家族在曼谷找到失散多年的親人",
     "caseOngoing": "進行中",
     "caseOngoingDesc": "協助新加坡林氏尋根問祖",
-    "decodeHint": "不確定線索怎麼填？用線索解碼工具試試"
+    "decodeHint": "不確定線索怎麼填？用線索解碼工具試試",
+    "archiveIntro": "建立你自己的尋根檔案。資料只保存在你的本地瀏覽器，可隨時匯出，平台不持有任何資訊。",
+    "archiveSavedLocal": "已保存到你的本地瀏覽器，可隨時匯出。平台不持有你的任何資料。",
+    "exportArchive": "匯出檔案（JSON）"
   }
 }

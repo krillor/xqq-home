@@ -1,29 +1,19 @@
 import React, { useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Upload, X, Image as ImageIcon, MapPin, Calendar, 
-  CheckCircle, ChevronLeft, ChevronRight, User, 
-  Users, Building2, Clock, Sparkles, 
-  BookOpen, FileText, Search, Mic, Bell, BellOff, BellRing, Settings, MessageCircle,
-  ChevronDown, ChevronUp, Trash2
+import {
+  Upload, X, Image as ImageIcon, MapPin,
+  CheckCircle, ChevronLeft, ChevronRight, User,
+  Users, Building2, Clock, Sparkles,
+  BookOpen, FileText, Search, Mic
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useAppStore } from '../store/appStore'
 import LocationSelect from '../components/LocationSelect'
 import VoiceRecorder from '../components/VoiceRecorder'
-import { regionData, regionGroups, Country, Province, City } from '../data/regionData'
 
 const PersonalCenter: React.FC = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
-  const { userRole } = useAppStore()
-  // 根据角色决定默认 tab：volunteer 角色默认进志愿者中心，其余进寻根档案
-  const defaultTab = searchParams.get('tab') === 'volunteer' ? 'volunteer' :
-                     searchParams.get('tab') === 'archive' ? 'archive' :
-                     userRole === 'volunteer' ? 'volunteer' : 'archive'
-  const [activeTab, setActiveTab] = useState<'archive' | 'volunteer'>(defaultTab)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 pt-24 pb-12">
@@ -33,39 +23,11 @@ const PersonalCenter: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-6">{t('personal.title')}</h1>
-
-          <div className="inline-flex bg-white rounded-xl shadow-md p-1 gap-1">
-            <button
-              onClick={() => setActiveTab('archive')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                activeTab === 'archive'
-                  ? 'bg-[#E67E22] text-white shadow-md'
-                  : 'text-[#5D4037] hover:bg-orange-50'
-              }`}
-            >
-              {t('personal.tabPublish')}
-            </button>
-            <button
-              onClick={() => setActiveTab('volunteer')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                activeTab === 'volunteer'
-                  ? 'bg-[#E67E22] text-white shadow-md'
-                  : 'text-[#5D4037] hover:bg-orange-50'
-              }`}
-            >
-              {t('personal.tabVolunteer')}
-            </button>
-          </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#5D4037] mb-2">{t('personal.title')}</h1>
+          <p className="text-[#8D6E63]">{t('personal.archiveIntro')}</p>
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          {activeTab === 'archive' ? (
-            <RootSearchArchiveContent key="archive" />
-          ) : (
-            <VolunteerContent key="volunteer" />
-          )}
-        </AnimatePresence>
+        <RootSearchArchiveContent />
       </div>
     </div>
   )
@@ -75,7 +37,7 @@ const PersonalCenter: React.FC = () => {
 const RootSearchArchiveContent: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { uploadedPhotos, addUploadedPhoto, removeUploadedPhoto, clearUploadedPhotos, addPost, isLoggedIn } = useAppStore()
+  const { uploadedPhotos, addUploadedPhoto, removeUploadedPhoto, clearUploadedPhotos } = useAppStore()
   
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
@@ -197,53 +159,49 @@ const RootSearchArchiveContent: React.FC = () => {
     setVoiceRecordings(prev => prev.filter(r => r.id !== id))
   }
 
-  const handleSubmit = () => {
+  const buildArchive = () => {
     const originDisplay = originLocation?.displayName || t('personal.unknown')
     const targetDisplay = targetLocation?.displayName || t('personal.unknown')
-    
-    addPost({
-      title: `${formData.surname || '某'}氏寻根 - ${originDisplay} → ${targetDisplay}`,
-      description: formData.familyStory || formData.additionalNotes || '',
+    const clueTags = clueOptions
+      .filter(opt => formData[opt.id as keyof typeof formData])
+      .map(opt => opt.label)
+    return {
+      savedAt: new Date().toISOString(),
+      searchType: formData.searchType,
       surname: formData.surname,
-      originRegion: originDisplay,
-      targetRegion: targetDisplay,
-      seekerType: formData.searchType === 'find-china' ? 'overseas-china' : 'china-overseas',
-      status: 'active',
-      photos: uploadedPhotos,
-      createdBy: currentStep === 1 ? t('personal.anonymous') : formData.ancestorName,
-    })
-    clearUploadedPhotos()
-    setCurrentStep(6)
+      clanName: formData.clanName,
+      ancestorName: formData.ancestorName,
+      ancestorBirthYear: formData.ancestorBirthYear,
+      ancestorDepartureYear: formData.ancestorDepartureYear,
+      origin: originDisplay,
+      target: targetDisplay,
+      familyStory: formData.familyStory,
+      additionalNotes: formData.additionalNotes,
+      clues: clueTags,
+      photoCount: uploadedPhotos.length,
+    }
   }
 
-  if (!isLoggedIn) {
-    return (
-      <div className="max-w-md mx-auto">
-        <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-          <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <User className="w-8 h-8 text-purple-600" />
-          </div>
-          <h1 className="text-2xl font-bold text-[#5D4037] mb-4">{t('personal.loginRequired')}</h1>
-          <p className="text-gray-600 mb-8">
-            {t('personal.loginRequiredDesc')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => navigate('/login')}
-              className="px-8 py-3 bg-[#E67E22] text-white rounded-xl font-semibold hover:bg-[#D35400] transition-colors"
-            >
-              {t('personal.loginNow')}
-            </button>
-            <button
-              onClick={() => navigate('/')}
-              className="px-8 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
-            >
-              {t('personal.backHome')}
-            </button>
-          </div>
-        </div>
-      </div>
-    )
+  const exportArchive = () => {
+    const data = JSON.stringify(buildArchive(), null, 2)
+    const blob = new Blob([data], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `roots-archive-${formData.surname || 'archive'}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const handleSubmit = () => {
+    // 仅保存在用户本地浏览器，平台不持有任何数据
+    try {
+      localStorage.setItem('rootsArchive', JSON.stringify(buildArchive()))
+    } catch (e) {
+      // localStorage 不可用时忽略，仍可导出
+    }
+    clearUploadedPhotos()
+    setCurrentStep(6)
   }
 
   if (currentStep === 6) {
@@ -258,19 +216,26 @@ const RootSearchArchiveContent: React.FC = () => {
             <div className="text-center">
               <CheckCircle className="w-16 h-16 text-white mx-auto mb-4" />
               <h1 className="text-2xl font-bold text-white mb-2">{t('personal.archiveCreated')}</h1>
-              <p className="text-green-100">{t('personal.archiveSaved')}</p>
+              <p className="text-green-100">{t('personal.archiveSavedLocal')}</p>
             </div>
           </div>
 
           <div className="p-8 space-y-6">
+            <button
+              onClick={exportArchive}
+              className="w-full p-5 bg-[#E67E22] text-white rounded-xl text-center font-semibold hover:bg-[#D35400] transition-colors flex items-center justify-center gap-2"
+            >
+              <Upload className="w-5 h-5 rotate-180" />
+              {t('personal.exportArchive')}
+            </button>
             <div className="grid md:grid-cols-2 gap-6">
               <button
-                onClick={() => navigate('/search')}
+                onClick={() => navigate('/decode')}
                 className="p-6 bg-blue-50 border border-blue-200 rounded-xl text-center hover:bg-blue-100 transition-colors"
               >
                 <Sparkles className="w-10 h-10 text-blue-500 mx-auto mb-3" />
-                <div className="font-semibold text-blue-800">{t('personal.browseList')}</div>
-                <p className="text-sm text-blue-600">{t('personal.browseListDesc')}</p>
+                <div className="font-semibold text-blue-800">{t('navigation.decode')}</div>
+                <p className="text-sm text-blue-600">{t('tools.subtitle')}</p>
               </button>
               <button
                 onClick={() => navigate('/')}
@@ -767,412 +732,6 @@ const RootSearchArchiveContent: React.FC = () => {
           </button>
         </div>
       </div>
-    </div>
-  )
-}
-
-// 志愿者中心组件
-const VolunteerContent: React.FC = () => {
-  const { t } = useTranslation()
-  const navigate = useNavigate()
-  const { 
-    notifications, 
-    posts,
-    markNotificationAsRead,
-    markAllAsRead,
-    unreadCount
-  } = useAppStore()
-
-  const [selectedRegions, setSelectedRegions] = useState<Array<{country: Country, province?: Province, city?: City}>>([])
-  const [expandedCountries, setExpandedCountries] = useState<string[]>([])
-  const [expandedProvinces, setExpandedProvinces] = useState<string[]>([])
-
-  const MAX_REGIONS = 10
-
-  const toggleCountry = (countryId: string) => {
-    setExpandedCountries(prev => 
-      prev.includes(countryId)
-        ? prev.filter(id => id !== countryId)
-        : [...prev, countryId]
-    )
-  }
-
-  const toggleProvince = (provinceId: string) => {
-    setExpandedProvinces(prev => 
-      prev.includes(provinceId)
-        ? prev.filter(id => id !== provinceId)
-        : [...prev, provinceId]
-    )
-  }
-
-  type RegionSel = { country: Country, province?: Province, city?: City }
-
-  // 判断 a 是否覆盖 b（a 是 b 的上级或与 b 相同）
-  const covers = (a: RegionSel, b: RegionSel): boolean => {
-    if (a.country.id !== b.country.id) return false
-    if (!a.province) return true            // a = 整个国家，覆盖该国一切
-    if (!b.province) return false           // b 是整国，a 只是省 → 不覆盖
-    if (a.province.id !== b.province.id) return false
-    if (!a.city) return true                // a = 整个省，覆盖该省一切
-    if (!b.city) return false               // b 是整省，a 只是市 → 不覆盖
-    return a.city.id === b.city.id
-  }
-
-  // 该地区自身或其上级是否已被选中（已选中则禁用，避免层级重复）
-  const isRegionSelected = (country: Country, province?: Province, city?: City) => {
-    const target: RegionSel = { country, province, city }
-    return selectedRegions.some(region => covers(region, target))
-  }
-
-  const addRegion = (country: Country, province?: Province, city?: City) => {
-    const target: RegionSel = { country, province, city }
-    // 自身或上级已选，直接忽略
-    if (selectedRegions.some(r => covers(r, target))) {
-      return
-    }
-    setSelectedRegions(prev => {
-      // 移除被新地区覆盖的更细级冗余项
-      const pruned = prev.filter(r => !covers(target, r))
-      if (pruned.length >= MAX_REGIONS) {
-        alert(t('personal.maxRegionsAlert', { max: MAX_REGIONS }))
-        return prev
-      }
-      return [...pruned, target]
-    })
-  }
-
-  const removeRegion = (index: number) => {
-    setSelectedRegions(prev => prev.filter((_, i) => i !== index))
-  }
-
-  const getRegionDisplay = (region: {country: Country, province?: Province, city?: City}) => {
-    let display = region.country.nameCn
-    if (region.province) {
-      display += ` - ${region.province.nameCn}`
-    }
-    if (region.city) {
-      display += ` - ${region.city.nameCn}`
-    }
-    return display
-  }
-
-  return (
-    <div className="max-w-6xl mx-auto">
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-white rounded-2xl p-6 shadow-lg"
-        >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-              <BellRing className="w-6 h-6 text-[#E67E22]" />
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-[#5D4037]">{unreadCount}</p>
-              <p className="text-gray-500">{t('personal.pendingClues')}</p>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white rounded-2xl p-6 shadow-lg"
-        >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-              <CheckCircle className="w-6 h-6 text-green-600" />
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-[#5D4037]">2</p>
-              <p className="text-gray-500">{t('personal.assistedCases')}</p>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="bg-white rounded-2xl p-6 shadow-lg"
-        >
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-              <User className="w-6 h-6 text-blue-600" />
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-[#5D4037]">{selectedRegions.length}</p>
-              <p className="text-gray-500">{t('personal.followedRegions')}</p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-8 items-stretch">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 }}
-          className="md:col-span-1 flex flex-col"
-        >
-          <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col flex-1">
-            <div className="flex items-center gap-2 mb-4">
-              <Settings className="w-5 h-5 text-[#5D4037]" />
-              <h2 className="text-lg font-bold text-[#5D4037]">
-                {t('personal.regionSettings')}
-              </h2>
-              <span className="ml-auto text-sm text-gray-500">
-                {selectedRegions.length}/{MAX_REGIONS}
-              </span>
-            </div>
-
-            {selectedRegions.length > 0 && (
-              <div className="mb-4 p-3 bg-orange-50 rounded-lg">
-                <p className="text-sm font-medium text-[#5D4037] mb-2">{t('personal.followed')}</p>
-                <div className="flex flex-wrap gap-2">
-                  {selectedRegions.map((region, index) => (
-                    <span key={index} className="inline-flex items-center gap-1 px-3 py-1 bg-[#E67E22] text-white rounded-full text-sm">
-                      {getRegionDisplay(region)}
-                      <button
-                        onClick={() => removeRegion(index)}
-                        className="ml-1 hover:bg-white/20 rounded-full"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <p className="text-sm text-gray-500 mb-4">
-              {t('personal.regionHint')}
-            </p>
-
-            <div className="space-y-2 flex-1 overflow-y-auto" style={{maxHeight: '360px'}}>
-              {regionGroups.map(group => {
-                const groupCountries = regionData.filter(c => (c.group ?? '') === group)
-                if (groupCountries.length === 0) return null
-                return (
-                  <div key={group} className="space-y-2">
-                    <div className="px-1 pt-1 text-xs font-semibold text-amber-700">{group}</div>
-                    {groupCountries.map(country => (
-                <div key={country.id} className="border border-gray-200 rounded-lg overflow-hidden">
-                  <button
-                    onClick={() => toggleCountry(country.id)}
-                    className="w-full px-4 py-3 text-left flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors"
-                  >
-                    <span className="font-medium text-gray-800">{country.nameCn}</span>
-                    {expandedCountries.includes(country.id) ? (
-                      <ChevronUp className="w-4 h-4 text-gray-500" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-gray-500" />
-                    )}
-                  </button>
-
-                  {expandedCountries.includes(country.id) && (
-                    <div className="p-2 bg-white border-t border-gray-100">
-                      <button
-                        onClick={() => addRegion(country)}
-                        disabled={isRegionSelected(country)}
-                        className={`w-full px-3 py-2 text-sm text-left rounded-md mb-1 transition-colors ${
-                          isRegionSelected(country)
-                            ? 'bg-green-100 text-green-700 cursor-not-allowed'
-                            : 'hover:bg-gray-100 text-gray-700'
-                        }`}
-                      >
-                        {t('personal.allOf')} {country.nameCn}
-                      </button>
-
-                      {country.provinces.map(province => (
-                        <div key={province.id} className="ml-3">
-                          <button
-                            onClick={() => toggleProvince(province.id)}
-                            className="w-full px-3 py-2 text-sm text-left flex items-center justify-between rounded-md hover:bg-gray-50 transition-colors"
-                          >
-                            <span className="text-gray-700">{province.nameCn}</span>
-                            {province.cities.length > 0 && (
-                              expandedProvinces.includes(province.id) ? (
-                                <ChevronUp className="w-3 h-3 text-gray-400" />
-                              ) : (
-                                <ChevronDown className="w-3 h-3 text-gray-400" />
-                              )
-                            )}
-                          </button>
-
-                          {expandedProvinces.includes(province.id) && province.cities.length > 0 && (
-                            <div className="ml-3 py-1">
-                              <button
-                                onClick={() => addRegion(country, province)}
-                                disabled={isRegionSelected(country, province)}
-                                className={`w-full px-3 py-1.5 text-xs text-left rounded-md mb-1 transition-colors ${
-                                  isRegionSelected(country, province)
-                                    ? 'bg-green-100 text-green-700 cursor-not-allowed'
-                                    : 'hover:bg-gray-50 text-gray-600'
-                                }`}
-                              >
-                                {t('personal.allOf')} {province.nameCn}
-                              </button>
-                              {province.cities.map(city => (
-                                <button
-                                  key={city.id}
-                                  onClick={() => addRegion(country, province, city)}
-                                  disabled={isRegionSelected(country, province, city)}
-                                  className={`w-full px-3 py-1.5 text-xs text-left rounded-md mb-1 transition-colors ${
-                                    isRegionSelected(country, province, city)
-                                      ? 'bg-green-100 text-green-700 cursor-not-allowed'
-                                      : 'hover:bg-gray-50 text-gray-600'
-                                  }`}
-                                >
-                                  {city.nameCn}
-                                </button>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                    ))}
-                  </div>
-                )
-              })}
-            </div>
-
-            <button className="w-full mt-4 py-3 bg-[#5D4037] text-white rounded-xl font-medium hover:bg-[#4E342E] transition-colors">
-              {t('personal.saveSettings')}
-            </button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5 }}
-          className="md:col-span-2 flex flex-col"
-        >
-          <div className="bg-white rounded-2xl p-6 shadow-lg flex flex-col flex-1">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Bell className="w-5 h-5 text-[#E67E22]" />
-                <h2 className="text-lg font-bold text-[#5D4037]">
-                  {t('personal.pendingTitle')}
-                </h2>
-                {unreadCount > 0 && (
-                  <span className="px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">
-                    {unreadCount}
-                  </span>
-                )}
-              </div>
-              {unreadCount > 0 && (
-                <button
-                  onClick={markAllAsRead}
-                  className="text-sm text-[#E67E22] hover:underline"
-                >
-                  {t('personal.markAllRead')}
-                </button>
-              )}
-            </div>
-
-            {notifications.length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
-                <BellOff className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                <p>{t('personal.noClues')}</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {notifications.map((notification) => (
-                  <div
-                    key={notification.id}
-                    onClick={() => {
-                      markNotificationAsRead(notification.id)
-                      navigate('/search')
-                    }}
-                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                      notification.isRead
-                        ? 'bg-gray-50 border-gray-100'
-                        : 'bg-orange-50 border-orange-200 hover:border-orange-300'
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0">
-                        {notification.type === 'push' ? (
-                          <Bell className="w-6 h-6 text-[#E67E22]" />
-                        ) : notification.type === 'message' ? (
-                          <MessageCircle className="w-6 h-6 text-blue-500" />
-                        ) : (
-                          <Bell className="w-6 h-6 text-gray-500" />
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <h3 className="font-medium text-[#5D4037]">
-                            {notification.title}
-                          </h3>
-                          {!notification.isRead && (
-                            <span className="w-2 h-2 bg-[#E67E22] rounded-full" />
-                          )}
-                        </div>
-                        <p className="text-sm text-gray-600 mt-1">
-                          {notification.content}
-                        </p>
-                        <p className="text-xs text-gray-400 mt-2">
-                          {notification.createdAt.toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <div className="mt-auto pt-4">
-              <div className="p-4 bg-amber-50 rounded-xl border border-amber-200">
-                <p className="text-sm text-amber-800">
-                  💡 {t('personal.cluesHint')}
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="mt-8"
-      >
-        <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-lg font-bold text-[#5D4037] mb-6">
-            {t('personal.myCases')}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4 items-stretch">
-            <div className="p-4 bg-green-50 rounded-xl border border-green-200 flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="font-medium text-green-800">{t('personal.caseSuccess')}</span>
-              </div>
-              <p className="text-sm text-green-700 leading-relaxed">
-                {t('personal.caseSuccessDesc')}
-              </p>
-            </div>
-            <div className="p-4 bg-blue-50 rounded-xl border border-blue-200 flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                <span className="font-medium text-blue-800">{t('personal.caseOngoing')}</span>
-              </div>
-              <p className="text-sm text-blue-700 leading-relaxed">
-                {t('personal.caseOngoingDesc')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
     </div>
   )
 }

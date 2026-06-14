@@ -1,29 +1,20 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Search, ScanText, Menu, X, FileText, LogIn, LogOut } from 'lucide-react';
+import { Home, Search, ScanText, Menu, X, FileText } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
-import { useAppStore } from '../store/appStore';
 
 export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
-  const { userRole, isLoggedIn, currentUser, logout } = useAppStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const personalPath = userRole === 'seeker'
-    ? '/personal?tab=archive'
-    : userRole === 'volunteer'
-    ? '/personal?tab=volunteer'
-    : '/personal';
 
   const navItems = [
     { path: '/', label: t('navigation.home'), icon: Home },
     { path: '/decode', label: t('navigation.decode'), icon: ScanText },
     { path: '/search', label: t('navigation.search'), icon: Search },
-    { path: '/personal', label: t('navigation.profile'), icon: FileText, href: personalPath },
+    { path: '/personal', label: t('navigation.profile'), icon: FileText },
   ];
 
   const isActive = (path: string) => {
@@ -46,7 +37,7 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={'href' in item ? item.href! : item.path}
+                to={item.path}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                   isActive(item.path)
                     ? 'bg-[#E67E22] text-white shadow-md'
@@ -61,26 +52,6 @@ export default function Header() {
 
           <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher />
-            {isLoggedIn ? (
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600">{currentUser?.name}</span>
-                <button
-                  onClick={logout}
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-[#8D6E63] hover:text-[#5D4037] hover:bg-orange-50 rounded-lg"
-                >
-                  <LogOut size={16} />
-                  {t('navigation.logout')}
-                </button>
-              </div>
-            ) : (
-              <Link
-                to="/login"
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg hover:from-amber-700 hover:to-orange-700"
-              >
-                <LogIn size={16} />
-                {t('navigation.login')}
-              </Link>
-            )}
           </div>
 
           <div className="md:hidden flex items-center gap-2">
@@ -106,7 +77,7 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={'href' in item ? item.href! : item.path}
+                to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive(item.path)
@@ -118,24 +89,6 @@ export default function Header() {
                 <span className="font-sans">{item.label}</span>
               </Link>
             ))}
-            {isLoggedIn ? (
-              <button
-                onClick={() => { logout(); setMobileMenuOpen(false); }}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg text-[#8D6E63] hover:text-[#5D4037]"
-              >
-                <LogOut size={20} />
-                <span className="font-sans">{t('navigation.logout')}</span>
-              </button>
-            ) : (
-              <Link
-                to="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-amber-600 to-orange-600 text-white"
-              >
-                <LogIn size={20} />
-                <span className="font-sans">{t('navigation.login')}</span>
-              </Link>
-            )}
           </nav>
         </motion.div>
       )}
