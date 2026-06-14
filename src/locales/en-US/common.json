@@ -413,5 +413,48 @@
     "archiveIntro": "Build your own roots-tracing archive. Data is stored only in your local browser and can be exported anytime — the platform holds nothing.",
     "archiveSavedLocal": "Saved to your local browser and exportable anytime. The platform holds none of your data.",
     "exportArchive": "Export archive (JSON)"
+  },
+  "stories": {
+    "bangkok": {
+      "title": "A Half-Century Bangkok Reunion — Finding My Grandfather's Family in Thailand",
+      "surname": "",
+      "originRegion": "Chaoshan, Guangdong",
+      "targetRegion": "Bangkok, Thailand",
+      "seekerName": "Site author",
+      "estimatedYear": "Early 20th century",
+      "description": "My great-grandparents left Chaoshan for Bangkok in the early 1900s. My grandfather was born in Bangkok in the 1930s, sent back to Chaoshan as a teenager for schooling, and the two sides of the family stayed in touch only through yearly long-distance calls. In 2024 I flew to Bangkok with a 50-year-old business card and knocked on a door — and brought two families separated for 30 years back together over video.",
+      "intro": "My great-grandparents left Chaoshan for Bangkok in the early 1900s. My grandfather was born in Bangkok in the 1930s, sent back to Chaoshan as a teenager for schooling, and after that the two sides of the family stayed in touch only through long-distance calls each holiday. The calls to his sister stopped getting through — but the 50-year-old Bangkok address was still in his drawer.",
+      "howTitle": "How I Actually Found Them (Six Steps)",
+      "steps": [
+        {
+          "title": "Step 1: Save every old clue your elder still has",
+          "body": "What my grandfather pulled from the back of a drawer: a half-century-old business card with a Thai handwritten address, and a 1990s family photo where he could still point out every face. These were the starting point of everything that followed. Old things in an elder's drawer are not junk — do not throw them out."
+        },
+        {
+          "title": "Step 2: Turn the old address into something a machine can search",
+          "body": "I do not type Thai. I asked a friend who does to retype the address from the card, then ran it through Google Translate (Thai → English) to get something I could paste into a map. (With today's AI this step is even easier.)"
+        },
+        {
+          "title": "Step 3: Use street view to let the elder \"walk the old streets\" online",
+          "body": "I dropped the address into Google Street View and sent the house photo to my grandfather. The first time he said it didn't quite look right. Months later he suddenly recognized the swing nearby and the temple opposite — \"facing the temple, turn right and keep going.\" That kind of detail only someone who lived there remembers. **Letting an elder walk the old streets through street view** is far more effective than just showing them a still photo."
+        },
+        {
+          "title": "Step 4: Set a date and go in person",
+          "body": "My grandmother's fall and month-long hospital stay made me realize how little time was left. No amount of phone calls would substitute for showing up in person. I didn't tell my grandfather I was going alone (I didn't want him disappointed if I failed); I just packed that family photo and flew to Bangkok."
+        },
+        {
+          "title": "Step 5: Bring a local \"translator + companion\"",
+          "body": "I asked a colleague based in Bangkok to come with me — driver, Thai translator, and steady presence in one. The iron gate was locked, my great-aunt was napping, the neighbors only spoke Thai; without her none of it would have worked. **In a foreign country, a local companion gets you safety, communication, and dignity all at once.**"
+        },
+        {
+          "title": "Step 6: Get the two sides on video the moment you arrive",
+          "body": "Once I was inside and they understood who I was, the very next thing I did was call home. My mom sent my uncle over to my grandfather's, and the two families saw each other on screen for the first time in 30 years. **Start the video call the moment you find them — don't wait until you're home.** What separates elders is not just distance; it's time."
+        }
+      ],
+      "reflectionTitle": "Looking back, what really worked",
+      "reflection": "Not luck, and not any single tool. It was: treat the old clues in your elder's drawer as treasure; use modern tools (translation, street view) to turn them into an actionable address; don't hesitate — go in person; bring a local companion; the moment you find them, get everyone on video. This recipe works for anyone trying to finish a reunion search on behalf of an elder in the family.",
+      "endingTitle": "For my grandfather and grandmother",
+      "ending": "Death is not the end. Forgetting is. I wrote this to remember my grandfather and grandmother. May you be reunited above, in a world without pain, full of joy."
+    }
   }
 }

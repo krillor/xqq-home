@@ -6,12 +6,45 @@ import { ArrowLeft, MapPin, Clock, User, MessageCircle, Heart, Share2, AlertCirc
 import { getStatusColor, getStatusText } from '../lib/utils';
 import { getPostById } from '../data/postData';
 
+interface StoryStep { title: string; body: string }
+
 const PostDetailPage: React.FC = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const post = id ? getPostById(id) : undefined;
+
+  // 从 i18n 读取本地化故事内容（若 post 提供 i18nKey）
+  const localized = (() => {
+    if (!post?.i18nKey) return null;
+    const get = (sub: string) => t(`${post.i18nKey}.${sub}`);
+    const steps = t(`${post.i18nKey}.steps`, { returnObjects: true }) as StoryStep[] | string;
+    return {
+      title: get('title'),
+      description: get('description'),
+      intro: get('intro'),
+      howTitle: get('howTitle'),
+      steps: Array.isArray(steps) ? steps : [],
+      reflectionTitle: get('reflectionTitle'),
+      reflection: get('reflection'),
+      endingTitle: get('endingTitle'),
+      ending: get('ending'),
+      originRegion: get('originRegion'),
+      targetRegion: get('targetRegion'),
+      estimatedYear: get('estimatedYear'),
+      seekerName: get('seekerName'),
+    };
+  })();
+
+  const view = post && localized ? {
+    title: localized.title || post.title,
+    originRegion: localized.originRegion || post.originRegion,
+    targetRegion: localized.targetRegion || post.targetRegion,
+    estimatedYear: localized.estimatedYear || post.estimatedYear,
+    seekerName: localized.seekerName || post.seekerName,
+    description: localized.description || post.description,
+  } : post;
   
   if (!post) {
     return (
@@ -82,13 +115,15 @@ const PostDetailPage: React.FC = () => {
                     </span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-bold text-[#5D4037] mb-2">
-                    {post.title}
+                    {view!.title}
                   </h1>
                   <div className="flex items-center gap-4 text-gray-500 text-sm">
-                    <div className="flex items-center gap-1">
-                      <User className="w-4 h-4" />
-                      <span>{post.seekerName}</span>
-                    </div>
+                    {view!.seekerName && (
+                      <div className="flex items-center gap-1">
+                        <User className="w-4 h-4" />
+                        <span>{view!.seekerName}</span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       <span>{post.date}</span>
@@ -122,46 +157,57 @@ const PostDetailPage: React.FC = () => {
                         <p className="text-sm text-gray-500 mb-1">{t('detailPage.origin')}</p>
                         <p className="text-[#5D4037] font-medium flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-[#E67E22]" />
-                          {post.originRegion}
+                          {view!.originRegion}
                         </p>
                       </div>
                       <div className="bg-orange-50 p-4 rounded-xl">
                         <p className="text-sm text-gray-500 mb-1">{t('detailPage.destination')}</p>
                         <p className="text-[#5D4037] font-medium flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-[#E67E22]" />
-                          {post.targetRegion}
+                          {view!.targetRegion}
                         </p>
                       </div>
-                      {post.estimatedYear && (
+                      {view!.estimatedYear && (
                         <div className="bg-orange-50 p-4 rounded-xl">
                           <p className="text-sm text-gray-500 mb-1">{t('detailPage.era')}</p>
-                          <p className="text-[#5D4037] font-medium">{post.estimatedYear}</p>
+                          <p className="text-[#5D4037] font-medium">{view!.estimatedYear}</p>
                         </div>
                       )}
                     </div>
                   </div>
-                  
-                  <div>
-                    <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.description')}</h3>
-                    {post.story ? (
-                      <div className="space-y-4 text-gray-600 leading-relaxed">
-                        {post.story.map((para, i) => (
-                          <p key={i}>{para}</p>
-                        ))}
+
+                  {localized ? (
+                    <>
+                      <div>
+                        <p className="text-gray-600 leading-relaxed">{localized.intro}</p>
                       </div>
-                    ) : (
-                      <p className="text-gray-600 leading-relaxed">{post.description}</p>
-                    )}
-                  </div>
-                  
-                  {post.familyStory && (
+
+                      <div>
+                        <h3 className="font-semibold text-[#5D4037] mb-4 text-lg">{localized.howTitle}</h3>
+                        <div className="space-y-5">
+                          {localized.steps.map((step, i) => (
+                            <div key={i} className="bg-amber-50/60 border border-amber-100 rounded-xl p-5">
+                              <h4 className="font-semibold text-[#5D4037] mb-2">{step.title}</h4>
+                              <p className="text-gray-700 leading-relaxed">{step.body}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-[#5D4037] mb-3">{localized.reflectionTitle}</h3>
+                        <p className="text-gray-700 leading-relaxed">{localized.reflection}</p>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-100 rounded-xl p-6">
+                        <h3 className="font-semibold text-[#5D4037] mb-3">{localized.endingTitle}</h3>
+                        <p className="text-gray-700 italic leading-relaxed">{localized.ending}</p>
+                      </div>
+                    </>
+                  ) : (
                     <div>
-                      <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.familyStory')}</h3>
-                      <div className="bg-amber-50 border border-amber-200 p-6 rounded-xl">
-                        <p className="text-gray-700 italic leading-relaxed">
-                          "{post.familyStory}"
-                        </p>
-                      </div>
+                      <h3 className="font-semibold text-[#5D4037] mb-3">{t('detailPage.description')}</h3>
+                      <p className="text-gray-600 leading-relaxed">{view!.description}</p>
                     </div>
                   )}
                 </div>

@@ -25,6 +25,12 @@ export default function PostCard({
   foundLabel = foundLabel ?? t('search.status.found');
   searchingLabel = searchingLabel ?? t('search.status.searching');
   viewDetailLabel = viewDetailLabel ?? `${t('search.viewDetail')} →`;
+
+  // 若该故事提供 i18nKey，标题/描述/地区按当前语言渲染
+  const title = post.i18nKey ? t(`${post.i18nKey}.title`) : post.title;
+  const description = post.i18nKey ? t(`${post.i18nKey}.description`) : post.description;
+  const originRegion = post.i18nKey ? t(`${post.i18nKey}.originRegion`) : post.originRegion;
+  const targetRegion = post.i18nKey ? t(`${post.i18nKey}.targetRegion`) : post.targetRegion;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -49,7 +55,7 @@ export default function PostCard({
                 </span>
               ) : (
                 <span className="text-base font-bold text-[#5D4037] line-clamp-1">
-                  {post.originRegion} → {post.targetRegion}
+                  {originRegion} → {targetRegion}
                 </span>
               )}
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(post.status)}`}>
@@ -57,15 +63,15 @@ export default function PostCard({
               </span>
             </div>
             <h3 className="text-base font-bold text-[#5D4037] mb-3 line-clamp-2">
-              {post.title}
+              {title}
             </h3>
             <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-              {post.description}
+              {description}
             </p>
             <div className="space-y-2 text-sm text-gray-500">
               <div className="flex items-start gap-1">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="line-clamp-1">{post.originRegion} → {post.targetRegion}</span>
+                <span className="line-clamp-1">{originRegion} → {targetRegion}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4 flex-shrink-0" />
