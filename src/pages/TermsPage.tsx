@@ -1,14 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, FileText, AlertCircle, CheckCircle, Users } from 'lucide-react'
+import { ArrowLeft, FileText, AlertCircle, CheckCircle, BookOpen } from 'lucide-react'
 
 interface SectionData {
   title: string
   icon?: React.ReactNode
   intro: string
   items?: string[]
-  outro?: string
 }
 
 interface PageContent {
@@ -19,168 +18,89 @@ interface PageContent {
   contactTitle: string
   contactIntro: string
   email: string
-  phone: string
   footer: string
 }
 
 const zhContent: PageContent = {
   backHome: '返回首页',
   title: '使用条款',
-  updated: '最后更新：2024年1月',
+  updated: '最后更新：2026年6月',
   sections: [
     {
-      title: '服务说明',
+      title: '这是什么',
       icon: <CheckCircle className="w-6 h-6" />,
-      intro: '寻亲桥是一个帮助华侨华人寻根问祖的公益平台。我们提供以下服务：',
+      intro: '寻亲桥是一个公益性的寻根工具站，完全免费、无需注册。它提供：',
       items: [
-        '寻亲信息发布和浏览',
-        '志愿者匹配和联络',
-        '寻根知识和帮助指南',
+        '线索解码：把方言姓氏、旧地名等碎片，对照成可检索的中文信息',
+        '寻根档案：在你本地建立家族档案并导出（数据只存你本地）',
+        '寻根故事：真实的寻根经历与方法分享',
       ],
     },
     {
-      title: '用户责任',
-      icon: <Users className="w-6 h-6" />,
-      intro: '作为平台用户，您同意：',
-      items: [
-        '提供真实、准确的寻亲信息',
-        '不发布虚假、误导性或欺骗性内容',
-        '尊重他人隐私，不泄露他人个人信息',
-        '不使用平台从事任何违法活动',
-        '保护您的账户安全，不将账号借给他人使用',
-        '对您的行为负全部责任',
-      ],
-    },
-    {
-      title: '禁止行为',
+      title: '重要提示与免责',
       icon: <AlertCircle className="w-6 h-6" />,
-      intro: '明确禁止以下行为：',
+      intro: '使用本站前，请理解以下几点：',
       items: [
-        '发布虚假寻亲信息或冒充他人',
-        '利用平台进行商业广告推销',
-        '侵犯他人知识产权、隐私权等合法权益',
-        '传播违法、有害、歧视性内容',
-        '骚扰、威胁或恐吓其他用户',
-        '尝试入侵、破坏平台系统',
+        '解码结果（旧地名、方言姓氏对照）来自公开资料整理，仅供参考，不保证完全准确；据此联系机构或安排出行，请自行核实、风险自负',
+        '寻根档案只保存在你的浏览器本地——清除浏览器数据、更换设备或浏览器都会导致丢失，本站无法找回，请及时导出备份',
+        '本站不提供寻人撮合、不接触也不保存任何当事人信息，也不对任何寻亲结果作出保证',
       ],
     },
     {
-      title: '内容所有权',
-      intro: '您在平台上发布的内容（如文字、图片、语音等）版权归您所有。但您授予我们以下权利：',
+      title: '内容与版权',
+      icon: <BookOpen className="w-6 h-6" />,
+      intro: '关于站内内容：',
       items: [
-        '使用、复制、修改您发布的内容用于平台运营',
-        '在平台上展示您的寻亲信息',
-        '与相关志愿者和侨务部门共享必要信息',
-      ],
-      outro: '请确保您有权发布相关内容，不侵犯他人权益。',
-    },
-    {
-      title: '免责声明',
-      intro: '寻亲桥作为一个信息交流平台，对以下情况不承担责任：',
-      items: [
-        '用户发布信息的真实性、准确性',
-        '寻亲结果的最终成功与否',
-        '用户之间的线下交易或交往',
-        '因不可抗力导致的服务中断',
-        '用户因违反本条款导致的损失',
-      ],
-    },
-    {
-      title: '服务终止',
-      intro: '在以下情况下，我们可能终止或暂停您的账户：',
-      items: [
-        '您违反本使用条款',
-        '您从事违法活动',
-        '您长时间未使用账户',
-        '平台需要终止服务',
+        '「寻根故事」的版权归原作者所有',
+        '转载或引用请注明出处，请勿用于商业用途',
       ],
     },
   ],
   contactTitle: '联系我们',
-  contactIntro: '如果您对本使用条款有任何疑问，请通过以下方式联系我们：',
+  contactIntro: '如果你对本使用条款有任何疑问，欢迎通过以下方式联系：',
   email: '邮箱',
-  phone: '电话',
-  footer: '使用寻亲桥服务即表示您已阅读、理解并同意上述所有条款。我们保留随时修改本条款的权利，修改后的条款将在此页面公布。',
+  footer: '继续使用本站，即表示你已阅读并理解上述条款。我们保留随时修改本条款的权利，修改后的版本会在此页面公布。',
 }
 
 const enContent: PageContent = {
   backHome: 'Back to home',
   title: 'Terms of Use',
-  updated: 'Last updated: January 2024',
+  updated: 'Last updated: June 2026',
   sections: [
     {
-      title: 'Our Services',
+      title: 'What This Is',
       icon: <CheckCircle className="w-6 h-6" />,
-      intro: 'RootBridge is a non-profit platform helping overseas Chinese trace their roots and find relatives. We provide:',
+      intro: 'RootBridge is a non-profit roots-tracing tool — completely free, no registration. It offers:',
       items: [
-        'Publishing and browsing reunion posts',
-        'Volunteer matching and contact',
-        'Roots-tracing knowledge and help guides',
+        'Clue Decoder: match dialect surnames, old place names and other fragments to searchable information',
+        'My Roots Archive: build a family archive locally and export it (data stays on your device only)',
+        'Roots Stories: real reunion experiences and methods shared',
       ],
     },
     {
-      title: 'User Responsibilities',
-      icon: <Users className="w-6 h-6" />,
-      intro: 'As a user of the platform, you agree to:',
-      items: [
-        'Provide truthful and accurate reunion information',
-        'Not publish false, misleading, or deceptive content',
-        "Respect others' privacy and not disclose their personal information",
-        'Not use the platform for any illegal activities',
-        'Keep your account secure and not lend it to others',
-        'Take full responsibility for your actions',
-      ],
-    },
-    {
-      title: 'Prohibited Conduct',
+      title: 'Important Notes & Disclaimer',
       icon: <AlertCircle className="w-6 h-6" />,
-      intro: 'The following conduct is strictly prohibited:',
+      intro: 'Before using this site, please understand the following:',
       items: [
-        'Publishing false reunion posts or impersonating others',
-        'Using the platform for commercial advertising',
-        "Infringing others' intellectual property, privacy, or other rights",
-        'Spreading illegal, harmful, or discriminatory content',
-        'Harassing, threatening, or intimidating other users',
-        'Attempting to hack or damage the platform',
+        'Decoder results (old place names, dialect surnames) are compiled from public sources for reference only, with no guarantee of accuracy; verify independently before contacting any organization or making travel plans — you do so at your own risk',
+        'Your roots archive is stored only in your browser. Clearing browser data, or switching device or browser, will lose it; we cannot recover it, so export a backup promptly',
+        'This site offers no people-matching service, never touches or stores any individual\'s information, and makes no guarantee about any reunion outcome',
       ],
     },
     {
-      title: 'Content Ownership',
-      intro: 'You retain copyright of the content you publish (text, photos, audio, etc.). However, you grant us the following rights:',
+      title: 'Content & Copyright',
+      icon: <BookOpen className="w-6 h-6" />,
+      intro: 'Regarding the content on this site:',
       items: [
-        'To use, copy, and modify your content for platform operations',
-        'To display your reunion posts on the platform',
-        'To share necessary information with relevant volunteers and overseas Chinese affairs offices',
-      ],
-      outro: "Please ensure you have the right to publish the content and do not infringe others' rights.",
-    },
-    {
-      title: 'Disclaimer',
-      intro: 'As an information exchange platform, RootBridge is not responsible for:',
-      items: [
-        'The truthfulness or accuracy of user-published information',
-        'Whether a reunion search ultimately succeeds',
-        'Offline transactions or interactions between users',
-        'Service interruptions caused by force majeure',
-        'Losses caused by your violation of these terms',
-      ],
-    },
-    {
-      title: 'Termination',
-      intro: 'We may terminate or suspend your account if:',
-      items: [
-        'You violate these terms of use',
-        'You engage in illegal activities',
-        'Your account is inactive for an extended period',
-        'The platform needs to discontinue the service',
+        'The "Roots Stories" remain the copyright of their original authors',
+        'If you republish or quote them, please credit the source and do not use them commercially',
       ],
     },
   ],
   contactTitle: 'Contact Us',
-  contactIntro: 'If you have any questions about these terms of use, please contact us via:',
+  contactIntro: 'If you have any questions about these terms, feel free to reach out:',
   email: 'Email',
-  phone: 'Phone',
-  footer: 'By using RootBridge you acknowledge that you have read, understood, and agreed to all of the above terms. We reserve the right to modify these terms at any time; updates will be published on this page.',
+  footer: 'By continuing to use this site, you acknowledge that you have read and understood these terms. We reserve the right to modify them at any time; the updated version will be published on this page.',
 }
 
 const TermsPage: React.FC = () => {
@@ -221,7 +141,6 @@ const TermsPage: React.FC = () => {
                       {section.items.map(item => <li key={item}>{item}</li>)}
                     </ul>
                   )}
-                  {section.outro && <p className="mt-4">{section.outro}</p>}
                 </div>
               </section>
             ))}
@@ -232,7 +151,6 @@ const TermsPage: React.FC = () => {
                 <p>{c.contactIntro}</p>
                 <div className="mt-4 p-4 bg-amber-50 rounded-lg">
                   <p><strong>{c.email}</strong>: contact@xqq.com</p>
-                  <p><strong>{c.phone}</strong>: 400-888-8888</p>
                 </div>
               </div>
             </section>

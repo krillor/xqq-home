@@ -1,30 +1,17 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import {
-  Upload, X, ScanText, MapPin, Search,
-  Camera, MessageSquare, Clock, Users
-} from 'lucide-react'
+import { MapPin, Search, MessageSquare, Users } from 'lucide-react'
 import { regionData, placeNameAlias } from '../data/regionData'
 
 const IntelligentParser: React.FC = () => {
   const { t } = useTranslation()
-  const [activeTab, setActiveTab] = useState<'ocr' | 'location' | 'dialect'>('ocr')
+  const [activeTab, setActiveTab] = useState<'location' | 'dialect'>('location')
   const [loading, setLoading] = useState(false)
   const [parseResults, setParseResults] = useState<any>(null)
   const [locationInput, setLocationInput] = useState('')
   const [dialectInput, setDialectInput] = useState('')
-  const [uploadedImages, setUploadedImages] = useState<string[]>([])
   const [openGroup, setOpenGroup] = useState<string | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
-
-  const sampleOcrResults = [
-    { type: '姓名', value: '陈金生', confidence: 95, highlight: true },
-    { type: '地名', value: '同安', confidence: 88, highlight: true },
-    { type: '商号', value: '和成信局', confidence: 92, highlight: true },
-    { type: '郡望', value: '颍川', confidence: 85, highlight: true },
-    { type: '年份', value: '民国三十七年', confidence: 78, highlight: false },
-  ]
 
   const historicalNames: Record<string, string> = {
     '同安': '同安县', '南安': '南安县', '晋江': '晋江县', '泉州': '泉州府',
@@ -78,22 +65,6 @@ const IntelligentParser: React.FC = () => {
     { surname: '吴', dialectPronunciation: ['Goh', 'Ng', 'Wu'], hallName: '延陵', locations: ['马来西亚延陵吴氏公会', '新加坡吴氏公会', '泰国吴氏宗亲总会'] },
   ]
 
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || [])
-    if (files.length === 0) return
-    for (const file of files) {
-      setUploadedImages(prev => [...prev, URL.createObjectURL(file)])
-    }
-  }
-
-  const handleAnalyzeImage = async () => {
-    if (uploadedImages.length === 0) return
-    setLoading(true)
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setParseResults(sampleOcrResults)
-    setLoading(false)
-  }
-
   const handleLocationSearch = async () => {
     if (!locationInput) return
     setLoading(true)
@@ -116,7 +87,7 @@ const IntelligentParser: React.FC = () => {
     setLoading(false)
   }
 
-  const switchTab = (tab: 'ocr' | 'location' | 'dialect') => {
+  const switchTab = (tab: 'location' | 'dialect') => {
     setActiveTab(tab)
     setParseResults(null)
   }
@@ -169,7 +140,6 @@ const IntelligentParser: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="flex border-b border-gray-100 overflow-hidden rounded-t-2xl">
             {[
-              { id: 'ocr' as const, label: t('tools.tabOcr'), icon: Camera, sub: t('tools.tabOcrSub') },
               { id: 'location' as const, label: t('tools.tabLocation'), icon: MapPin, sub: t('tools.tabLocationSub') },
               { id: 'dialect' as const, label: t('tools.tabDialect'), icon: MessageSquare, sub: t('tools.tabDialectSub') },
             ].map((tab) => (
@@ -194,81 +164,6 @@ const IntelligentParser: React.FC = () => {
           {/* Tab 内容 */}
           <div className="p-6">
             <AnimatePresence mode="wait">
-
-              {/* ── OCR 解析 ── */}
-              {activeTab === 'ocr' && (
-                <motion.div key="ocr" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
-                  {uploadedImages.length === 0 ? (
-                    <div
-                      className="border-2 border-dashed border-gray-200 rounded-xl p-10 text-center hover:border-[#E67E22] hover:bg-orange-50/30 transition-all cursor-pointer"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      <Upload className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                      <p className="text-gray-600 font-medium mb-1">{t('tools.uploadHint')}</p>
-                      <p className="text-sm text-gray-400">{t('tools.uploadFormat')}</p>
-                      <input ref={fileInputRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileSelect} />
-                    </div>
-                  ) : (
-                    <div className="space-y-4">
-                      <div className="grid grid-cols-3 gap-3">
-                        {uploadedImages.map((img, idx) => (
-                          <div key={idx} className="relative group">
-                            <img src={img} alt={`upload-${idx}`} className="w-full h-36 object-cover rounded-xl" />
-                            <button
-                              onClick={() => setUploadedImages(prev => prev.filter((_, i) => i !== idx))}
-                              className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow"
-                            >
-                              <X className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                      <button
-                        onClick={handleAnalyzeImage}
-                        disabled={loading}
-                        className="w-full py-3 bg-[#E67E22] text-white rounded-xl font-semibold hover:bg-[#D35400] transition-colors disabled:opacity-50"
-                      >
-                        {loading ? (
-                          <span className="flex items-center justify-center gap-2">
-                            <Clock className="w-4 h-4 animate-spin" /> {t('tools.analyzing')}
-                          </span>
-                        ) : t('tools.startParse')}
-                      </button>
-                    </div>
-                  )}
-
-                  {/* OCR 结果 */}
-                  {parseResults && (
-                    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-6 space-y-4">
-                      <div className="flex items-center gap-2 text-sm font-semibold text-gray-600">
-                        <ScanText className="w-4 h-4" /> {t('tools.ocrResult')}
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        {parseResults.map((r: any, i: number) => (
-                          <div key={i} className={`p-4 rounded-xl border ${r.highlight ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-gray-100'}`}>
-                            <div className="flex justify-between items-center mb-1">
-                              <span className="text-xs text-gray-400">{r.type}</span>
-                              <span className={`text-xs px-1.5 py-0.5 rounded-full ${r.confidence >= 85 ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>
-                                {r.confidence}%
-                              </span>
-                            </div>
-                            <div className="text-base font-bold text-gray-800">{r.value}</div>
-                          </div>
-                        ))}
-                      </div>
-                      {parseResults.some((r: any) => r.type === '郡望') && (
-                        <div className="p-3 bg-purple-50 border border-purple-100 rounded-xl text-sm text-purple-700">
-                          💡 <span className="font-medium">{t('tools.junwangLabel')}</span>{t('tools.junwangHint')}
-                        </div>
-                      )}
-                      <div className="flex gap-3 pt-1">
-                        <button className="flex-1 py-2.5 bg-[#E67E22] text-white rounded-xl text-sm font-semibold hover:bg-[#D35400] transition-colors">{t('tools.exportResult')}</button>
-                        <button className="px-5 py-2.5 border border-gray-200 text-gray-600 rounded-xl text-sm hover:bg-gray-50 transition-colors">{t('tools.saveArchive')}</button>
-                      </div>
-                    </motion.div>
-                  )}
-                </motion.div>
-              )}
 
               {/* ── 地名匹配 ── */}
               {activeTab === 'location' && (

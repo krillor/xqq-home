@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Shield, Lock, Eye, FileText } from 'lucide-react'
+import { ArrowLeft, Shield, Lock, Globe, Cookie, UserCheck } from 'lucide-react'
 
 interface SectionData {
   title: string
@@ -18,142 +18,99 @@ interface PageContent {
   contactTitle: string
   contactIntro: string
   email: string
-  phone: string
   footer: string
 }
 
 const zhContent: PageContent = {
   backHome: '返回首页',
   title: '隐私政策',
-  updated: '最后更新：2024年1月',
+  updated: '最后更新：2026年6月',
   sections: [
     {
-      title: '信息收集',
+      title: '我们不收集你的任何信息',
       icon: <Lock className="w-6 h-6" />,
-      intro: '寻亲桥（以下称"我们"或"平台"）承诺尊重并保护您的个人隐私。在您使用我们的服务时，我们可能会收集以下类型的信息：',
+      intro: '寻亲桥是一个纯前端的工具站——没有服务器数据库，也没有账号系统。我们不收集、不上传、不存储你的任何个人信息。',
       items: [
-        '账户信息：包括您的姓名、邮箱地址等注册信息',
-        '寻亲信息：您发布的寻亲内容，包括家族故事、照片、地理位置等',
-        '使用数据：包括您的浏览记录、搜索历史等匿名统计数据',
-        '上传资料：包括老照片、侨批、墓碑照片等您主动上传的内容',
+        '你在「线索解码」里输入的姓氏、地名等，仅在你的浏览器中即时处理，用完即弃，不会发送到任何服务器',
+        '你在「寻根档案」里填写的内容，只保存在你自己设备的浏览器本地存储中，可由你导出为文件——它们从不离开你的设备',
+        '我们没有后台，无法看到、也不会保存你的任何输入',
       ],
     },
     {
-      title: '信息使用',
-      icon: <Eye className="w-6 h-6" />,
-      intro: '我们收集您的信息主要用于以下目的：',
+      title: '本站使用的第三方',
+      icon: <Globe className="w-6 h-6" />,
+      intro: '为了让网站能被访问，我们用到以下第三方服务：',
       items: [
-        '提供和维护平台的正常运营服务',
-        '帮助您发布和管理寻亲信息',
-        '连接您与相关地区的志愿者和侨务部门',
-        '改进平台功能和服务质量',
-        '发送重要的服务通知和更新',
+        '站点托管于 GitHub Pages（静态网页托管），其访问日志由 GitHub 依其隐私政策处理',
+        '「旧地名 / 方言姓氏」的对照数据是内置的静态资料，查询时不联网',
+        '若你使用浏览器自带翻译，或点击跳转到外部地图、网站，则受这些服务各自的隐私政策约束',
       ],
     },
     {
-      title: '信息保护',
-      icon: <FileText className="w-6 h-6" />,
-      intro: '我们采取多种安全措施来保护您的个人信息，包括但不限于：',
-      items: [
-        '数据加密传输（HTTPS/SSL）',
-        '严格的访问权限控制',
-        '定期安全审计和更新',
-        '用户敏感信息的脱敏处理',
-      ],
+      title: 'Cookie 与统计',
+      icon: <Cookie className="w-6 h-6" />,
+      intro: '本站不使用任何用于追踪你的 Cookie，也没有接入广告或用户行为分析。',
     },
     {
-      title: '信息共享',
-      intro: '我们承诺不会出售您的个人信息。在以下情况下，我们可能会共享您的信息：',
+      title: '你拥有完全的控制权',
+      icon: <UserCheck className="w-6 h-6" />,
+      intro: '因为数据只存在你本地，你对它有完全的掌控：',
       items: [
-        '经您明确同意后，与相关志愿者或侨务部门共享',
-        '根据法律法规要求，向相关政府部门披露',
-        '为保护平台和用户的合法权益',
-      ],
-    },
-    {
-      title: '您的权利',
-      intro: '您对自己的个人信息享有以下权利：',
-      items: [
-        '访问和查看您的个人信息',
-        '更正不准确的个人信息',
-        '删除您的个人信息和账户',
-        '撤回您的同意授权',
-        '导出您的个人数据',
+        '导出：随时把寻根档案导出为文件，自行保管',
+        '删除：清除浏览器数据，或删除你导出的文件，即可彻底清除',
       ],
     },
   ],
   contactTitle: '联系我们',
-  contactIntro: '如果您对本隐私政策有任何疑问，或需要行使您的权利，请通过以下方式联系我们：',
+  contactIntro: '如果你对本隐私政策有任何疑问，欢迎通过以下方式联系：',
   email: '邮箱',
-  phone: '电话',
-  footer: '我们可能会不时更新本隐私政策。更新后的政策将在此页面公布。如您继续使用我们的服务，即表示您同意更新后的政策。',
+  footer: '本站是一个公益性的个人项目。我们可能会不时更新本隐私政策，更新后的版本会在此页面公布。',
 }
 
 const enContent: PageContent = {
   backHome: 'Back to home',
   title: 'Privacy Policy',
-  updated: 'Last updated: January 2024',
+  updated: 'Last updated: June 2026',
   sections: [
     {
-      title: 'Information We Collect',
+      title: 'We Collect Nothing About You',
       icon: <Lock className="w-6 h-6" />,
-      intro: 'RootBridge ("we" or "the platform") is committed to respecting and protecting your privacy. When you use our services, we may collect the following types of information:',
+      intro: 'RootBridge is a front-end-only tool — there is no server database and no account system. We do not collect, upload, or store any of your personal information.',
       items: [
-        'Account information: your name, email address, and other registration details',
-        'Reunion posts: content you publish, including family stories, photos, and locations',
-        'Usage data: anonymous statistics such as browsing and search history',
-        'Uploaded materials: old photos, qiaopi letters, tombstone photos, and other content you upload',
+        'Anything you type into the Clue Decoder (surnames, place names, etc.) is processed instantly in your browser and discarded — nothing is sent to any server',
+        'Whatever you fill into "My Roots Archive" is stored only in your own device\'s browser storage and can be exported as a file — it never leaves your device',
+        'We have no backend; we cannot see and do not keep any of your input',
       ],
     },
     {
-      title: 'How We Use Information',
-      icon: <Eye className="w-6 h-6" />,
-      intro: 'We collect your information mainly for the following purposes:',
+      title: 'Third Parties We Rely On',
+      icon: <Globe className="w-6 h-6" />,
+      intro: 'To make the site accessible, we use the following third-party services:',
       items: [
-        'Providing and maintaining the platform',
-        'Helping you publish and manage reunion posts',
-        'Connecting you with volunteers and overseas Chinese affairs offices in relevant regions',
-        'Improving platform features and service quality',
-        'Sending important service notices and updates',
+        'The site is hosted on GitHub Pages (static hosting); its access logs are handled under GitHub\'s own privacy policy',
+        'The old-place-name and dialect-surname lookup data is built-in static data — queries do not go online',
+        'If you use your browser\'s built-in translation, or click through to external maps or sites, those are governed by their own privacy policies',
       ],
     },
     {
-      title: 'How We Protect Information',
-      icon: <FileText className="w-6 h-6" />,
-      intro: 'We take multiple security measures to protect your personal information, including but not limited to:',
-      items: [
-        'Encrypted data transmission (HTTPS/SSL)',
-        'Strict access control',
-        'Regular security audits and updates',
-        'Masking of sensitive user information',
-      ],
+      title: 'Cookies & Analytics',
+      icon: <Cookie className="w-6 h-6" />,
+      intro: 'This site uses no tracking cookies, and has no advertising or behavioral analytics.',
     },
     {
-      title: 'Information Sharing',
-      intro: 'We promise never to sell your personal information. We may share your information only in the following cases:',
+      title: 'You Are Fully in Control',
+      icon: <UserCheck className="w-6 h-6" />,
+      intro: 'Because the data lives only on your device, you have complete control over it:',
       items: [
-        'With relevant volunteers or overseas Chinese affairs offices, with your explicit consent',
-        'With government authorities as required by laws and regulations',
-        'To protect the legitimate rights of the platform and its users',
-      ],
-    },
-    {
-      title: 'Your Rights',
-      intro: 'You have the following rights regarding your personal information:',
-      items: [
-        'Access and review your personal information',
-        'Correct inaccurate personal information',
-        'Delete your personal information and account',
-        'Withdraw your consent',
-        'Export your personal data',
+        'Export: download your roots archive as a file anytime and keep it yourself',
+        'Delete: clear your browser data, or delete the file you exported, to remove it entirely',
       ],
     },
   ],
   contactTitle: 'Contact Us',
-  contactIntro: 'If you have any questions about this privacy policy or wish to exercise your rights, please contact us via:',
+  contactIntro: 'If you have any questions about this privacy policy, feel free to reach out:',
   email: 'Email',
-  phone: 'Phone',
-  footer: 'We may update this privacy policy from time to time. Updates will be published on this page. Continued use of our services indicates your acceptance of the updated policy.',
+  footer: 'This is a non-profit personal project. We may update this privacy policy from time to time; the updated version will be published on this page.',
 }
 
 const PrivacyPage: React.FC = () => {
@@ -204,7 +161,6 @@ const PrivacyPage: React.FC = () => {
                 <p>{c.contactIntro}</p>
                 <div className="mt-4 p-4 bg-amber-50 rounded-lg">
                   <p><strong>{c.email}</strong>: contact@xqq.com</p>
-                  <p><strong>{c.phone}</strong>: 400-888-8888</p>
                 </div>
               </div>
             </section>
